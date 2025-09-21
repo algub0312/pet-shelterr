@@ -1,0 +1,218 @@
+ {
+  "pets": [
+    {
+      "id": 1,
+      "name": "Bella",
+      "type": "dog",
+      "breed": "Golden Retriever",
+      "age": "3 years",
+      "gender": "Female",
+      "size": "Large",
+      "color": "Golden",
+      "description": "Bella is a friendly and energetic Golden Retriever who loves playing fetch and going on long walks. She's great with children and other dogs, making her the perfect family companion.",
+      "personality": ["Friendly", "Energetic", "Loyal", "Good with kids"],
+      "medical": {
+        "vaccinated": true,
+        "spayed_neutered": true,
+        "microchipped": true,
+        "special_needs": false
+      },
+      "images": [
+        "images/pets/bella.jpg",
+        "images/pets/bella2.jpg"
+        
+      ],
+      "status": "available",
+      "arrival_date": "2025-09-20",
+      "adoption_fee": 250,
+      "featured": true
+    },
+    {
+      "id": 2,
+      "name": "Whiskers",
+      "type": "cat",
+      "breed": "Tabby Cat",
+      "age": "5 years",
+      "gender": "Male",
+      "size": "Medium",
+      "color": "Orange and White",
+      "description": "Whiskers is a calm and affectionate cat who loves to curl up in sunny spots. He's looking for a quiet home where he can be the only pet and receive lots of love.",
+      "personality": ["Calm", "Affectionate", "Independent", "Quiet"],
+      "medical": {
+        "vaccinated": true,
+        "spayed_neutered": true,
+        "microchipped": true,
+        "special_needs": true,
+        "special_needs_description": "Needs daily medication for mild arthritis"
+      },
+      "images": [
+        "images/pets/whiskers.jpg",
+        "images/pets/whiskers2.jpg"
+      ],
+      "status": "available",
+      "arrival_date": "2024-07-20",
+      "adoption_fee": 150,
+      "featured": true
+    },
+    {
+      "id": 3,
+      "name": "Rocky",
+      "type": "dog",
+      "breed": "Mixed Breed",
+      "age": "2 years",
+      "gender": "Male",
+      "size": "Medium",
+      "color": "Brown and Black",
+      "description": "Rocky is a playful young dog with lots of energy. He would do well in an active family who can give him plenty of exercise and training.",
+      "personality": ["Playful", "Energetic", "Smart", "Trainable"],
+      "medical": {
+        "vaccinated": true,
+        "spayed_neutered": true,
+        "microchipped": true,
+        "special_needs": false
+      },
+      "images": [
+        "images/pets/rocky.jpg"
+       
+      ],
+      "status": "available",
+      "arrival_date": "2025-09-01",
+      "adoption_fee": 200,
+      "featured": true
+    },
+    {
+      "id": 4,
+      "name": "Luna",
+      "type": "cat",
+      "breed": "Siamese",
+      "age": "1 year",
+      "gender": "Female",
+      "size": "Small",
+      "color": "Cream and Brown",
+      "description": "Luna is a young, curious Siamese kitten who loves to explore and play. She's very social and would love a family that can give her lots of attention.",
+      "personality": ["Curious", "Social", "Playful", "Vocal"],
+      "medical": {
+        "vaccinated": true,
+        "spayed_neutered": true,
+        "microchipped": true,
+        "special_needs": false
+      },
+      "images": [
+        "images/pets/luna-1.jpg",
+        "images/pets/luna-2.jpg"
+      ],
+      "status": "available",
+      "arrival_date": "2024-08-30",
+      "adoption_fee": 175,
+      "featured": false
+    },
+    {
+      "id": 5,
+      "name": "Max",
+      "type": "dog",
+      "breed": "Labrador Retriever",
+      "age": "4 years",
+      "gender": "Male",
+      "size": "Large",
+      "color": "Black",
+      "description": "Max is a gentle giant who loves everyone he meets. He's well-trained and would make an excellent family pet for those looking for a calm, loving companion.",
+      "personality": ["Gentle", "Well-trained", "Friendly", "Calm"],
+      "medical": {
+        "vaccinated": true,
+        "spayed_neutered": true,
+        "microchipped": true,
+        "special_needs": false
+      },
+      "images": [
+        "images/pets/max-1.jpg",
+        "images/pets/max-2.jpg"
+      ],
+      "status": "pending",
+      "arrival_date": "2024-07-10",
+      "adoption_fee": 275,
+      "featured": false
+    },
+    {
+      "id": 6,
+      "name": "Mittens",
+      "type": "cat",
+      "breed": "Persian",
+      "age": "6 years",
+      "gender": "Female",
+      "size": "Medium",
+      "color": "White",
+      "description": "Mittens is a beautiful Persian cat who enjoys a quiet, peaceful environment. She loves being brushed and pampered, perfect for someone who wants a calm companion.",
+      "personality": ["Quiet", "Gentle", "Loves grooming", "Independent"],
+      "medical": {
+        "vaccinated": true,
+        "spayed_neutered": true,
+        "microchipped": true,
+        "special_needs": false
+      },
+      "images": [
+        "images/pets/mittens-1.jpg"
+      ],
+      "status": "available",
+      "arrival_date": "2024-06-25",
+      "adoption_fee": 200,
+      "featured": false
+    },
+    {
+      "id": 7,
+      "name": "Buddy",
+      "type": "dog",
+      "breed": "Beagle",
+      "age": "7 years",
+      "gender": "Male",
+      "size": "Medium",
+      "color": "Tri-color",
+      "description": "Buddy is a senior dog with a heart of gold. He's calm, house-trained, and perfect for someone looking for a low-maintenance, loving companion.",
+      "personality": ["Calm", "House-trained", "Senior", "Gentle"],
+      "medical": {
+        "vaccinated": true,
+        "spayed_neutered": true,
+        "microchipped": true,
+        "special_needs": false
+      },
+      "images": [
+        "images/pets/buddy-1.jpg",
+        "images/pets/buddy-2.jpg"
+      ],
+      "status": "available",
+      "arrival_date": "2024-05-15",
+      "adoption_fee": 150,
+      "featured": false
+    },
+    {
+      "id": 8,
+      "name": "Princess",
+      "type": "rabbit",
+      "breed": "Holland Lop",
+      "age": "2 years",
+      "gender": "Female",
+      "size": "Small",
+      "color": "Gray and White",
+      "description": "Princess is a sweet rabbit who loves to hop around and explore. She's litter trained and enjoys fresh vegetables as treats. Perfect for families wanting a unique pet.",
+      "personality": ["Sweet", "Active", "Litter trained", "Loves vegetables"],
+      "medical": {
+        "vaccinated": true,
+        "spayed_neutered": true,
+        "microchipped": false,
+        "special_needs": false
+      },
+      "images": [
+        "images/pets/princess-1.jpg"
+      ],
+      "status": "available",
+      "arrival_date": "2024-08-05",
+      "adoption_fee": 75,
+      "featured": false
+    }
+  ],
+  "filters": {
+    "types": ["dog", "cat", "rabbit"],
+    "sizes": ["Small", "Medium", "Large"],
+    "ages": ["0-1 years", "1-3 years", "3-7 years", "7+ years"],
+    "genders": ["Male", "Female"]
+  }
+}
