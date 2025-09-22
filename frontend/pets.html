@@ -1,1 +1,282 @@
  
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a Pet - PawHaven Pet Shelter</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <img src="images/icons/logo.png" alt="PawHaven Logo">
+                    <span class="logo-text">PawHaven</span>
+                </div>
+                
+                <!-- Desktop Navigation Menu -->
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="pets.html" class="nav-link active">Find a Pet</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="success.html" class="nav-link">Success Stories</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="adoption.html" class="nav-link btn-adopt">Adopt Now</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+<main class = "main-content">
+
+    <!-- hero section -->
+
+          <section class="pets-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Find Your Perfect Companion</h1>
+                    <p>Browse our available pets and find the one that's perfect for your family. Each pet has been lovingly cared for and is ready for their forever home.</p>
+                    
+                    <!-- Quick Search Bar -->
+                    <div class="quick-search">
+                        <input type="text" id="pet-search" placeholder="Search by name or breed..." class="search-input">
+                        <button type="button" class="search-btn" onclick="performSearch()">
+                            🔍 Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+     <!-- Filters and Results Section -->
+        <section class="pets-content">
+            <div class="container">
+                <div class="pets-layout">
+                    <!-- Sidebar Filters -->
+                    <aside class="filters-sidebar">
+                        <div class="filters-container">
+                            <h3>Filter Pets</h3>
+                            
+                            <!-- Pet Type Filter -->
+                            <div class="filter-group">
+                                <h4>Pet Type</h4>
+                                <div class="filter-options">
+                                    <label class="filter-option">
+                                        <input type="radio" name="petType" value="all" checked>
+                                        <span class="checkmark"></span>
+                                        All Pets
+                                    </label>
+                                    <label class="filter-option">
+                                        <input type="radio" name="petType" value="dog">
+                                        <span class="checkmark"></span>
+                                        🐕 Dogs
+                                    </label>
+                                    <label class="filter-option">
+                                        <input type="radio" name="petType" value="cat">
+                                        <span class="checkmark"></span>
+                                        🐱 Cats
+                                    </label>
+                                    <label class="filter-option">
+                                        <input type="radio" name="petType" value="rabbit">
+                                        <span class="checkmark"></span>
+                                        🐰 Rabbits
+                                    </label>
+                                    <label class="filter-option">
+                                        <input type="radio" name="petType" value="bird">
+                                        <span class="checkmark"></span>
+                                        🐦 Birds
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Age Filter -->
+                            <div class="filter-group">
+                                <h4>Age</h4>
+                                <div class="filter-options">
+                                    <label class="filter-option">
+                                        <input type="radio" name="petAge" value="all" checked>
+                                        <span class="checkmark"></span>
+                                        All Ages
+                                    </label>
+                                    <label class="filter-option">
+                                        <input type="radio" name="petAge" value="young">
+                                        <span class="checkmark"></span>
+                                        Under 1 year
+                                    </label>
+                                    <label class="filter-option">
+                                        <input type="radio" name="petAge" value="adult">
+                                        <span class="checkmark"></span>
+                                        1-5 years
+                                    </label>
+                                    <label class="filter-option">
+                                        <input type="radio" name="petAge" value="senior">
+                                        <span class="checkmark"></span>
+                                        5+ years
+                                    </label>
+                                </div>
+                                
+                                <!-- Custom Age Range -->
+                                <div class="age-range-selector">
+                                    <label for="min-age">Custom Age Range:</label>
+                                    <div class="range-inputs">
+                                        <input type="number" id="min-age" min="0" max="20" placeholder="Min">
+                                        <span>to</span>
+                                        <input type="number" id="max-age" min="0" max="20" placeholder="Max">
+                                        <span>years</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Size Filter -->
+                            <div class="filter-group">
+                                <h4>Size</h4>
+                                <div class="filter-options">
+                                    <label class="filter-option">
+                                        <input type="checkbox" name="petSize" value="small">
+                                        <span class="checkmark"></span>
+                                        Small
+                                    </label>
+                                    <label class="filter-option">
+                                        <input type="checkbox" name="petSize" value="medium">
+                                        <span class="checkmark"></span>
+                                        Medium
+                                    </label>
+                                    <label class="filter-option">
+                                        <input type="checkbox" name="petSize" value="large">
+                                        <span class="checkmark"></span>
+                                        Large
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Special Needs Filter -->
+                            <div class="filter-group">
+                                <h4>Special Considerations</h4>
+                                <div class="filter-options">
+                                    <label class="filter-option">
+                                        <input type="checkbox" name="specialNeeds" value="true">
+                                        <span class="checkmark"></span>
+                                        Special Needs
+                                    </label>
+                                    <label class="filter-option">
+                                        <input type="checkbox" name="goodWithKids" value="true">
+                                        <span class="checkmark"></span>
+                                        Good with Kids
+                                    </label>
+                                    <label class="filter-option">
+                                        <input type="checkbox" name="goodWithPets" value="true">
+                                        <span class="checkmark"></span>
+                                        Good with Other Pets
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Clear Filters Button -->
+                            <button type="button" class="btn btn-outline clear-filters" onclick="clearAllFilters()">
+                                Clear All Filters
+                            </button>
+                        </div>
+                    </aside>
+
+                    <!-- Main Pet Results -->
+                    <div class="pets-main">
+                        <!-- Results Header -->
+                        <div class="results-header">
+                            <div class="results-info">
+                                <h2>Available Pets</h2>
+                                <p class="results-count">Showing <span id="results-count">0</span> pets</p>
+                            </div>
+                            
+                            <div class="sort-options">
+                                <label for="sort-select">Sort by:</label>
+                                <select id="sort-select" class="form-select">
+                                    <option value="newest">Newest Arrivals</option>
+                                    <option value="oldest">Longest at Shelter</option>
+                                    <option value="name">Name (A-Z)</option>
+                                    <option value="age-young">Age (Youngest First)</option>
+                                    <option value="age-old">Age (Oldest First)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Pet Cards Grid -->
+                        <div class="pets-grid" id="pets-grid">
+                            <!-- Pet cards will be loaded here by JavaScript -->
+                            <div class="loading-spinner">
+                                <div class="spinner"></div>
+                                <p>Loading pets...</p>
+                            </div>
+                        </div>
+
+                        <!-- No Results Message -->
+                        <div class="no-results" id="no-results" style="display: none;">
+                            <div class="no-results-content">
+                                <h3>No pets found matching your criteria</h3>
+                                <p>Try adjusting your filters or search terms to find more pets.</p>
+                                <button class="btn btn-primary" onclick="clearAllFilters()">Reset Filters</button>
+                            </div>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="pagination-container" id="pagination-container" style="display: none;">
+                            <div class="pagination">
+                                <button class="pagination-btn" id="prev-btn" onclick="changePage(-1)" disabled>← Previous</button>
+                                <span class="page-info">Page <span id="current-page">1</span> of <span id="total-pages">1</span></span>
+                                <button class="pagination-btn" id="next-btn" onclick="changePage(1)">Next →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+          <!--Footer-->
+         <footer class="main-footer">
+            <div class="container">
+                <div class="footer-content">
+                <div class="footer-section">
+                    <h4>PawHaven Shelter</h4>
+                    <p>Dedicated to finding loving homes for pets in need since 2016.</p>
+                    <ul>
+                        <li><a href="pets.html">Available Pets</a></li>
+                        <li><a href="adoption.html">Adoption Process</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="conctat-info">
+                        <p>📍 123 Pet Street, Animal City, AC 12345</p>
+                        <p>📞 (555) 123-PETS</p>
+                        <p>✉️ info@pawhaven.com</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Shelter Hours</h4>
+                    <div class="hours">
+                        <p>Monday - Friday: 10am - 6pm</p>
+                        <p>Saturday: 9am - 5pm</p>
+                        <p>Sunday:12pm - 4pm</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
+            </div>
+            </div>
+         </footer>
+  <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
+    </body>
+</html>
