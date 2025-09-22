@@ -248,15 +248,16 @@ function applyFiltersToSet(petsArray) {
     }
     
     // Special considerations filters - adapted for JSON structure
-    const specialNeeds = document.querySelector('input[name="specialNeeds"]:checked');
     const goodWithKids = document.querySelector('input[name="goodWithKids"]:checked');
     const goodWithPets = document.querySelector('input[name="goodWithPets"]:checked');
     
-    if (specialNeeds) {
-        filteredPets = filteredPets.filter(pet => 
-            pet.medical && pet.medical.special_needs === true
-        );
-    }
+  // Special needs filter
+const specialNeeds = document.querySelector('input[name="specialNeeds"]:checked');
+if (specialNeeds) {
+    filteredPets = filteredPets.filter(pet => 
+        pet.medical && pet.medical.special_needs === true
+    );
+}
     if (goodWithKids) {
         filteredPets = filteredPets.filter(pet => 
             pet.personality && pet.personality.includes("Good with kids")

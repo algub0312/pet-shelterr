@@ -27,33 +27,33 @@
       "adoption_fee": 250,
       "featured": true
     },
-    {
-      "id": 2,
-      "name": "Whiskers",
-      "type": "cat",
-      "breed": "Tabby Cat",
-      "age": "5 years",
-      "gender": "Male",
-      "size": "Medium",
-      "color": "Orange and White",
-      "description": "Whiskers is a calm and affectionate cat who loves to curl up in sunny spots. He's looking for a quiet home where he can be the only pet and receive lots of love.",
-      "personality": ["Calm", "Affectionate", "Independent", "Quiet"],
-      "medical": {
-        "vaccinated": true,
-        "spayed_neutered": true,
-        "microchipped": true,
-        "special_needs": true,
-        "special_needs_description": "Needs daily medication for mild arthritis"
+      {
+        "id": 2,
+        "name": "Whiskers",
+        "type": "cat",
+        "breed": "Tabby Cat",
+        "age": "5 years",
+        "gender": "Male",
+        "size": "Medium",
+        "color": "Orange and White",
+        "description": "Whiskers is a calm and affectionate cat who loves to curl up in sunny spots. He's looking for a quiet home where he can be the only pet and receive lots of love.",
+        "personality": ["Calm", "Affectionate", "Independent", "Quiet"],
+        "medical": {
+          "vaccinated": true,
+          "spayed_neutered": true,
+          "microchipped": true,
+          "special_needs": true,
+          "special_needs_description": "Needs daily medication for mild arthritis"
+        },
+        "images": [
+          "images/pets/whiskers.jpg",
+          "images/pets/whiskers2.jpg"
+        ],
+        "status": "available",
+        "arrival_date": "2024-07-20",
+        "adoption_fee": 150,
+        "featured": true
       },
-      "images": [
-        "images/pets/whiskers.jpg",
-        "images/pets/whiskers2.jpg"
-      ],
-      "status": "available",
-      "arrival_date": "2024-07-20",
-      "adoption_fee": 150,
-      "featured": true
-    },
     {
       "id": 3,
       "name": "Rocky",
@@ -98,7 +98,7 @@
         "special_needs": false
       },
       "images": [
-        "images/pets/luna-1.jpg",
+        "images/pets/luna.jpg",
         "images/pets/luna-2.jpg"
       ],
       "status": "available",
@@ -124,7 +124,7 @@
         "special_needs": false
       },
       "images": [
-        "images/pets/max-1.jpg",
+        "images/pets/max.jpg",
         "images/pets/max-2.jpg"
       ],
       "status": "pending",
