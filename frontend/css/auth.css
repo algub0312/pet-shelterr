@@ -1,0 +1,1544 @@
+/* Admin Dashboard Styles */
+/* Container for dashboard header: white card with spacing, shadow, and flex layout */
+.admin-header {
+    background: var(--white);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    justify-content: space-between; /* space between title/desc and actions */
+    align-items: center;            /* vertically center content */
+}
+
+/* Main title in admin header */
+.admin-header h1 {
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-3xl);
+}
+
+/* Subtitle in admin header */
+.admin-header p {
+    color: var(--text-light);
+    margin: 0;
+}
+
+/* Container for header action buttons */
+.admin-actions {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+/* Top KPIs grid (4 columns on desktop) */
+.stats-overview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Card for each KPI tile */
+.admin-stat-card {
+    background: var(--white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: var(--transition);
+}
+
+/* Subtle lift on hover for KPI cards */
+.admin-stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Emoji/icon in KPI */
+.stat-icon {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-md);
+    display: block;
+}
+
+/* Big number in KPI */
+.stat-number {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xs);
+    display: block;
+}
+
+/* KPI label */
+.stat-label {
+    color: var(--text-light);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+}
+
+/* Activity Feed */
+/* Wrapper spacing */
+.activity-feed {
+    margin-bottom: var(--spacing-xl);
+}
+
+/* One activity row/card */
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--spacing-md);
+    transition: var(--transition);
+}
+
+/* Stronger shadow on hover */
+.activity-item:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* Circle icon holder */
+.activity-icon {
+    font-size: var(--font-size-xl);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gray-light);
+    border-radius: 50%;
+    flex-shrink: 0; /* prevent shrinking */
+}
+
+/* Right side content area */
+.activity-content {
+    flex: 1;
+}
+
+/* Activity title */
+.activity-content h4 {
+    margin: 0 0 var(--spacing-xs) 0;
+    color: var(--text-dark);
+    font-size: var(--font-size-lg);
+}
+
+/* Activity description */
+.activity-content p {
+    margin: 0 0 var(--spacing-xs) 0;
+    color: var(--text-light);
+}
+
+/* Timestamp / small text */
+.activity-content small {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+}
+
+/* Quick Actions */
+/* Card container */
+.quick-actions {
+    background: var(--white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+/* Card title */
+.quick-actions h4 {
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-xl);
+}
+
+/* Row of action buttons */
+.action-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+/* Make buttons evenly expand */
+.action-buttons .btn {
+    flex: 1;
+}
+
+/* Management Header */
+/* Header above management lists (title + controls) */
+.management-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 2px solid var(--gray-light);
+}
+
+/* Section title color */
+.management-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+/* Loading and Error States */
+/* Neutral loading message */
+.loading-message {
+    text-align: center;
+    color: var(--text-light);
+    font-style: italic;
+    padding: var(--spacing-3xl);
+    background: var(--gray-light);
+    border-radius: var(--radius-lg);
+}
+
+/* Error message styling */
+.error-message {
+    text-align: center;
+    color: var(--danger);
+    font-style: italic;
+    padding: var(--spacing-3xl);
+    background: rgba(220, 53, 69, 0.1);
+    border-radius: var(--radius-lg);
+}
+
+/* Status Badges */
+/* Generic badge base */
+.status-badge {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Variants for different statuses */
+.status-available {
+    background: rgba(40, 167, 69, 0.1);
+    color: var(--success);
+}
+
+.status-pending {
+    background: rgba(255, 193, 7, 0.1);
+    color: #856404;
+}
+
+.status-adopted {
+    background: rgba(65, 105, 225, 0.1);
+    color: var(--accent-color);
+}
+
+.status-approved {
+    background: rgba(40, 167, 69, 0.1);
+    color: var(--success);
+}
+
+.status-rejected {
+    background: rgba(220, 53, 69, 0.1);
+    color: var(--danger);
+}
+
+.status-medical_hold {
+    background: rgba(220, 53, 69, 0.1);
+    color: var(--danger);
+}
+
+/* Reports Grid */
+/* Responsive grid for report cards */
+.reports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+/* Report card appearance */
+.report-card {
+    background: var(--white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: var(--transition);
+}
+
+/* Hover elevation */
+.report-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+}
+
+/* Report title */
+.report-card h4 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-lg);
+}
+
+/* Report description */
+.report-card p {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.5;
+}
+
+/* Badge Components for Users */
+/* Solid primary badge */
+.badge-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* Secondary badge variant */
+.badge-secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-dark);
+}
+
+/* Responsive Admin Dashboard */
+/* Tablet: reduce stat columns, stack header actions */
+@media (max-width: 1024px) {
+    .stats-overview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .admin-header {
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        text-align: center;
+    }
+    
+    .admin-actions {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+/* Mobile: single-column stats, stacked buttons/headers */
+@media (max-width: 768px) {
+    .stats-overview {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .management-header {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        text-align: center;
+    }
+    
+    .reports-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .admin-actions {
+        flex-direction: column;
+    }
+}/* Authentication Pages Styles */
+
+/* Auth pages background gradient and vertical centering */
+.auth-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-3xl) 0;
+}
+
+/* Center auth card container */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
+}
+
+/* Auth card: white panel with rounded corners and shadow */
+.auth-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-3xl);
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+}
+
+/* Header inside auth card */
+.auth-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+/* Auth title */
+.auth-header h1 {
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-3xl);
+}
+
+/* Auth subtitle */
+.auth-header p {
+    color: var(--text-light);
+    font-size: var(--font-size-lg);
+}
+
+/* Form spacing inside card */
+.auth-form {
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Space between form groups */
+.auth-form .form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Submit button full width & larger padding */
+.auth-submit {
+    width: 100%;
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-lg);
+}
+
+/* Links under form (register/forgot) */
+.auth-links {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+}
+
+/* Link style for auth */
+.auth-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+/* Hover effect for auth links */
+.auth-link:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* Paragraph in links area */
+.auth-links p {
+    margin-top: var(--spacing-md);
+    color: var(--text-light);
+}
+
+/* Password Input with Toggle */
+/* Wrap input and eye button */
+.password-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Add right padding to make room for the eye toggle */
+.password-input-container .form-input {
+    padding-right: 50px;
+}
+
+/* Eye toggle button positioning and visuals */
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: var(--font-size-lg);
+    color: var(--text-light);
+    transition: var(--transition);
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-sm);
+}
+
+/* Hover background for eye button */
+.password-toggle:hover {
+    background: var(--gray-light);
+    color: var(--text-dark);
+}
+
+/* Demo Login Section */
+/* Divider area for demo buttons */
+.demo-login {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--gray-medium);
+}
+
+/* Demo section title */
+.demo-login h3 {
+    text-align: center;
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-lg);
+}
+
+/* Column of demo buttons */
+.demo-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-direction: column;
+}
+
+/* Button sizing inside demo area */
+.demo-buttons .btn {
+    font-size: var(--font-size-base);
+    padding: var(--spacing-md) var(--spacing-lg);
+}
+
+/* Registration Form Specific */
+/* 2-column grid for first/last name on desktop */
+.register-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+}
+
+/* Keep spacing within row */
+.register-form .form-row .form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Profile Section */
+/* Page padding and background for profile */
+.profile-section {
+    padding: var(--spacing-3xl) 0;
+    background: var(--background);
+}
+
+/* Constrain profile content width */
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Profile top card: avatar + info + actions */
+.profile-header {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+}
+
+/* Avatar circle with initials */
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-3xl);
+    color: var(--white);
+    font-weight: 700;
+}
+
+/* Name in profile header */
+.profile-info h1 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-dark);
+}
+
+/* Email/joined text */
+.profile-info p {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Small badge under profile info */
+.profile-badge {
+    background: var(--accent-color);
+    color: var(--white);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+/* Tabs container card */
+.profile-tabs {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+/* Tabs row */
+.tab-nav {
+    display: flex;
+    background: var(--gray-light);
+    border-bottom: 1px solid var(--gray-medium);
+}
+
+/* Each tab button (unstyled button look) */
+.tab-button {
+    flex: 1;
+    padding: var(--spacing-lg);
+    background: none;
+    border: none;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: var(--transition);
+    border-bottom: 3px solid transparent;
+}
+
+/* Active tab highlighting */
+.tab-button.active {
+    color: var(--primary-color);
+    background: var(--white);
+    border-bottom-color: var(--primary-color);
+}
+
+/* Hover effect for inactive tabs */
+.tab-button:hover:not(.active) {
+    background: var(--gray-medium);
+    color: var(--text-dark);
+}
+
+/* Inner content area for panels */
+.tab-content {
+    padding: var(--spacing-2xl);
+}
+
+/* Panels hidden by default */
+.tab-panel {
+    display: none;
+}
+
+/* Active panel shown */
+.tab-panel.active {
+    display: block;
+}
+
+/* Application Card */
+/* Card wrapper */
+.application-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--spacing-lg);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+/* Elevate on hover */
+.application-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Head row inside application card */
+.application-header {
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--gray-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Pet section (thumb + info) inside header */
+.application-pet {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+/* Pet avatar thumb */
+.pet-thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Pet name */
+.pet-details h4 {
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-dark);
+}
+
+/* Pet breed text */
+.pet-details p {
+    color: var(--text-light);
+    font-size: var(--font-size-sm);
+}
+
+/* Status pill */
+.application-status {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+/* Status variants (duplicate with earlier but scoped for application cards) */
+.status-pending {
+    background: rgba(255, 193, 7, 0.1);
+    color: #856404;
+}
+
+.status-approved {
+    background: rgba(40, 167, 69, 0.1);
+    color: var(--success);
+}
+
+.status-rejected {
+    background: rgba(220, 53, 69, 0.1);
+    color: var(--danger);
+}
+
+/* Body content of application card */
+.application-body {
+    padding: var(--spacing-lg);
+}
+
+/* Date text */
+.application-date {
+    color: var(--text-light);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Admin Styles */
+/* (Duplicate block for admin header with minimal differences) */
+.admin-header {
+    background: var(--white);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Admin header title color */
+.admin-header h1 {
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Admin header subtitle */
+.admin-header p {
+    color: var(--text-light);
+}
+
+/* Actions row in admin header */
+.admin-actions {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+/* Stats grid in admin */
+.stats-overview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* KPI card in admin */
+.admin-stat-card {
+    background: var(--white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: var(--transition);
+}
+
+/* Hover lift for KPI */
+.admin-stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Icon sizing in KPI */
+.stat-icon {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-md);
+}
+
+/* KPI number */
+.stat-number {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xs);
+}
+
+/* KPI label text */
+.stat-label {
+    color: var(--text-light);
+    font-size: var(--font-size-base);
+}
+
+/* Alert Messages */
+/* Generic alert appearance */
+.alert {
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    border-left: 4px solid;
+}
+
+/* Success alert */
+.alert-success {
+    background: rgba(40, 167, 69, 0.1);
+    color: var(--success);
+    border-color: var(--success);
+}
+
+/* Error alert */
+.alert-error {
+    background: rgba(220, 53, 69, 0.1);
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+/* Warning alert */
+.alert-warning {
+    background: rgba(255, 193, 7, 0.1);
+    color: #856404;
+    border-color: var(--warning);
+}
+
+/* Loading States */
+/* Dim and disable during loading */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Overlay for blocking UI during async ops */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+}
+
+/* Admin Interface Styles */
+/* Grid for admin pet cards */
+.admin-pets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+/* Card for each pet in admin */
+.admin-pet-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+/* Hover elevation */
+.admin-pet-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Image container with fixed height */
+.pet-image-admin {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+/* Image fill and crop */
+.pet-image-admin img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Status badge positioned over image */
+.pet-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Text area under image */
+.pet-info-admin {
+    padding: var(--spacing-lg);
+}
+
+/* Pet name */
+.pet-info-admin h4 {
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-dark);
+}
+
+/* ID text */
+.pet-id {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Row of action buttons */
+.admin-pet-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+}
+
+/* Buttons sizing inside the actions row */
+.admin-pet-actions .btn {
+    flex: 1;
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-sm);
+}
+
+/* Reusable management header (duplicate earlier for scoping) */
+.management-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Filters bar above tables/grids */
+.filters-bar {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: var(--gray-light);
+    border-radius: var(--radius-md);
+}
+
+/* Inputs sizing in filter bar */
+.filters-bar .form-select,
+.filters-bar .form-input {
+    min-width: 200px;
+}
+
+/* Admin Table Styles */
+/* Styled table with rounded corners & shadow */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+/* Table head: colored background */
+.admin-table th {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: var(--spacing-lg);
+    text-align: left;
+    font-weight: 600;
+}
+
+/* Table cells */
+.admin-table td {
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--gray-light);
+}
+
+/* Remove bottom border last row */
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Row hover background */
+.admin-table tr:hover {
+    background: var(--gray-light);
+}
+
+/* Activity Feed */
+/* Duplicate definitions (kept for local scoping) */
+.activity-feed {
+    margin-bottom: var(--spacing-xl);
+}
+
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.activity-icon {
+    font-size: var(--font-size-xl);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gray-light);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.activity-content h4 {
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-dark);
+}
+
+.activity-content p {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-xs);
+}
+
+.activity-content small {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+}
+
+/* Quick Actions */
+/* Card container (duplicate) */
+.quick-actions {
+    background: var(--white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+/* Row of buttons with spacing */
+.action-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+/* Stretch buttons */
+.action-buttons .btn {
+    flex: 1;
+}
+
+/* Reports Grid */
+/* Responsive grid (duplicate) */
+.reports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+/* Report card (duplicate) */
+.report-card {
+    background: var(--white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: var(--transition);
+}
+
+/* Hover effect */
+.report-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+}
+
+/* Report title color */
+.report-card h4 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Report description color */
+.report-card p {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Application Summary */
+/* Grid layout for summary pills */
+.application-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+}
+
+/* Summary pill style */
+.application-summary p {
+    margin: 0;
+    padding: var(--spacing-sm);
+    background: var(--gray-light);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+}
+
+/* No Data State */
+/* Centered muted message for empty states */
+.no-data {
+    text-align: center;
+    color: var(--text-light);
+    font-style: italic;
+    padding: var(--spacing-3xl);
+    background: var(--gray-light);
+    border-radius: var(--radius-lg);
+}
+
+/* Link color inside empty state */
+.no-data a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* Preference Options */
+/* Vertical radio/checkbox stack */
+.preference-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+/* Danger Zone */
+/* Emphasized warning box */
+.danger-zone {
+    padding: var(--spacing-lg);
+    background: rgba(220, 53, 69, 0.05);
+    border: 1px solid rgba(220, 53, 69, 0.2);
+    border-radius: var(--radius-md);
+    margin-top: var(--spacing-xl);
+}
+
+/* Danger title color */
+.danger-zone h4 {
+    color: var(--danger);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Supporting text */
+.danger-zone p {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+}
+
+/* Enhanced Modal Styles */
+/* Footer actions in modal (align right) */
+.modal-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: flex-end;
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--gray-light);
+}
+
+/* Enhanced Form Styles */
+/* Two-column form rows (desktop) */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+}
+
+/* Collapse to single column on mobile */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Status Color Variants */
+/* Utility background + text color chips */
+.status-success {
+    background: var(--success);
+    color: var(--white);
+}
+
+.status-warning {
+    background: var(--warning);
+    color: var(--text-dark);
+}
+
+.status-danger {
+    background: var(--danger);
+    color: var(--white);
+}
+
+.status-primary {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.status-secondary {
+    background: var(--secondary-color);
+    color: var(--text-dark);
+}
+
+/* Enhanced Button States */
+/* Disabled button visuals and no transforms */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Keep disabled state stable on hover */
+.btn:disabled:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Profile Actions */
+/* Horizontal spacing for profile header actions */
+.profile-actions {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+/* Responsive Adjustments */
+/* Tablet tweaks: grid densification and single-column summary */
+@media (max-width: 1024px) {
+    .admin-pets-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    
+    .stats-overview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .application-summary {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Application Progress Steps */
+/* Progress bar container */
+.application-progress {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-2xl);
+    background: var(--white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+/* One step (number + title) */
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative;
+    opacity: 0.5;
+    transition: var(--transition);
+}
+
+/* Active step is fully opaque */
+.progress-step.active {
+    opacity: 1;
+}
+
+/* Connector line between steps */
+.progress-step::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 60%;
+    width: 80%;
+    height: 2px;
+    background: var(--gray-medium);
+    z-index: 1;
+}
+
+/* No connector after the last step */
+.progress-step:last-child::after {
+    display: none;
+}
+
+/* Active step connector colored */
+.progress-step.active::after {
+    background: var(--primary-color);
+}
+
+/* Circular number badge */
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gray-medium);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    z-index: 2;
+    position: relative;
+}
+
+/* Active step number color */
+.progress-step.active .step-number {
+    background: var(--primary-color);
+}
+
+/* Step label text */
+.step-title {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    text-align: center;
+    color: var(--text-light);
+}
+
+/* Active step label emphasis */
+.progress-step.active .step-title {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* Form Steps */
+/* Hidden by default */
+.form-step {
+    display: none;
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Only the current step is shown */
+.form-step.active {
+    display: block;
+}
+
+/* Step section title */
+.form-step h3 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--gray-light);
+}
+
+/* Selected Pet Display */
+/* Wrapper card showing the chosen pet */
+.selected-pet {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: var(--gray-light);
+    border-radius: var(--radius-md);
+}
+
+/* Inline card layout (image + info + button) */
+.selected-pet .pet-card {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    background: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Square image wrapper */
+.selected-pet .pet-image {
+    width: 100px;
+    height: 100px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* Cover fit for selected pet thumbnail */
+.selected-pet .pet-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Info area grows */
+.selected-pet .pet-info {
+    flex: 1;
+}
+
+/* Pet name */
+.selected-pet .pet-info h4 {
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-dark);
+}
+
+/* Pet meta line */
+.selected-pet .pet-info p {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Form Navigation */
+/* Previous/Next/Submit row */
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--gray-light);
+}
+
+/* Application Summary */
+/* Summary block background */
+.application-summary {
+    background: var(--gray-light);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Summary title */
+.application-summary h4 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Section inside summary with divider */
+.review-section {
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--gray-medium);
+}
+
+/* Remove divider after last section */
+.review-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* Section subtitles */
+.review-section h5 {
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-lg);
+}
+
+/* Selected pet row inside review */
+.review-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    background: var(--white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+}
+
+/* Paragraph styling in review */
+.review-section p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-light);
+}
+
+/* Emphasis for labels in review */
+.review-section p strong {
+    color: var(--text-dark);
+}
+
+/* Form Help Text */
+/* Minor helper text below inputs */
+.form-help {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    margin-top: var(--spacing-xs);
+}
+
+/* Link styling in help text */
+.form-help a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* Multi-step Form Responsive */
+/* On mobile, stack steps and simplify layout */
+@media (max-width: 768px) {
+    .application-progress {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .progress-step::after {
+        display: none;
+    }
+    
+    .selected-pet .pet-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .form-navigation {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .step-title {
+        font-size: var(--font-size-xs);
+    }
+}
+@media (max-width: 768px) {
+    .auth-card {
+        margin: var(--spacing-lg);
+        padding: var(--spacing-xl);
+    }
+    
+    .register-form .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .demo-buttons {
+        flex-direction: column;
+    }
+    
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .tab-nav {
+        flex-direction: column;
+    }
+    
+    .stats-overview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .admin-header {
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        text-align: center;
+    }
+    
+    .admin-actions {
+        width: 100%;
+        justify-content: center;
+    }
+}

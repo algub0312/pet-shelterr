@@ -1,1 +1,307 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Set character encoding -->
+    <meta charset="UTF-8">
+    <!-- Responsive meta for proper scaling on mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title shown in browser tab -->
+    <title>Adoption Application - PawHaven Pet Shelter</title>
+    <!-- Global stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Shared UI components stylesheet -->
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Auth/forms related stylesheet -->
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <!-- ================= HEADER WITH NAVIGATION ================= -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <!-- Brand / Logo -->
+                <div class="nav-logo">
+                    <img src="images/icons/logo.png" alt="PawHaven Logo">
+                    <span class="logo-text">PawHaven</span>
+                </div>
+                
+                <!-- Primary navigation links -->
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="pets.html" class="nav-link">Find a Pet</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="success.html" class="nav-link">Success Stories</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main-content">
+        <!-- Hero banner for the page -->
+        <section class="pets-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Adoption Application</h1>
+                    <p>Take the first step towards giving a loving home to one of our wonderful pets. Complete this application to begin the adoption process.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Multi-step Application Form section -->
+        <section class="auth-section" style="background: var(--background);">
+            <div class="container">
+                <div class="profile-container">
+                    <!-- Visual indicator of the 4 steps -->
+                    <div class="application-progress">
+                        <div class="progress-step active" data-step="1">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Pet Selection</div>
+                        </div>
+                        <div class="progress-step" data-step="2">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Personal Info</div>
+                        </div>
+                        <div class="progress-step" data-step="3">
+                            <div class="step-number">3</div>
+                            <div class="step-title">Housing & Experience</div>
+                        </div>
+                        <div class="progress-step" data-step="4">
+                            <div class="step-number">4</div>
+                            <div class="step-title">Review & Submit</div>
+                        </div>
+                    </div>
+
+                    <!-- Card that contains the form -->
+                    <div class="auth-card" style="max-width: 800px; margin: 2rem auto;">
+                        <div class="auth-header">
+                            <h2>Adoption Application Form</h2>
+                            <p>Please provide accurate information to help us find the perfect match.</p>
+                        </div>
+
+                        <!-- Multi-step form. JS controls steps visibility -->
+                        <form id="adoption-form" class="auth-form">
+                            <!-- ============ STEP 1: PET SELECTION ============ -->
+                            <div class="form-step active" id="step-1">
+                                <h3>Step 1: Pet Selection</h3>
+                                
+                                <!-- Shown after a pet is selected -->
+                                <div class="selected-pet" id="selected-pet-display" style="display: none;">
+                                    <div class="pet-card">
+                                        <div class="pet-image">
+                                            <img id="selected-pet-image" src="" alt="">
+                                        </div>
+                                        <div class="pet-info">
+                                            <h4 id="selected-pet-name"></h4>
+                                            <p id="selected-pet-details"></p>
+                                            <!-- Lets user change their choice -->
+                                            <button type="button" class="btn btn-outline btn-small" onclick="changePetSelection()">Change Selection</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Dropdown populated (likely via JS) with adoptable pets -->
+                                <div class="form-group" id="pet-selection-group">
+                                    <label for="petSelect" class="form-label required">Select a Pet</label>
+                                    <select id="petSelect" name="petId" class="form-select" required>
+                                        <option value="">Choose a pet to adopt</option>
+                                    </select>
+                                    <p class="form-help">Don't see the pet you want? <a href="pets.html">Browse all available pets</a></p>
+                                </div>
+
+                                <!-- Motivation textarea -->
+                                <div class="form-group">
+                                    <label for="adoptionReason" class="form-label required">Why do you want to adopt this pet?</label>
+                                    <textarea id="adoptionReason" name="adoptionReason" class="form-textarea" rows="4" required placeholder="Tell us what drew you to this particular pet..."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- ============ STEP 2: PERSONAL INFORMATION ============ -->
+                            <div class="form-step" id="step-2">
+                                <h3>Step 2: Personal Information</h3>
+                                
+                                <!-- Name fields -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="applicantFirstName" class="form-label required">First Name</label>
+                                        <input type="text" id="applicantFirstName" name="firstName" class="form-input" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="applicantLastName" class="form-label required">Last Name</label>
+                                        <input type="text" id="applicantLastName" name="lastName" class="form-input" required>
+                                    </div>
+                                </div>
+
+                                <!-- Contact fields -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="applicantEmail" class="form-label required">Email Address</label>
+                                        <input type="email" id="applicantEmail" name="email" class="form-input" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="applicantPhone" class="form-label required">Phone Number</label>
+                                        <input type="tel" id="applicantPhone" name="phone" class="form-input" required>
+                                    </div>
+                                </div>
+
+                                <!-- Address -->
+                                <div class="form-group">
+                                    <label for="applicantAddress" class="form-label required">Home Address</label>
+                                    <textarea id="applicantAddress" name="address" class="form-textarea" rows="3" required></textarea>
+                                </div>
+
+                                <!-- Age range -->
+                                <div class="form-group">
+                                    <label for="applicantAge" class="form-label required">Age</label>
+                                    <select id="applicantAge" name="age" class="form-select" required>
+                                        <option value="">Select your age range</option>
+                                        <option value="18-25">18-25</option>
+                                        <option value="26-35">26-35</option>
+                                        <option value="36-45">36-45</option>
+                                        <option value="46-55">46-55</option>
+                                        <option value="56-65">56-65</option>
+                                        <option value="65+">65+</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- ============ STEP 3: HOUSING & EXPERIENCE ============ -->
+                            <div class="form-step" id="step-3">
+                                <h3>Step 3: Housing & Pet Experience</h3>
+                                
+                                <!-- Housing type -->
+                                <div class="form-group">
+                                    <label for="housingType" class="form-label required">Housing Type</label>
+                                    <select id="housingType" name="housingType" class="form-select" required>
+                                        <option value="">Select housing type</option>
+                                        <option value="house-yard">House with fenced yard</option>
+                                        <option value="house-no-yard">House without yard</option>
+                                        <option value="apartment">Apartment</option>
+                                        <option value="condo">Condo/Townhouse</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+
+                                <!-- Own vs rent -->
+                                <div class="form-group">
+                                    <label for="ownRent" class="form-label required">Do you own or rent your home?</label>
+                                    <select id="ownRent" name="ownRent" class="form-select" required>
+                                        <option value="">Select option</option>
+                                        <option value="own">Own</option>
+                                        <option value="rent">Rent</option>
+                                    </select>
+                                </div>
+
+                                <!-- Household size -->
+                                <div class="form-group">
+                                    <label for="householdMembers" class="form-label required">How many people live in your household?</label>
+                                    <input type="number" id="householdMembers" name="householdMembers" class="form-input" min="1" required>
+                                </div>
+
+                                <!-- Past pet experience -->
+                                <div class="form-group">
+                                    <label for="petExperience" class="form-label required">Previous Pet Experience</label>
+                                    <textarea id="petExperience" name="petExperience" class="form-textarea" rows="4" required placeholder="Tell us about your experience with pets..."></textarea>
+                                </div>
+
+                                <!-- Current pets -->
+                                <div class="form-group">
+                                    <label for="currentPets" class="form-label">Current Pets</label>
+                                    <textarea id="currentPets" name="currentPets" class="form-textarea" rows="3" placeholder="Describe any pets you currently have (type, age, spayed/neutered status)"></textarea>
+                                </div>
+
+                                <!-- Vet info -->
+                                <div class="form-group">
+                                    <label for="veterinarian" class="form-label">Veterinarian Information</label>
+                                    <input type="text" id="veterinarian" name="veterinarian" class="form-input" placeholder="Vet name and phone number (if applicable)">
+                                </div>
+                            </div>
+
+                            <!-- ============ STEP 4: REVIEW & SUBMIT ============ -->
+                            <div class="form-step" id="step-4">
+                                <h3>Step 4: Review & Submit</h3>
+                                
+                                <!-- Summary preview (filled by JS before submit) -->
+                                <div class="application-summary">
+                                    <h4>Application Summary</h4>
+                                    <div id="application-review">
+                                        <!-- Summary will be generated by JavaScript -->
+                                    </div>
+                                </div>
+
+                                <!-- Agreements/consents -->
+                                <div class="form-group">
+                                    <h4>Agreement & Terms</h4>
+                                    <label class="form-checkbox">
+                                        <input type="checkbox" name="homeVisitAgree" required>
+                                        I agree to allow a home visit as part of the adoption process
+                                    </label>
+                                    <label class="form-checkbox">
+                                        <input type="checkbox" name="accurateInfo" required>
+                                        I certify that all information provided is accurate and complete
+                                    </label>
+                                    <label class="form-checkbox">
+                                        <input type="checkbox" name="adoptionTerms" required>
+                                        I agree to the shelter's adoption terms and conditions
+                                    </label>
+                                </div>
+
+                                <!-- Optional comments -->
+                                <div class="form-group">
+                                    <label for="additionalComments" class="form-label">Additional Comments</label>
+                                    <textarea id="additionalComments" name="additionalComments" class="form-textarea" rows="3" placeholder="Any additional information you'd like us to know..."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- ===== Form navigation buttons (controlled by JS) ===== -->
+                            <div class="form-navigation">
+                                <!-- Previous hidden on first step -->
+                                <button type="button" id="prev-btn" class="btn btn-outline" onclick="previousStep()" style="display: none;">Previous</button>
+                                <!-- Next visible until last step -->
+                                <button type="button" id="next-btn" class="btn btn-primary" onclick="nextStep()">Next</button>
+                                <!-- Submit shown only on final step -->
+                                <button type="submit" id="submit-btn" class="btn btn-primary btn-large" style="display: none;">Submit Application</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- About the shelter -->
+                <div class="footer-section">
+                    <h4>PawHaven Shelter</h4>
+                    <p>Dedicated to finding loving homes for pets in need since 2016.</p>
+                </div>
+                <!-- Contact info -->
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p>📍 123 Pet Street, Animal City, AC 12345</p>
+                        <p>📞 (555) 123-PETS</p>
+                        <p>✉️ info@pawhaven.com</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= SCRIPTS ================= -->
+    <!-- Site-wide interactions -->
+    <script src="js/main.js"></script>
+    <!-- Auth/session helpers if needed -->
+    <script src="js/auth.js"></script>
+    <!-- Page-specific logic for the adoption application (step handling, validation, review summary, submission) -->
+    <script src="js/adoption.js"></script>
+</body>
+</html>

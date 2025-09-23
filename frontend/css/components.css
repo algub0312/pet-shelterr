@@ -92,3 +92,20 @@
    background-color: var(--secondary-color);
    color: var(--text-dark);
  }
+ /* Authentication Navigation Links */
+.auth-nav-link {
+    white-space: nowrap;
+}
+
+.nav-menu .auth-nav-link.btn-adopt {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-left: var(--spacing-sm);
+}
+
+.nav-menu .auth-nav-link.btn-adopt:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+}

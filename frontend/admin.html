@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Set character encoding -->
+    <meta charset="UTF-8">
+    <!-- Make layout responsive on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Browser tab title -->
+    <title>Admin Dashboard - PawHaven Pet Shelter</title>
+    <!-- Global styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Reusable UI components styles -->
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Authentication-related styles (login/register) -->
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <!-- ======================= HEADER + NAV ======================= -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <!-- Brand / Logo -->
+                <div class="nav-logo">
+                    <img src="images/icons/logo.png" alt="PawHaven Logo">
+                    <span class="logo-text">PawHaven</span>
+                </div>
+                
+                <!-- Main navigation links -->
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="pets.html" class="nav-link">Find a Pet</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="success.html" class="nav-link">Success Stories</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ======================= MAIN CONTENT ======================= -->
+    <main class="main-content">
+        <section class="profile-section">
+            <div class="container">
+                <div class="profile-container">
+                    <!-- ===== Admin Header with primary actions ===== -->
+                    <div class="admin-header">
+                        <div>
+                            <h1>Admin Dashboard</h1>
+                            <p>Manage pets, applications, and shelter operations</p>
+                        </div>
+                        <div class="admin-actions">
+                            <!-- Button triggers addNewPet() JS function -->
+                            <button class="btn btn-primary" onclick="addNewPet()">Add New Pet</button>
+                            <!-- Button triggers generateReport() JS function -->
+                            <button class="btn btn-secondary" onclick="generateReport()">Generate Report</button>
+                        </div>
+                    </div>
+
+                    <!-- ===== High-level statistics cards ===== -->
+                    <div class="stats-overview">
+                        <div class="admin-stat-card">
+                            <div class="stat-icon">🐕</div>
+                            <!-- Total pets count (static placeholder 8) -->
+                            <div class="stat-number" id="total-pets">8</div>
+                            <div class="stat-label">Total Pets</div>
+                        </div>
+                        <div class="admin-stat-card">
+                            <div class="stat-icon">❤️</div>
+                            <!-- Available for adoption (static placeholder 5) -->
+                            <div class="stat-number" id="available-pets">5</div>
+                            <div class="stat-label">Available for Adoption</div>
+                        </div>
+                        <div class="admin-stat-card">
+                            <div class="stat-icon">📋</div>
+                            <!-- Pending applications (static placeholder 3) -->
+                            <div class="stat-number" id="pending-applications">3</div>
+                            <div class="stat-label">Pending Applications</div>
+                        </div>
+                        <div class="admin-stat-card">
+                            <div class="stat-icon">👥</div>
+                            <!-- Registered users (static placeholder 12) -->
+                            <div class="stat-number" id="total-users">12</div>
+                            <div class="stat-label">Registered Users</div>
+                        </div>
+                    </div>
+
+                    <!-- ======================= TABS ======================= -->
+                    <div class="profile-tabs">
+                        <!-- Tab navigation buttons (controlled by JS) -->
+                        <div class="tab-nav">
+                            <!-- 'active' marks the default visible tab -->
+                            <button class="tab-button active" data-tab="dashboard">Dashboard</button>
+                            <button class="tab-button" data-tab="pets-management">Pets Management</button>
+                            <button class="tab-button" data-tab="applications-management">Applications</button>
+                            <button class="tab-button" data-tab="users-management">Users</button>
+                            <button class="tab-button" data-tab="reports">Reports</button>
+                        </div>
+
+                        <!-- ===== Dashboard Tab (default visible) ===== -->
+                        <div id="dashboard" class="tab-panel active">
+                            <div class="tab-content">
+                                <!-- Recent activity feed -->
+                                <h3>Recent Activity</h3>
+                                <div class="activity-feed">
+                                    <div class="activity-item">
+                                        <div class="activity-icon">🐕</div>
+                                        <div class="activity-content">
+                                            <h4>New Pet Added</h4>
+                                            <p>Bella (Golden Retriever) was added to available pets</p>
+                                            <small>2 hours ago</small>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon">📋</div>
+                                        <div class="activity-content">
+                                            <h4>Application Submitted</h4>
+                                            <p>John Doe applied to adopt Max</p>
+                                            <small>4 hours ago</small>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon">✅</div>
+                                        <div class="activity-content">
+                                            <h4>Adoption Approved</h4>
+                                            <p>Sarah Johnson's application for Luna was approved</p>
+                                            <small>1 day ago</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Quick action shortcuts -->
+                                <div class="quick-actions">
+                                    <h4>Quick Actions</h4>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-primary" onclick="addNewPet()">Add New Pet</button>
+                                        <button class="btn btn-secondary" onclick="reviewApplications()">Review Applications</button>
+                                        <button class="btn btn-outline" onclick="generateReport()">Generate Report</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== Pets Management Tab ===== -->
+                        <div id="pets-management" class="tab-panel">
+                            <div class="tab-content">
+                                <div class="management-header">
+                                    <h3>Pets Management</h3>
+                                    <!-- Shortcut to add a new pet -->
+                                    <button class="btn btn-primary" onclick="addNewPet()">Add New Pet</button>
+                                </div>
+
+                                <!-- Dynamic pets list container (populated via JS) -->
+                                <div id="admin-pets-list">
+                                    <!-- Placeholder shown while data loads -->
+                                    <div class="loading-message">Loading pets...</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== Applications Management Tab ===== -->
+                        <div id="applications-management" class="tab-panel">
+                            <div class="tab-content">
+                                <h3>Adoption Applications</h3>
+                                <p>Review and manage adoption applications from potential adopters.</p>
+
+                                <!-- Dynamic applications list container (populated via JS) -->
+                                <div id="admin-applications-list">
+                                    <!-- Placeholder while loading applications -->
+                                    <div class="loading-message">Loading applications...</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== Users Management Tab ===== -->
+                        <div id="users-management" class="tab-panel">
+                            <div class="tab-content">
+                                <h3>User Management</h3>
+                                <p>View and manage registered users.</p>
+
+                                <!-- Dynamic users list container (populated via JS) -->
+                                <div id="admin-users-list">
+                                    <!-- Placeholder while loading users -->
+                                    <div class="loading-message">Loading users...</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== Reports Tab ===== -->
+                        <div id="reports" class="tab-panel">
+                            <div class="tab-content">
+                                <h3>Reports & Analytics</h3>
+                                <p>View shelter statistics and generate reports.</p>
+
+                                <!-- Grid of report types with action buttons -->
+                                <div class="reports-grid">
+                                    <div class="report-card">
+                                        <h4>Adoption Report</h4>
+                                        <p>Monthly adoption statistics and trends</p>
+                                        <!-- Calls generateReport('adoption') -->
+                                        <button class="btn btn-outline" onclick="generateReport('adoption')">Generate Report</button>
+                                    </div>
+                                    <div class="report-card">
+                                        <h4>Application Analytics</h4>
+                                        <p>Application approval rates and processing times</p>
+                                        <!-- Calls generateReport('applications') -->
+                                        <button class="btn btn-outline" onclick="generateReport('applications')">View Analytics</button>
+                                    </div>
+                                    <div class="report-card">
+                                        <h4>Pet Inventory</h4>
+                                        <p>Current pet status and availability report</p>
+                                        <!-- Calls generateReport('inventory') -->
+                                        <button class="btn btn-outline" onclick="generateReport('inventory')">Export Data</button>
+                                    </div>
+                                    <div class="report-card">
+                                        <h4>User Activity</h4>
+                                        <p>User registration and engagement metrics</p>
+                                        <!-- Calls generateReport('users') -->
+                                        <button class="btn btn-outline" onclick="generateReport('users')">View Metrics</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- /profile-tabs -->
+                </div> <!-- /profile-container -->
+            </div> <!-- /container -->
+        </section>
+    </main>
+
+    <!-- ======================= FOOTER ======================= -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- About / description -->
+                <div class="footer-section">
+                    <h4>PawHaven Shelter</h4>
+                    <p>Dedicated to finding loving homes for pets in need since 2016.</p>
+                </div>
+                <!-- Contact details -->
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p>📍 123 Pet Street, Animal City, AC 12345</p>
+                        <p>📞 (555) 123-PETS</p>
+                        <p>✉️ info@pawhaven.com</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======================= SCRIPTS ======================= -->
+    <!-- Main site JS (general interactions) -->
+    <script src="js/main.js"></script>
+    <!-- Auth-related JS (login/logout/session) -->
+    <script src="js/auth.js"></script>
+    <!-- Admin dashboard JS (tab switching, data loading, actions) -->
+    <script src="js/admin.js"></script>
+</body>
+</html>

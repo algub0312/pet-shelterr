@@ -1,226 +1,249 @@
- <!DOCTYPE html>
- <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PawHaven - Pet Shelter</title>
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/components.css">
-    </head>
-    <body>
-        <!-- Header with Navigation -->
-         <header class="main-header">
-            <nav class="navbar"> <!--navigation bar/menu-->
-                <div class="nav-container"> <!--container care centreaza continutul meniului-->
-                    <div class="nav-logo">
-                        <img src="images/icons/logo.png" alt="PawHaven Logo">
-                        <span class="logo-text">PawHaven</span>
-                    </div>
-                     <!-- Desktop Navigation Menu -->
-                      <ul class="nav-menu"> <!--lista de linkuri pt meniu-->
-                        <li><a href="index.html" class="nav-link active">Home</a></li> <!--activ pt ca asta e selectat-->
-                        <li><a href="pets.html" class="nav-link">Find a Pet</a></li>
-                        <li><a href="about.html" class="nav-link">About us</a></li>
-                        <li><a href="success.html" class="nav-link">Success Stories</a></li>
-                        <li><a href="contact.html" class="nav-link">Contact</a></li>
-                        <li><a href="adoption.html" class="nav-link btn-adopt">Adopt Now</a></li>
-                      </ul>
-                </div>
-            </nav>
-         </header>
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <!-- Meta charset for Unicode support -->
+       <meta charset="UTF-8">
+       <!-- Responsive viewport so layout scales on mobile -->
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <!-- Browser tab title -->
+       <title>PawHaven - Pet Shelter</title>
+       <!-- Global/base styles -->
+       <link rel="stylesheet" href="css/style.css">
+       <!-- Reusable UI components (cards, buttons, grids, etc.) -->
+       <link rel="stylesheet" href="css/components.css">
+       <!-- Auth/forms styling shared across pages -->
+       <link rel="stylesheet" href="css/auth.css">
+       <!-- No inline styles here; all presentational rules are externalized -->
+   </head>
+   <body>
+       <!-- ===================== HEADER + NAVIGATION ===================== -->
+        <header class="main-header">
+           <nav class="navbar"> <!--navigation bar/menu-->
+               <div class="nav-container"> <!--container care centreaza continutul meniului-->
+                   <div class="nav-logo">
+                       <!-- Brand mark + wordmark; alt text for accessibility -->
+                       <img src="images/icons/logo.png" alt="PawHaven Logo">
+                       <span class="logo-text">PawHaven</span>
+                   </div>
+                    <!-- Desktop Navigation Menu -->
+                     <ul class="nav-menu"> <!--lista de linkuri pt meniu-->
+                       <!-- Current page highlighted via .active -->
+                       <li><a href="index.html" class="nav-link active">Home</a></li> <!--activ pt ca asta e selectat-->
+                       <li><a href="pets.html" class="nav-link">Find a Pet</a></li>
+                       <li><a href="about.html" class="nav-link">About us</a></li>
+                       <li><a href="success.html" class="nav-link">Success Stories</a></li>
+                       <li><a href="contact.html" class="nav-link">Contact</a></li>
+                       <!-- CTA button-styled link for faster conversion -->
+                       <li><a href="adoption.html" class="nav-link btn-adopt">Adopt Now</a></li>
+                     </ul>
+               </div>
+           </nav>
+        </header>
 
-         <!--Main Content-->
-         <main class="main-content">
-            <!--Hero Section-->
-            <section class="hero-section">
-                <div class="hero-container">
-                    <div class="hero-content">
-                    <h1 class="hero-title">Find Your Perfect Companion</h1>
-                    <p class="hero-subtitle">
-                        Give a loving home to a pet in need. Every adoption saves a life
-                        and makes room for another rescue.
-                    </p>
-                    <div class="hero-buttons"> <!--container pt butoane-->
-                        <a href="pets.html" class="btn btn-primary">Browse Pets</a>
-                        <a href="about.html" class="btn btn-secondary">Learn More</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="images/backgrounds/hero-pets.jpg" alt="Happy pets at the shelter"> <!--alt este folosit ca un text alternativ care sa inlocuiasca imaginea-->
-                </div>
-                </div>
-                
-            </section>
+        <!-- ===================== MAIN CONTENT ===================== -->
+        <main class="main-content">
+           <!-- ===================== HERO SECTION ===================== -->
+           <section class="hero-section">
+               <div class="hero-container">
+                   <div class="hero-content">
+                   <!-- Primary headline -->
+                   <h1 class="hero-title">Find Your Perfect Companion</h1>
+                   <!-- Supporting tagline -->
+                   <p class="hero-subtitle">
+                       Give a loving home to a pet in need. Every adoption saves a life
+                       and makes room for another rescue.
+                   </p>
+                   <!-- Primary & secondary actions -->
+                   <div class="hero-buttons"> <!--container pt butoane-->
+                       <a href="pets.html" class="btn btn-primary">Browse Pets</a>
+                       <a href="about.html" class="btn btn-secondary">Learn More</a>
+                   </div>
+               </div>
+               <!-- Decorative/illustrative image for the hero -->
+               <div class="hero-image">
+                   <img src="images/backgrounds/hero-pets.jpg" alt="Happy pets at the shelter"> <!--alt este folosit ca un text alternativ care sa inlocuiasca imaginea-->
+               </div>
+               </div>
+               
+           </section>
 
+           <!-- ===================== QUICK STATS SECTION ===================== -->
+           <section class="stats-section">
+               <div class="container">
+                   <div class="stats-grid">
+                       <!-- Each stat shows an animated count from 0 to data-count (handled by JS) -->
+                       <div class="stat-item">
+                           <div class="stat-number" data-count="1247">0</div> <!--numarul care o sa fie in stats (mai tarziu prob ca il facem din baza de date)-->
+                           <div class="stat-label">Pets Adopted</div> <!--nr apare 0 fara animatia din javascript-->
+                       </div>
+                       <div class="stat-item">
+                           <div class="stat-number" data-count="15">0</div>
+                           <div class="stat-label">Available Now</div>
+                       </div>
+                       <div class="stat-item">
+                           <div class="stat-number" data-count="156">0</div>
+                           <div class="stat-label">Happy Families</div>
 
-            <!--Quick Stats Section-->
-            <section class="stats-section">
-                <div class="container">
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-number" data-count="1247">0</div> <!--numarul care o sa fie in stats (mai tarziu prob ca il facem din baza de date)-->
-                            <div class="stat-label">Pets Adopted</div> <!--nr apare 0 fara animatia din javascript-->
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number" data-count="15">0</div>
-                            <div class="stat-label">Available Now</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number" data-count="156">0</div>
-                            <div class="stat-label">Happy Families</div>
+                       </div>
+                       <div class="stat-item">
+                           <div class="stat-number" data-count="8">0</div>
+                           <div class="stat-label">Years of Service</div>
+                       </div>
+                   </div>
+               </div>
+           </section>
 
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number" data-count="8">0</div>
-                            <div class="stat-label">Years of Service</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+           <!-- ===================== FEATURED PETS SECTION ===================== -->
+           <section class="featured-pets">
+               <div class="container">
+                   <div class="section-header">
+                       <h2>Meet our Featured Pets</h2>
+                       <p>These wonderful animals are looking for their forever homes</p>
 
+                   </div>
 
-            <!--Featured Pets Section-->
-            <section class="featured-pets">
-                <div class="container">
-                    <div class="section-header">
-                        <h2>Meet our Featured Pets</h2>
-                        <p>These wonderful animals are looking for their forever homes</p>
+                   <div class="pets-grid">
+                       <!-- Pet cards could be dynamically replaced by JS later; static examples here -->
+                       <article class="pet-card"> <!--element pentru continut independent-->
+                           <div class="pet-image"> <!--container pt poza, badgeul vine peste poza-->
+                               <img src="images/pets/bella.jpg" alt="Bella - Golden Retriver">
+                               <!-- Status/flag displayed over the image -->
+                               <div class="pet-badge">New Arrival</div>
+                           </div>
+                           <div class="pet-info">
+                               <h3 class="pet-name">Bella</h3>
+                               <p class="pet-breed">Golden Retriver</p>
+                               <p class="pet-age">3 years old</p>
+                               <!-- Deep link to detailed page with query param id -->
+                               <a href="pet-detail.html?id=1" class="btn btn-small">Meet Bella</a>
+                           </div>
+                       </article>
 
-                    </div>
+                       <article class="pet-card">
+                           <div class="pet-image">
+                               <img src="images/pets/whiskers.jpg" alt="Whiskers - Tabby Cat">
+                               <div class="pet-badge">Special Needs</div>
+                           </div>
+                           <div class="pet-info">
+                           <h3 class="pet-name">Whiskers</h3>
+                           <p class="pet-breed">Tabby Cat</p>
+                           <p class="pet-age">5 years old</p>
+                           <a href="pet-detail.html?id=2" class="btn btn-small">Meet Whiskers</a>
+                           </div>
+                       </article>
 
-                    <div class="pets-grid">
-                        <!--Pet cards will be loaded by JavaScript-->
-                        <article class="pet-card"> <!--element pentru continut independent-->
-                            <div class="pet-image"> <!--container pt poza, badgeul vine peste poza-->
-                                <img src="images/pets/bella.jpg" alt="Bella - Golden Retriver">
-                                <div class="pet-badge">New Arrival</div>
-                            </div>
-                            <div class="pet-info">
-                                <h3 class="pet-name">Bella</h3>
-                                <p class="pet-breed">Golden Retriver</p>
-                                <p class="pet-age">3 years old</p>
-                                <a href="pet-detail.html?id=1" class="btn btn-small">Meet Bella</a>
-                            </div>
-                        </article>
+                       <article class="pet-card">
+                           <div class="pet-image">
+                               <img src="images/pets/rocky.jpg" alt="Rocky - Mixed Breed">
+                               <!-- No badge shown for this card -->
+                           </div>
+                           <div class="pet-info">
+                           <h3 class="pet-name">Rocky</h3>
+                           <p class="pet-breed">Mixed Breed</p>
+                           <p class="pet-age">2 years old</p>
+                           <a href="pet-detail.html?id=3" class="btn btn-small">Meet Rocky</a>
+                           </div>
+                       </article>
+                   </div>
 
-                        <article class="pet-card">
-                            <div class="pet-image">
-                                <img src="images/pets/whiskers.jpg" alt="Whiskers - Tabby Cat">
-                                <div class="pet-badge">Special Needs</div>
-                            </div>
-                            <div class="pet-info">
-                            <h3 class="pet-name">Whiskers</h3>
-                            <p class="pet-breed">Tabby Cat</p>
-                            <p class="pet-age">5 years old</p>
-                            <a href="pet-detail.html?id=2" class="btn btn-small">Meet Whiskers</a>
-                            </div>
-                        </article>
+                   <!-- Link to full catalog page -->
+                   <div class="section-footer">
+                       <a href="pets.html" class="btn btn-outline">View All Available Pets</a>
+                   </div>
+               </div>
+           </section>
 
+           <!-- ===================== CALL TO ACTION SECTION ===================== -->
+           <section class="cts-section">
+               <div class="container">
+                   <div class="cta-content">
+                       <h2>Ready to Change a Life?</h2>
+                       <p>Start your adoption journey today and give a deserving pet the loving home they've been waiting for.</p>
+                       <!-- Primary CTA to application page -->
+                       <a href="adoption.html" class="btn btn-large btn-primary">Start Application</a>
 
-                        <article class="pet-card">
-                            <div class="pet-image">
-                                <img src="images/pets/rocky.jpg" alt="Rocky - Mixed Breed">
+                   </div>
+               </div>
+           </section>
+        </main>
 
-                            </div>
-                            <div class="pet-info">
-                            <h3 class="pet-name">Rocky</h3>
-                            <p class="pet-breed">Mixed Breed</p>
-                            <p class="pet-age">2 years old</p>
-                            <a href="pet-detail.html?id=3" class="btn btn-small">Meet Rocky</a>
-                            </div>
-                        </article>
-                    </div>
+        <!-- ===================== QUICK LINKS ASIDE ===================== -->
+        <aside class="quick-links">
+           <div class="container">
+               <h3>Quick Links</h3>
+               <div class="links-grid">
+                   <!-- Compact navigation tiles for key flows -->
+                   <a href="adoption.html" class="quick-link">
+                       <div class="link-icon">🐕</div>
+                       <div class="link-text">Adopt a Pet</div>
+                   </a>
+                   <a href="contact.html" class="quick-link">
+                   <div class="link-icon">📞</div>
+                   <div class="link-text">Contact Us</div>
+               </a>
+               <a href="success.html" class="quick-link">
+                   <div class="link-icon">❤️</div>
+                   <div class="link-text">Success Stories</div>
+               </a>
+               <a href="about.html" class="quick-link">
+                   <div class="link-icon">ℹ️</div>
+                   <div class="link-text">About Our Shelter</div>
+               </a>
+               </div>
+           </div>
+        </aside>
 
-                    <div class="section-footer">
-                        <a href="pets.html" class="btn btn-outline">View All Available Pets</a>
-                    </div>
-                </div>
-            </section>
+        <!-- ===================== FOOTER ===================== -->
+        <footer class="main-footer">
+           <div class="container">
+               <div class="footer-content">
+               <!-- Footer column: brand/info + deep links -->
+               <div class="footer-section">
+                   <h4>PawHaven Shelter</h4>
+                   <p>Dedicated to finding loving homes for pets in need since 2016.</p>
+                   <ul>
+                       <li><a href="pets.html">Available Pets</a></li>
+                       <li><a href="adoption.html">Adoption Process</a></li>
+                       <li><a href="about.html">About Us</a></li>
+                       <li><a href="contact.html">Contact</a></li>
+                   </ul>
+               </div>
 
+               <!-- Footer column: contact details -->
+               <div class="footer-section">
+                   <h4>Contact Info</h4>
+                   <!-- NOTE: minor typo in class name 'conctat-info' kept as-is -->
+                   <div class="conctat-info">
+                       <p>📍 123 Pet Street, Animal City, AC 12345</p>
+                       <p>📞 (555) 123-PETS</p>
+                       <p>✉️ info@pawhaven.com</p>
+                   </div>
+               </div>
 
-            <!--Call to Action Section-->
-            <section class="cts-section">
-                <div class="container">
-                    <div class="cta-content">
-                        <h2>Ready to Change a Life?</h2>
-                        <p>Start your adoption journey today and give a deserving pet the loving home they've been waiting for.</p>
-                        <a href="adoption.html" class="btn btn-large btn-primary">Start Application</a>
+               <!-- Footer column: opening hours -->
+               <div class="footer-section">
+                   <h4>Shelter Hours</h4>
+                   <div class="hours">
+                       <p>Monday - Friday: 10am - 6pm</p>
+                       <p>Saturday: 9am - 5pm</p>
+                       <p>Sunday:12pm - 4pm</p>
+                   </div>
+               </div>
+           </div>
 
-                    </div>
-                </div>
-            </section>
-         </main>
+           <!-- Legal line -->
+           <div class="footer-bottom">
+               <p>&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
+           </div>
+           </div>
+        </footer>
 
-
-         <!--Quick Links Aside-->
-         <aside class="quick-links">
-            <div class="container">
-                <h3>Quick Links</h3>
-                <div class="links-grid">
-                    <a href="adoption.html" class="quick-link">
-                        <div class="link-icon">🐕</div>
-                        <div class="link-text">Adopt a Pet</div>
-                    </a>
-                    <a href="contact.html" class="quick-link">
-                    <div class="link-icon">📞</div>
-                    <div class="link-text">Contact Us</div>
-                </a>
-                <a href="success.html" class="quick-link">
-                    <div class="link-icon">❤️</div>
-                    <div class="link-text">Success Stories</div>
-                </a>
-                <a href="about.html" class="quick-link">
-                    <div class="link-icon">ℹ️</div>
-                    <div class="link-text">About Our Shelter</div>
-                </a>
-                </div>
-            </div>
-         </aside>
-
-
-         <!--Footer-->
-         <footer class="main-footer">
-            <div class="container">
-                <div class="footer-content">
-                <div class="footer-section">
-                    <h4>PawHaven Shelter</h4>
-                    <p>Dedicated to finding loving homes for pets in need since 2016.</p>
-                    <ul>
-                        <li><a href="pets.html">Available Pets</a></li>
-                        <li><a href="adoption.html">Adoption Process</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <div class="conctat-info">
-                        <p>📍 123 Pet Street, Animal City, AC 12345</p>
-                        <p>📞 (555) 123-PETS</p>
-                        <p>✉️ info@pawhaven.com</p>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Shelter Hours</h4>
-                    <div class="hours">
-                        <p>Monday - Friday: 10am - 6pm</p>
-                        <p>Saturday: 9am - 5pm</p>
-                        <p>Sunday:12pm - 4pm</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
-            </div>
-            </div>
-         </footer>
-
-
-         <!--JavaScript-->
-         <script src="js/main.js"></script>
-        
-    </body>
- </html>
+        <!-- ===================== JAVASCRIPT BUNDLES ===================== -->
+        <!-- Site-wide interactions (nav, counters, animations, etc.) -->
+        <script src="js/main.js"></script>
+        <!-- Auth/session helpers (if login/register is used site-wide) -->
+        <script src="js/auth.js"></script>
+        <!-- No page-specific JS here; homepage behavior likely handled in main.js -->
+       
+   </body>
+</html>

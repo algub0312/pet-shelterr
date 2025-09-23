@@ -1,19 +1,27 @@
- 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Character encoding for Unicode -->
     <meta charset="UTF-8">
+    <!-- Responsive viewport for mobile-friendly scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title shown in the browser tab -->
     <title>Find a Pet - PawHaven Pet Shelter</title>
+    <!-- Base styles -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- Reusable component styles (cards, buttons, grids, etc.) -->
     <link rel="stylesheet" href="css/components.css">
+    <!-- Auth/form-related styles reused across pages -->
+    <link rel="stylesheet" href="css/auth.css">
+    
 </head>
 <body>
+    <!-- ===================== HEADER WITH NAVIGATION ===================== -->
     <!-- Header with Navigation -->
     <header class="main-header">
         <nav class="navbar">
             <div class="nav-container">
+                <!-- Logo + brand text -->
                 <div class="nav-logo">
                     <img src="images/icons/logo.png" alt="PawHaven Logo">
                     <span class="logo-text">PawHaven</span>
@@ -21,29 +29,34 @@
                 
                 <!-- Desktop Navigation Menu -->
                 <ul class="nav-menu">
+                    <!-- Current page is highlighted with .active -->
                     <li><a href="index.html" class="nav-link">Home</a></li>
                     <li><a href="pets.html" class="nav-link active">Find a Pet</a></li>
                     <li><a href="about.html" class="nav-link">About Us</a></li>
                     <li><a href="success.html" class="nav-link">Success Stories</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <!-- CTA for adoption flow -->
                     <li><a href="adoption.html" class="nav-link btn-adopt">Adopt Now</a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
+    <!-- ===================== MAIN CONTENT ===================== -->
     <!-- Main Content -->
 <main class = "main-content">
 
+    <!-- ===================== HERO SECTION ===================== -->
     <!-- hero section -->
-
           <section class="pets-hero">
             <div class="container">
                 <div class="hero-content">
+                    <!-- Page headline and description -->
                     <h1>Find Your Perfect Companion</h1>
                     <p>Browse our available pets and find the one that's perfect for your family. Each pet has been lovingly cared for and is ready for their forever home.</p>
                     
                     <!-- Quick Search Bar -->
+                    <!-- Simple keyword search by name/breed; action handled in JS -->
                     <div class="quick-search">
                         <input type="text" id="pet-search" placeholder="Search by name or breed..." class="search-input">
                         <button type="button" class="search-btn" onclick="performSearch()">
@@ -54,16 +67,17 @@
             </div>
         </section>
 
+     <!-- ===================== FILTERS + RESULTS ===================== -->
      <!-- Filters and Results Section -->
         <section class="pets-content">
             <div class="container">
                 <div class="pets-layout">
-                    <!-- Sidebar Filters -->
+                    <!-- ========== Sidebar Filters ========== -->
                     <aside class="filters-sidebar">
                         <div class="filters-container">
                             <h3>Filter Pets</h3>
                             
-                            <!-- Pet Type Filter -->
+                            <!-- Pet Type Filter (mutually exclusive via radio) -->
                             <div class="filter-group">
                                 <h4>Pet Type</h4>
                                 <div class="filter-options">
@@ -95,7 +109,7 @@
                                 </div>
                             </div>
 
-                            <!-- Age Filter -->
+                            <!-- Age Filter (preset buckets) -->
                             <div class="filter-group">
                                 <h4>Age</h4>
                                 <div class="filter-options">
@@ -122,6 +136,7 @@
                                 </div>
                                 
                                 <!-- Custom Age Range -->
+                                <!-- Optional min/max numeric inputs to refine the Age filter -->
                                 <div class="age-range-selector">
                                     <label for="min-age">Custom Age Range:</label>
                                     <div class="range-inputs">
@@ -133,7 +148,7 @@
                                 </div>
                             </div>
 
-                            <!-- Size Filter -->
+                            <!-- Size Filter (multi-select via checkboxes) -->
                             <div class="filter-group">
                                 <h4>Size</h4>
                                 <div class="filter-options">
@@ -155,7 +170,7 @@
                                 </div>
                             </div>
 
-                            <!-- Special Needs Filter -->
+                            <!-- Special Needs / Compatibility Filters -->
                             <div class="filter-group">
                                 <h4>Special Considerations</h4>
                                 <div class="filter-options">
@@ -178,23 +193,26 @@
                             </div>
 
                             <!-- Clear Filters Button -->
+                            <!-- Resets all filters to default via JS handler -->
                             <button type="button" class="btn btn-outline clear-filters" onclick="clearAllFilters()">
                                 Clear All Filters
                             </button>
                         </div>
                     </aside>
 
-                    <!-- Main Pet Results -->
+                    <!-- ========== Main Results Area ========== -->
                     <div class="pets-main">
-                        <!-- Results Header -->
+                        <!-- Results Header with count and sort controls -->
                         <div class="results-header">
                             <div class="results-info">
                                 <h2>Available Pets</h2>
+                                <!-- Count is updated via JS after filtering -->
                                 <p class="results-count">Showing <span id="results-count">0</span> pets</p>
                             </div>
                             
                             <div class="sort-options">
                                 <label for="sort-select">Sort by:</label>
+                                <!-- Sorting options handled in JS (e.g., by arrival date, name, age) -->
                                 <select id="sort-select" class="form-select">
                                     <option value="newest">Newest Arrivals</option>
                                     <option value="oldest">Longest at Shelter</option>
@@ -206,8 +224,9 @@
                         </div>
 
                         <!-- Pet Cards Grid -->
+                        <!-- JS populates this grid with pet-card elements -->
                         <div class="pets-grid" id="pets-grid">
-                            <!-- Pet cards will be loaded here by JavaScript -->
+                            <!-- Loading indicator while fetching data -->
                             <div class="loading-spinner">
                                 <div class="spinner"></div>
                                 <p>Loading pets...</p>
@@ -215,6 +234,7 @@
                         </div>
 
                         <!-- No Results Message -->
+                        <!-- Shown when filters/search return zero matches -->
                         <div class="no-results" id="no-results" style="display: none;">
                             <div class="no-results-content">
                                 <h3>No pets found matching your criteria</h3>
@@ -224,6 +244,7 @@
                         </div>
 
                         <!-- Pagination -->
+                        <!-- Simple prev/next pagination controlled by JS -->
                         <div class="pagination-container" id="pagination-container" style="display: none;">
                             <div class="pagination">
                                 <button class="pagination-btn" id="prev-btn" onclick="changePage(-1)" disabled>← Previous</button>
@@ -236,10 +257,12 @@
             </div>
         </section>
     </main>
+          <!-- ===================== FOOTER ===================== -->
           <!--Footer-->
          <footer class="main-footer">
             <div class="container">
                 <div class="footer-content">
+                <!-- Footer column: info + quick links -->
                 <div class="footer-section">
                     <h4>PawHaven Shelter</h4>
                     <p>Dedicated to finding loving homes for pets in need since 2016.</p>
@@ -251,8 +274,10 @@
                     </ul>
                 </div>
 
+                <!-- Footer column: contact info -->
                 <div class="footer-section">
                     <h4>Contact Info</h4>
+                    <!-- NOTE: class name 'conctat-info' appears to be a typo; kept exactly as provided -->
                     <div class="conctat-info">
                         <p>📍 123 Pet Street, Animal City, AC 12345</p>
                         <p>📞 (555) 123-PETS</p>
@@ -260,6 +285,7 @@
                     </div>
                 </div>
 
+                <!-- Footer column: opening hours -->
                 <div class="footer-section">
                     <h4>Shelter Hours</h4>
                     <div class="hours">
@@ -270,13 +296,19 @@
                 </div>
             </div>
 
+            <!-- Copyright -->
             <div class="footer-bottom">
                 <p>&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
             </div>
             </div>
          </footer>
+  <!-- ===================== SCRIPTS ===================== -->
   <!-- JavaScript -->
+    <!-- Site-wide utilities and interactions -->
     <script src="js/main.js"></script>
+    <!-- Page-specific search/filter/sort/pagination logic -->
     <script src="js/search.js"></script>
+    <!-- Auth/session helpers if needed globally -->
+    <script src="js/auth.js"></script>
     </body>
 </html>

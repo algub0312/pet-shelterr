@@ -1,13 +1,14 @@
 // Search and Filter functionality for pets page
 // js/search.js
 
-// Global variables
-let allPets = [];
-let filteredPets = [];
-let currentPage = 1;
-const petsPerPage = 9;
+// -------------------- Variabile globale pentru listă, filtrare și paginare --------------------
+let allPets = [];           // toate animalele încărcate (din JSON sau fallback)
+let filteredPets = [];      // rezultatul curent după căutare/filtre
+let currentPage = 1;        // pagina curentă pentru paginare
+const petsPerPage = 9;      // câte carduri per pagină
 
-// Sample pet data (fallback if pets.json doesn't load) - updated to match JSON structure
+// -------------------- Date mock (fallback) dacă pets.json nu se încarcă --------------------
+// Structura este aliniată cu cea din JSON (medical, images, arrival_date, etc.)
 const mockPetsData = [
     {
         id: 1,
@@ -77,27 +78,27 @@ const mockPetsData = [
     }
 ];
 
-// Initialize the page when DOM is loaded
+// -------------------- Pornirea logicii doar pe pagina de "pets" --------------------
 document.addEventListener('DOMContentLoaded', function() {
-    // Only run on pets page
+    // rulează doar dacă există containerul principal al grilei
     if (!document.getElementById('pets-grid')) return;
     
     initializePetsPage();
 });
 
-// Initialize pets page functionality
+// -------------------- Inițializarea paginii: încărcare date, listeners, afișare --------------------
 async function initializePetsPage() {
     try {
-        // Try to load pets from JSON file, fall back to mock data
+        // 1) Încearcă să încarci din JSON, altfel fallback la mock
         await loadPetsData();
         
-        // Set up event listeners
+        // 2) Setează ascultători pentru căutare, filtre, sortare etc.
         setupEventListeners();
         
-        // Initial display of all pets
+        // 3) Afișare inițială (toate animalele)
         displayPets();
         
-        // Initialize URL parameters (if any)
+        // 4) Aplică eventuale parametre din URL (deep-linking)
         handleURLParameters();
         
     } catch (error) {
@@ -106,7 +107,7 @@ async function initializePetsPage() {
     }
 }
 
-// Load pets data from JSON or use mock data
+// -------------------- Încărcare animale din JSON; altfel fallback --------------------
 async function loadPetsData() {
     try {
         const response = await fetch('data/pets.json');
@@ -121,15 +122,16 @@ async function loadPetsData() {
         allPets = mockPetsData;
     }
     
+    // La început, filtratul = tot setul
     filteredPets = [...allPets];
 }
 
-// Set up all event listeners
+// -------------------- Conectarea tuturor event listener-elor UI --------------------
 function setupEventListeners() {
-    // Search input
+    // Căutare live în input
     const searchInput = document.getElementById('pet-search');
     if (searchInput) {
-        searchInput.addEventListener('input', debounce(performSearch, 300));
+        searchInput.addEventListener('input', debounce(performSearch, 300)); // debounced
         searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 performSearch();
@@ -137,19 +139,19 @@ function setupEventListeners() {
         });
     }
     
-    // Filter inputs
+    // Filtre (tip, vârstă, mărime, special needs, good with kids/pets)
     const filterInputs = document.querySelectorAll('input[name="petType"], input[name="petAge"], input[name="petSize"], input[name="specialNeeds"], input[name="goodWithKids"], input[name="goodWithPets"]');
     filterInputs.forEach(input => {
         input.addEventListener('change', applyFilters);
     });
     
-    // Age range inputs
+    // Filtru de interval de vârstă custom (min/max)
     const ageInputs = document.querySelectorAll('#min-age, #max-age');
     ageInputs.forEach(input => {
         input.addEventListener('change', applyFilters);
     });
     
-    // Sort select
+    // Sortare
     const sortSelect = document.getElementById('sort-select');
     if (sortSelect) {
         sortSelect.addEventListener('change', function() {
@@ -159,13 +161,14 @@ function setupEventListeners() {
     }
 }
 
-// Perform search functionality
+// -------------------- Căutare text (nume, rasă, tip, culoare, descriere, personalitate) --------------------
 function performSearch() {
     const searchTerm = document.getElementById('pet-search').value.toLowerCase().trim();
     
     if (searchTerm === '') {
-        applyFilters(); // Apply current filters if search is empty
+        applyFilters(); // dacă nu există termen, aplică doar filtrele curente
     } else {
+        // filtrează în allPets după mai multe câmpuri relevante
         filteredPets = allPets.filter(pet => 
             pet.name.toLowerCase().includes(searchTerm) ||
             pet.breed.toLowerCase().includes(searchTerm) ||
@@ -173,31 +176,31 @@ function performSearch() {
             (pet.traits && pet.traits.some(trait => trait.toLowerCase().includes(searchTerm)))
         );
         
-        // Apply other filters on top of search results
+        // După căutare, aplică și filtrele active peste rezultat
         applyFiltersToSet(filteredPets);
     }
     
-    currentPage = 1; // Reset to first page
+    currentPage = 1; // resetează paginarea
     displayPets();
 }
 
-// Apply all active filters
+// -------------------- Aplică toate filtrele active pe întreg setul --------------------
 function applyFilters() {
     filteredPets = [...allPets];
     applyFiltersToSet(filteredPets);
-    currentPage = 1; // Reset to first page
+    currentPage = 1; // resetează paginarea
     displayPets();
 }
 
-// Apply filters to a specific set of pets
+// -------------------- Aplica filtrele peste un set primit (folosește DOM curent) --------------------
 function applyFiltersToSet(petsArray) {
-    // Pet type filter
+    // Filtru pe tip (dog/cat/… sau all)
     const selectedType = document.querySelector('input[name="petType"]:checked').value;
     if (selectedType !== 'all') {
         filteredPets = filteredPets.filter(pet => pet.type === selectedType);
     }
     
-    // Age filter - Extract numeric age from string format
+    // Filtru pe vârstă (categorii predefinite) + interval custom
     const selectedAge = document.querySelector('input[name="petAge"]:checked').value;
     const minAge = parseFloat(document.getElementById('min-age').value);
     const maxAge = parseFloat(document.getElementById('max-age').value);
@@ -225,7 +228,7 @@ function applyFiltersToSet(petsArray) {
         }
     }
     
-    // Custom age range filter
+    // Interval de vârstă personalizat (min/max)
     if (!isNaN(minAge) && minAge >= 0) {
         filteredPets = filteredPets.filter(pet => {
             const numericAge = extractNumericAge(pet.age);
@@ -239,7 +242,7 @@ function applyFiltersToSet(petsArray) {
         });
     }
     
-    // Size filter - Match the case from JSON (capitalize first letter)
+    // Filtru pe mărime (în JSON e capitalizat: Small/Medium/Large)
     const selectedSizes = Array.from(document.querySelectorAll('input[name="petSize"]:checked')).map(input => {
         return input.value.charAt(0).toUpperCase() + input.value.slice(1);
     });
@@ -247,34 +250,36 @@ function applyFiltersToSet(petsArray) {
         filteredPets = filteredPets.filter(pet => selectedSizes.includes(pet.size));
     }
     
-    // Special considerations filters - adapted for JSON structure
+    // Filtre „special considerations” (în JSON: medical.special_needs; personality conține texte)
     const goodWithKids = document.querySelector('input[name="goodWithKids"]:checked');
     const goodWithPets = document.querySelector('input[name="goodWithPets"]:checked');
     
-  // Special needs filter
-const specialNeeds = document.querySelector('input[name="specialNeeds"]:checked');
-if (specialNeeds) {
-    filteredPets = filteredPets.filter(pet => 
-        pet.medical && pet.medical.special_needs === true
-    );
-}
+    // Special needs
+    const specialNeeds = document.querySelector('input[name="specialNeeds"]:checked');
+    if (specialNeeds) {
+        filteredPets = filteredPets.filter(pet => 
+            pet.medical && pet.medical.special_needs === true
+        );
+    }
+    // Bun cu copiii
     if (goodWithKids) {
         filteredPets = filteredPets.filter(pet => 
             pet.personality && pet.personality.includes("Good with kids")
         );
     }
+    // Bun cu alte animale (ex.: Social, Friendly sau—simplificare—dacă e „dog”)
     if (goodWithPets) {
         filteredPets = filteredPets.filter(pet => 
             pet.personality && (
                 pet.personality.includes("Social") || 
                 pet.personality.includes("Friendly") ||
-                pet.type === "dog" // Assume dogs are generally good with other pets unless specified
+                pet.type === "dog" // presupunere: câinii sunt adesea ok cu alte animale dacă nu e specificat altfel
             )
         );
     }
 }
 
-// Sort pets based on selected criteria
+// -------------------- Sortare în funcție de criteriul selectat --------------------
 function sortPets(sortBy) {
     switch (sortBy) {
         case 'newest':
@@ -295,19 +300,19 @@ function sortPets(sortBy) {
     }
 }
 
-// Display pets with pagination
+// -------------------- Afișarea listelor + paginare --------------------
 function displayPets() {
     const petsGrid = document.getElementById('pets-grid');
     const resultsCount = document.getElementById('results-count');
     const noResults = document.getElementById('no-results');
     const paginationContainer = document.getElementById('pagination-container');
     
-    // Update results count
+    // Actualizează numărul de rezultate
     if (resultsCount) {
         resultsCount.textContent = filteredPets.length;
     }
     
-    // Show/hide no results message
+    // Dacă nu sunt rezultate, ascunde grila și arată mesajul
     if (filteredPets.length === 0) {
         if (petsGrid) petsGrid.style.display = 'none';
         if (noResults) noResults.style.display = 'block';
@@ -318,28 +323,27 @@ function displayPets() {
         if (noResults) noResults.style.display = 'none';
     }
     
-    // Calculate pagination
+    // Calculează paginarea curentă
     const totalPages = Math.ceil(filteredPets.length / petsPerPage);
     const startIndex = (currentPage - 1) * petsPerPage;
     const endIndex = startIndex + petsPerPage;
     const petsToShow = filteredPets.slice(startIndex, endIndex);
     
-    // Clear current pets
+    // Curăță grila și adaugă cardurile pentru pagina curentă
     if (petsGrid) {
         petsGrid.innerHTML = '';
         
-        // Add pet cards
         petsToShow.forEach(pet => {
             const petCard = createPetCard(pet);
             petsGrid.appendChild(petCard);
         });
     }
     
-    // Update pagination
+    // Actualizează butoanele și indicatorii de paginare
     updatePagination(totalPages);
 }
 
-// Extract numeric age from string format like "3 years" or "1 year"
+// -------------------- Extrage vârsta numerică din stringuri gen "3 years" --------------------
 function extractNumericAge(ageString) {
     if (typeof ageString === 'number') {
         return ageString;
@@ -351,23 +355,24 @@ function extractNumericAge(ageString) {
     return 0;
 }
 
-// Create a pet card element - adapted for JSON structure
+// -------------------- Creează un card de pet (adaptat la structura JSON) --------------------
 function createPetCard(pet) {
     const card = document.createElement('article');
     card.className = 'pet-card';
     
-    // Determine badge based on JSON structure
+    // Badge „Special Needs” sau „New Arrival”
     const isNewArrival = isNewPet(pet.arrival_date);
     const hasSpecialNeeds = pet.medical && pet.medical.special_needs;
     const badge = hasSpecialNeeds ? 'Special Needs' : 
                   isNewArrival ? 'New Arrival' : '';
     
-    // Create traits display from personality array
+    // Afișare trăsături (primele 3) dacă există personality[]
     const traitsHTML = pet.personality && pet.personality.length > 0 ? 
         `<div class="pet-traits">
             ${pet.personality.slice(0, 3).map(trait => `<span class="trait-badge">${trait}</span>`).join('')}
         </div>` : '';
     
+    // Markup-ul cardului (imagine, nume, rasă, vârstă, trăsături, link detalii)
     card.innerHTML = `
         <div class="pet-image">
             <img src="${pet.images[0]}" alt="${pet.name} - ${pet.breed}" loading="lazy">
@@ -385,13 +390,15 @@ function createPetCard(pet) {
     return card;
 }
 
-// Sort pets based on selected criteria - adapted for JSON structure
+// -------------------- (DUPLICAT) Sort pets – versiune adaptată pentru JSON --------------------
+// Notă: există două definiții de sortPets în fișier (aceasta suprascrie pe cea de sus).
 function sortPets(sortBy) {
     switch (sortBy) {
         case 'newest':
             filteredPets.sort((a, b) => new Date(b.arrival_date) - new Date(a.arrival_date));
             break;
         case 'oldest':
+            // Atenție: mică eroare în codul original—compară a.arrival_date cu a.arrival_date (ar trebui b.arrival_date)
             filteredPets.sort((a, b) => new Date(a.arrival_date) - new Date(a.arrival_date));
             break;
         case 'name':
@@ -406,7 +413,8 @@ function sortPets(sortBy) {
     }
 }
 
-// Update search to work with JSON structure
+// -------------------- (DUPLICAT) performSearch – versiune extinsă pe mai multe câmpuri --------------------
+// Notă: există două definiții (aceasta îl suprascrie pe cel de sus).
 function performSearch() {
     const searchTerm = document.getElementById('pet-search').value.toLowerCase().trim();
     
@@ -430,7 +438,7 @@ function performSearch() {
     displayPets();
 }
 
-// Check if pet is new (arrived within 30 days)
+// -------------------- Verifică dacă un animal e „nou venit” (≤ 30 zile) --------------------
 function isNewPet(arrivalDate) {
     const arrival = new Date(arrivalDate);
     const now = new Date();
@@ -439,7 +447,7 @@ function isNewPet(arrivalDate) {
     return diffDays <= 30;
 }
 
-// Update pagination controls
+// -------------------- Actualizează controalele de paginare --------------------
 function updatePagination(totalPages) {
     const paginationContainer = document.getElementById('pagination-container');
     const currentPageSpan = document.getElementById('current-page');
@@ -447,6 +455,7 @@ function updatePagination(totalPages) {
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     
+    // Ascunde paginarea dacă avem ≤ 1 pagină
     if (totalPages <= 1) {
         if (paginationContainer) paginationContainer.style.display = 'none';
         return;
@@ -454,9 +463,11 @@ function updatePagination(totalPages) {
         if (paginationContainer) paginationContainer.style.display = 'flex';
     }
     
+    // Setează textul paginii curente și totalul
     if (currentPageSpan) currentPageSpan.textContent = currentPage;
     if (totalPagesSpan) totalPagesSpan.textContent = totalPages;
     
+    // Activează/dezactivează butoanele prev/next
     if (prevBtn) {
         prevBtn.disabled = currentPage === 1;
     }
@@ -465,7 +476,7 @@ function updatePagination(totalPages) {
     }
 }
 
-// Change page function
+// -------------------- Schimbă pagina (±1) și derulează în sus lista --------------------
 function changePage(direction) {
     const totalPages = Math.ceil(filteredPets.length / petsPerPage);
     const newPage = currentPage + direction;
@@ -482,7 +493,7 @@ function changePage(direction) {
     }
 }
 
-// Clear all filters
+// -------------------- Reset total al filtrelor + sort + afișare --------------------
 function clearAllFilters() {
     // Reset search
     const searchInput = document.getElementById('pet-search');
@@ -520,18 +531,18 @@ function clearAllFilters() {
         sortSelect.value = 'newest';
     }
     
-    // Reapply filters (should show all pets)
+    // Reaplică cu set complet + sort default
     filteredPets = [...allPets];
     sortPets('newest');
     currentPage = 1;
     displayPets();
 }
 
-// Handle URL parameters (for deep linking)
+// -------------------- Citește parametrii din URL și aplică (ex: ?type=dog&search=bella) --------------------
 function handleURLParameters() {
     const urlParams = new URLSearchParams(window.location.search);
     
-    // Set type filter from URL
+    // tip (dog/cat/…)
     const type = urlParams.get('type');
     if (type) {
         const typeRadio = document.querySelector(`input[name="petType"][value="${type}"]`);
@@ -540,7 +551,7 @@ function handleURLParameters() {
         }
     }
     
-    // Set search term from URL
+    // termen căutare
     const search = urlParams.get('search');
     if (search) {
         const searchInput = document.getElementById('pet-search');
@@ -549,7 +560,7 @@ function handleURLParameters() {
         }
     }
     
-    // Apply filters if URL params exist
+    // dacă avem parametri, aplicăm automat căutarea/filtrele
     if (type || search) {
         if (search) {
             performSearch();
@@ -559,7 +570,7 @@ function handleURLParameters() {
     }
 }
 
-// Utility function for debouncing search input
+// -------------------- Debounce helper (evită apelurile prea dese la căutare) --------------------
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -572,16 +583,16 @@ function debounce(func, wait) {
     };
 }
 
-// Show error message
+// -------------------- Afișare erori (placeholder) --------------------
 function showError(message) {
     console.error(message);
-    // You can implement a toast notification or alert here
+    // Integrare opțională cu un sistem global de toast-uri
     if (window.PetShelter && window.PetShelter.showAlert) {
         window.PetShelter.showAlert(message, 'danger');
     }
 }
 
-// Export functions for global access
+// -------------------- Export pentru acces global (onclick din HTML etc.) --------------------
 window.performSearch = performSearch;
 window.clearAllFilters = clearAllFilters;
 window.changePage = changePage;

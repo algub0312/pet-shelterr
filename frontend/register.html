@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding for Unicode -->
+    <meta charset="UTF-8">
+    <!-- Responsive viewport for proper scaling on mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Browser tab title -->
+    <title>Create Account - PawHaven Pet Shelter</title>
+    <!-- Base/global styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Reusable UI components (buttons, cards, grid, etc.) -->
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Auth/form-specific styles -->
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <!-- ================= HEADER WITH NAVIGATION ================= -->
+    <!-- Header with Navigation -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <!-- Brand logo and name -->
+                <div class="nav-logo">
+                    <img src="images/icons/logo.png" alt="PawHaven Logo">
+                    <span class="logo-text">PawHaven</span>
+                </div>
+                
+                <!-- Primary navigation links -->
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="pets.html" class="nav-link">Find a Pet</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="success.html" class="nav-link">Success Stories</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <!-- Link to login page for existing users -->
+                    <li><a href="login.html" class="nav-link">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main-content">
+        <section class="auth-section">
+            <div class="container">
+                <div class="auth-container">
+                    <!-- Card wrapper for the registration form -->
+                    <div class="auth-card">
+                        <div class="auth-header">
+                            <h1>Join PawHaven</h1>
+                            <p>Create your account to start your adoption journey</p>
+                        </div>
+
+                        <!-- Registration form -->
+                        <form id="register-form" class="auth-form register-form">
+                            <!-- Name fields side-by-side -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName" class="form-label required">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" class="form-input" required>
+                                    <!-- Area to display validation errors -->
+                                    <div class="form-error"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="lastName" class="form-label required">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" class="form-input" required>
+                                    <div class="form-error"></div>
+                                </div>
+                            </div>
+
+                            <!-- Email field -->
+                            <div class="form-group">
+                                <label for="email" class="form-label required">Email Address</label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                                <div class="form-error"></div>
+                            </div>
+
+                            <!-- Phone field -->
+                            <div class="form-group">
+                                <label for="phone" class="form-label required">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="(555) 123-4567" required>
+                                <div class="form-error"></div>
+                            </div>
+
+                            <!-- Address (optional) -->
+                            <div class="form-group">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" id="address" name="address" class="form-input" placeholder="Street, City, State, ZIP">
+                                <div class="form-error"></div>
+                            </div>
+
+                            <!-- Password + confirmation side-by-side -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="password" class="form-label required">Password</label>
+                                    <div class="password-input-container">
+                                        <input type="password" id="password" name="password" class="form-input" required>
+                                        <!-- Eye icon toggles visibility via JS -->
+                                        <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                                            👁️
+                                        </button>
+                                    </div>
+                                    <div class="form-error"></div>
+                                    <small>Password must be at least 6 characters</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="confirmPassword" class="form-label required">Confirm Password</label>
+                                    <div class="password-input-container">
+                                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" required>
+                                        <!-- Eye icon toggles visibility via JS -->
+                                        <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                                            👁️
+                                        </button>
+                                    </div>
+                                    <div class="form-error"></div>
+                                </div>
+                            </div>
+
+                            <!-- Optional pet preference radios -->
+                            <div class="form-group">
+                                <h4>Pet Preferences (Optional)</h4>
+                                <div class="preference-options">
+                                    <label class="form-checkbox">
+                                        <input type="radio" name="petPreference" value="dog">
+                                        🐕 Dogs
+                                    </label>
+                                    <label class="form-checkbox">
+                                        <input type="radio" name="petPreference" value="cat">
+                                        🐱 Cats
+                                    </label>
+                                    <label class="form-checkbox">
+                                        <input type="radio" name="petPreference" value="any">
+                                        ❤️ Any pet
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Newsletter opt-in (checked by default) -->
+                            <div class="form-group">
+                                <label class="form-checkbox">
+                                    <input type="checkbox" name="newsletter" id="newsletter" checked>
+                                    Subscribe to our newsletter for pet updates and adoption stories
+                                </label>
+                            </div>
+
+                            <!-- Required terms consent -->
+                            <div class="form-group">
+                                <label class="form-checkbox">
+                                    <input type="checkbox" name="terms" id="terms" required>
+                                    I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a>
+                                </label>
+                                <div class="form-error"></div>
+                            </div>
+
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary btn-large auth-submit">
+                                Create Account
+                            </button>
+
+                            <!-- Link to login for existing users -->
+                            <div class="auth-links">
+                                <p>Already have an account? <a href="login.html" class="auth-link">Sign in here</a></p>
+                            </div>
+                        </form>
+                    </div> <!-- /auth-card -->
+                </div> <!-- /auth-container -->
+            </div> <!-- /container -->
+        </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Footer column: about -->
+                <div class="footer-section">
+                    <h4>PawHaven Shelter</h4>
+                    <p>Dedicated to finding loving homes for pets in need since 2016.</p>
+                </div>
+                <!-- Footer column: contact details -->
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p>📍 123 Pet Street, Animal City, AC 12345</p>
+                        <p>📞 (555) 123-PETS</p>
+                        <p>✉️ info@pawhaven.com</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= SCRIPTS ================= -->
+    <!-- Site-wide JS utilities and common behaviors -->
+    <script src="js/main.js"></script>
+    <!-- Auth-related behaviors (validation, toggles, form submit handlers) -->
+    <script src="js/auth.js"></script>
+</body>
+</html>
