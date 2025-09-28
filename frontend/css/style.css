@@ -974,4 +974,538 @@ text-align: center;
             font-size: 0.8rem;
         }
 
+        /* ================= PET DETAIL PAGE STYLES ================= */
+
+
+/* Breadcrumb navigation */
+.breadcrumb-section {
+    background: var(--white);
+    padding: var(--spacing-lg) 0;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+}
+
+.breadcrumb a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.breadcrumb a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.breadcrumb-separator {
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+/* Loading and error states */
+.loading-container,
+.error-container {
+    text-align: center;
+    padding: var(--spacing-3xl) 0;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-container .spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid var(--gray-light);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: var(--spacing-lg);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error-container h2 {
+    color: var(--danger);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Main pet detail section */
+.pet-detail-section {
+    padding: var(--spacing-3xl) 0;
+    background: var(--background);
+}
+
+.pet-detail-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Pet header section */
+.pet-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-3xl);
+    margin-bottom: var(--spacing-3xl);
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-3xl);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Gallery section */
+.pet-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.main-image {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--gray-light);
+}
+
+.pet-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.pet-main-img:hover {
+    transform: scale(1.02);
+}
+
+.status-badge {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    background: var(--secondary-color);
+    color: var(--text-dark);
+    box-shadow: var(--shadow-sm);
+}
+
+.status-badge.available {
+    background: var(--success);
+    color: var(--white);
+}
+
+.status-badge.pending {
+    background: var(--warning);
+    color: var(--text-dark);
+}
+
+.status-badge.adopted {
+    background: var(--accent-color);
+    color: var(--white);
+}
+
+/* Image thumbnails */
+.image-thumbnails {
+    display: flex;
+    gap: var(--spacing-sm);
+    overflow-x: auto;
+    padding: var(--spacing-xs) 0;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+    border-color: var(--primary-color);
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Basic pet information */
+.pet-basic-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.pet-title {
+    font-size: var(--font-size-4xl);
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-xs);
+}
+
+.pet-breed-info {
+    font-size: var(--font-size-xl);
+    color: var(--text-light);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Pet details grid */
+.pet-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: var(--gray-light);
+    border-radius: var(--radius-lg);
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.detail-value {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* Personality section */
+.personality-section h3 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.traits-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.trait-badge {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+/* Action buttons */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.action-buttons .btn {
+    width: 100%;
+    text-align: center;
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-lg);
+}
+
+/* Detailed sections */
+.pet-details-sections {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3xl);
+}
+
+.detail-section {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-3xl);
+    box-shadow: var(--shadow-md);
+}
+
+.detail-section h2 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xl);
+    font-size: var(--font-size-2xl);
+    border-bottom: 3px solid var(--gray-light);
+    padding-bottom: var(--spacing-md);
+}
+
+.pet-description {
+    font-size: var(--font-size-lg);
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+/* Medical information grid */
+.medical-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+}
+
+.medical-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: var(--background);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary-color);
+}
+
+.medical-icon {
+    font-size: var(--font-size-2xl);
+    line-height: 1;
+}
+
+.medical-item h4 {
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-lg);
+}
+
+.medical-item p {
+    color: var(--text-light);
+    font-size: var(--font-size-base);
+}
+
+/* Adoption information */
+.adoption-info {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-3xl);
+    align-items: start;
+}
+
+.adoption-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.adoption-item {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: var(--background);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--gray-light);
+}
+
+.adoption-item h4 {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-base);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.fee-amount {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.adoption-item p {
+    font-size: var(--font-size-lg);
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.adoption-includes {
+    background: var(--background);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+}
+
+.adoption-includes h4 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-lg);
+}
+
+.adoption-includes ul {
+    list-style: none;
+    padding: 0;
+}
+
+.adoption-includes li {
+    padding: var(--spacing-sm) 0;
+    color: var(--text-dark);
+    font-size: var(--font-size-base);
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.adoption-includes li:last-child {
+    border-bottom: none;
+}
+
+/* Contact information */
+.contact-info-section p {
+    font-size: var(--font-size-lg);
+    color: var(--text-light);
+    margin-bottom: var(--spacing-2xl);
+    text-align: center;
+}
+
+.contact-methods {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+}
+
+.contact-method {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: var(--background);
+    border-radius: var(--radius-lg);
+}
+
+.contact-icon {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-lg);
+}
+
+.contact-method h4 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.contact-method p {
+    color: var(--text-light);
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+}
+
+/* Similar pets section */
+.similar-pets-section {
+    padding: var(--spacing-3xl) 0;
+    background: var(--white);
+}
+
+.similar-pets-section h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-3xl);
+}
+
+/* ================= RESPONSIVE DESIGN FOR PET DETAIL ================= */
+
+/* Tablet breakpoint */
+@media (max-width: 1024px) {
+    .pet-header {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-2xl);
+    }
+    
+    .pet-details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .medical-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .adoption-info {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+    
+    .contact-methods {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile breakpoint */
+@media (max-width: 768px) {
+    .pet-detail-section {
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .pet-header {
+        padding: var(--spacing-xl);
+        margin-bottom: var(--spacing-xl);
+    }
+    
+    .detail-section {
+        padding: var(--spacing-xl);
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .pet-title {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .pet-breed-info {
+        font-size: var(--font-size-lg);
+    }
+    
+    .action-buttons {
+        gap: var(--spacing-sm);
+    }
+    
+    .action-buttons .btn {
+        font-size: var(--font-size-base);
+        padding: var(--spacing-md);
+    }
+    
+    .breadcrumb {
+        font-size: var(--font-size-xs);
+        flex-wrap: wrap;
+    }
+    
+    .image-thumbnails {
+        justify-content: center;
+    }
+}
+
+/* Small mobile breakpoint */
+@media (max-width: 480px) {
+    .breadcrumb-section {
+        padding: var(--spacing-md) 0;
+    }
+    
+    .pet-header,
+    .detail-section {
+        padding: var(--spacing-lg);
+        border-radius: var(--radius-lg);
+    }
+    
+    .main-image {
+        aspect-ratio: 1/1;
+    }
+    
+    .thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .pet-details-sections {
+        gap: var(--spacing-lg);
+    }
+}
+
 

@@ -1,1 +1,305 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding for Unicode support -->
+    <meta charset="UTF-8">
+    <!-- Responsive viewport for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title - will be updated dynamically with pet name -->
+    <title>Pet Details - PawHaven Pet Shelter</title>
+    <!-- Global stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Reusable UI components stylesheet -->
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Auth/forms related stylesheet -->
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <!-- ================= HEADER WITH NAVIGATION ================= -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <!-- Brand logo and text -->
+                <div class="nav-logo">
+                    <img src="images/icons/logo.png" alt="PawHaven Logo">
+                    <span class="logo-text">PawHaven</span>
+                </div>
+                
+                <!-- Primary navigation menu -->
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="pets.html" class="nav-link">Find a Pet</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="success.html" class="nav-link">Success Stories</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <!-- Call-to-action for adoption -->
+                    <li><a href="adoption.html" class="nav-link btn-adopt">Adopt Now</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main-content">
+        <!-- Breadcrumb navigation for user orientation -->
+        <section class="breadcrumb-section">
+            <div class="container">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">→</span>
+                    <a href="pets.html">Available Pets</a>
+                    <span class="breadcrumb-separator">→</span>
+                    <!-- Pet name will be inserted here dynamically -->
+                    <span id="breadcrumb-pet-name">Pet Details</span>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main pet detail section -->
+        <section class="pet-detail-section">
+            <div class="container">
+                <!-- Loading state shown while data loads -->
+                <div id="loading-state" class="loading-container">
+                    <div class="spinner"></div>
+                    <p>Loading pet details...</p>
+                </div>
+
+                <!-- Error state if pet not found -->
+                <div id="error-state" class="error-container" style="display: none;">
+                    <h2>Pet Not Found</h2>
+                    <p>Sorry, we couldn't find the pet you're looking for. They may have already been adopted or the link may be incorrect.</p>
+                    <a href="pets.html" class="btn btn-primary">Browse Available Pets</a>
+                </div>
+
+                <!-- Main pet content - hidden until data loads -->
+                <div id="pet-content" class="pet-detail-content" style="display: none;">
+                    <!-- Pet header with primary info -->
+                    <div class="pet-header">
+                        <div class="pet-gallery">
+                            <!-- Main pet image -->
+                            <div class="main-image">
+                                <img id="main-pet-image" src="" alt="" class="pet-main-img">
+                                <!-- Status badge overlay -->
+                                <div id="pet-status-badge" class="status-badge"></div>
+                            </div>
+                            
+                            <!-- Thumbnail gallery if multiple images -->
+                            <div id="image-thumbnails" class="image-thumbnails">
+                                <!-- Thumbnails will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Basic pet information -->
+                        <div class="pet-basic-info">
+                            <h1 id="pet-name" class="pet-title">Pet Name</h1>
+                            <p id="pet-breed" class="pet-breed-info">Breed</p>
+                            
+                            <!-- Key details grid -->
+                            <div class="pet-details-grid">
+                                <div class="detail-item">
+                                    <span class="detail-label">Age:</span>
+                                    <span id="pet-age" class="detail-value">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Size:</span>
+                                    <span id="pet-size" class="detail-value">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Gender:</span>
+                                    <span id="pet-gender" class="detail-value">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Color:</span>
+                                    <span id="pet-color" class="detail-value">-</span>
+                                </div>
+                            </div>
+
+                            <!-- Personality traits -->
+                            <div class="personality-section">
+                                <h3>Personality</h3>
+                                <div id="personality-traits" class="traits-container">
+                                    <!-- Trait badges will be populated by JavaScript -->
+                                </div>
+                            </div>
+
+                            <!-- Primary action buttons -->
+                            <div class="action-buttons">
+                                <button id="adopt-btn" class="btn btn-primary btn-large" onclick="startAdoption()">
+                                    🏠 Apply to Adopt
+                                </button>
+                                <button id="favorite-btn" class="btn btn-outline" onclick="toggleFavorite()">
+                                    ❤️ Add to Favorites
+                                </button>
+                                <button class="btn btn-secondary" onclick="sharepet()">
+                                    📤 Share
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detailed information sections -->
+                    <div class="pet-details-sections">
+                        <!-- Description section -->
+                        <section class="detail-section">
+                            <h2>About <span id="about-pet-name">This Pet</span></h2>
+                            <div id="pet-description" class="pet-description">
+                                <!-- Description content will be populated by JavaScript -->
+                            </div>
+                        </section>
+
+                        <!-- Medical information section -->
+                        <section class="detail-section">
+                            <h2>Medical Information</h2>
+                            <div class="medical-info">
+                                <div class="medical-grid">
+                                    <div class="medical-item">
+                                        <span class="medical-icon">💉</span>
+                                        <div>
+                                            <h4>Vaccinations</h4>
+                                            <p id="vaccination-status">-</p>
+                                        </div>
+                                    </div>
+                                    <div class="medical-item">
+                                        <span class="medical-icon">✂️</span>
+                                        <div>
+                                            <h4>Spayed/Neutered</h4>
+                                            <p id="spay-neuter-status">-</p>
+                                        </div>
+                                    </div>
+                                    <div class="medical-item">
+                                        <span class="medical-icon">🔬</span>
+                                        <div>
+                                            <h4>Microchipped</h4>
+                                            <p id="microchip-status">-</p>
+                                        </div>
+                                    </div>
+                                    <div class="medical-item">
+                                        <span class="medical-icon">🏥</span>
+                                        <div>
+                                            <h4>Special Needs</h4>
+                                            <p id="special-needs-info">-</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Adoption information section -->
+                        <section class="detail-section">
+                            <h2>Adoption Information</h2>
+                            <div class="adoption-info">
+                                <div class="adoption-details">
+                                    <div class="adoption-item">
+                                        <h4>Adoption Fee</h4>
+                                        <p id="adoption-fee" class="fee-amount">$0</p>
+                                    </div>
+                                    <div class="adoption-item">
+                                        <h4>Arrival Date</h4>
+                                        <p id="arrival-date">-</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- What's included in adoption fee -->
+                                <div class="adoption-includes">
+                                    <h4>What's Included:</h4>
+                                    <ul>
+                                        <li>✓ Full veterinary examination</li>
+                                        <li>✓ Current vaccinations</li>
+                                        <li>✓ Spay/neuter surgery</li>
+                                        <li>✓ Microchip with registration</li>
+                                        <li>✓ 30 days of pet health insurance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Contact information -->
+                        <section class="detail-section">
+                            <h2>Questions About This Pet?</h2>
+                            <div class="contact-info-section">
+                                <p>Our adoption counselors are here to help you learn more about this pet and the adoption process.</p>
+                                <div class="contact-methods">
+                                    <div class="contact-method">
+                                        <span class="contact-icon">📞</span>
+                                        <div>
+                                            <h4>Call Us</h4>
+                                            <p>(555) 123-PETS</p>
+                                        </div>
+                                    </div>
+                                    <div class="contact-method">
+                                        <span class="contact-icon">✉️</span>
+                                        <div>
+                                            <h4>Email Us</h4>
+                                            <p>adoptions@pawhaven.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="contact-method">
+                                        <span class="contact-icon">🕒</span>
+                                        <div>
+                                            <h4>Visit Us</h4>
+                                            <p>Mon-Fri: 10am-6pm<br>Sat: 9am-5pm<br>Sun: 12pm-4pm</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related/similar pets section -->
+        <section class="similar-pets-section" style="display: none;" id="similar-pets-section">
+            <div class="container">
+                <h2>Similar Pets You Might Like</h2>
+                <div id="similar-pets-grid" class="pets-grid">
+                    <!-- Similar pets will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- About section -->
+                <div class="footer-section">
+                    <h4>PawHaven Shelter</h4>
+                    <p>Dedicated to finding loving homes for pets in need since 2016.</p>
+                </div>
+                <!-- Contact information -->
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p>📍 123 Pet Street, Animal City, AC 12345</p>
+                        <p>📞 (555) 123-PETS</p>
+                        <p>✉️ info@pawhaven.com</p>
+                    </div>
+                </div>
+                <!-- Hours -->
+                <div class="footer-section">
+                    <h4>Shelter Hours</h4>
+                    <div class="hours">
+                        <p>Monday - Friday: 10am - 6pm</p>
+                        <p>Saturday: 9am - 5pm</p>
+                        <p>Sunday: 12pm - 4pm</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= SCRIPTS ================= -->
+    <!-- Site-wide utilities and interactions -->
+    <script src="js/main.js"></script>
+    <!-- Authentication helpers -->
+    <script src="js/auth.js"></script>
+    <!-- Pet detail page specific functionality -->
+    <script src="js/pet-detail.js"></script>
+</body>
+</html>
