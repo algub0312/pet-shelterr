@@ -1,1 +1,400 @@
- 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding for Unicode -->
+    <meta charset="UTF-8">
+    <!-- Responsive viewport for mobile-friendly scaling -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title shown in the browser tab -->
+    <title>Success Stories - PawHaven Pet Shelter</title>
+    <!-- Base styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Reusable component styles (cards, buttons, grids, etc.) -->
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Auth/form-related styles reused across pages -->
+    <link rel="stylesheet" href="css/auth.css">
+
+    <!-- Scoped styles for Success Stories only -->
+    <style>
+      /* Container & header */
+      .success-stories {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 32px 20px 64px;
+      }
+      .success-stories .eyebrow {
+        display:inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: #e0f2fe; /* light brandy */
+        color: #075985;
+        font-weight: 600;
+        font-size: 12px;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .success-stories h1 {
+        margin: 8px 0 6px;
+        font-size: clamp(28px, 4vw, 44px);
+        line-height: 1.15;
+      }
+      .success-stories .lead {
+        color: #6b7280;
+        max-width: 720px;
+        margin: 0 0 24px 0;
+      }
+
+      /* Story list */
+      .success-stories .stories {
+        display: grid;
+        gap: 26px;
+      }
+      .success-stories .story {
+        background: #ffffff;
+        border-radius: 18px;
+        box-shadow: 0 8px 30px rgba(0,0,0,.06);
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1.05fr 1.35fr;
+        min-height: 280px;
+        border: 1px solid rgba(2, 132, 199, 0.08);
+        opacity: 0;
+        transform: translateY(10px);
+        animation: ss-reveal .6s ease forwards;
+      }
+      .success-stories .story:nth-child(1){ animation-delay: .05s; }
+      .success-stories .story:nth-child(2){ animation-delay: .12s; }
+      .success-stories .story:nth-child(3){ animation-delay: .19s; }
+      .success-stories .story:nth-child(4){ animation-delay: .26s; }
+      .success-stories .story:nth-child(5){ animation-delay: .33s; }
+      .success-stories .story:nth-child(6){ animation-delay: .40s; }
+      @keyframes ss-reveal{ to{ opacity:1; transform: translateY(0); } }
+
+      /* Alternate image/text */
+      .success-stories .story:nth-child(even) .media{ order: 2; }
+      .success-stories .story:nth-child(even) .content{ order: 1; }
+
+      .success-stories .media {
+        position: relative;
+        overflow: hidden;
+        min-height: 240px;
+      }
+      .success-stories .media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1.02);
+        transition: transform .5s ease;
+      }
+      .success-stories .story:hover .media img{ transform: scale(1.05); }
+      .success-stories .badge{
+        position: absolute;
+        left: 14px;
+        top: 14px;
+        background: rgba(14,165,233,.95);
+        color: white;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+        box-shadow: 0 6px 20px rgba(14,165,233,.35);
+      }
+
+      .success-stories .content{
+        padding: clamp(16px, 3vw, 28px);
+        display: grid;
+        align-content: center;
+        gap: 10px;
+      }
+      .success-stories .tag{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        color: #075985;
+        background: #e0f2fe;
+        border-radius: 999px;
+        padding: 6px 10px;
+        width: max-content;
+      }
+      .success-stories .tag::before{
+        content: "❤";
+        font-size: 12px;
+        line-height: 1;
+      }
+      .success-stories .title{
+        margin: 2px 0 4px;
+        font-size: clamp(20px, 2.4vw, 28px);
+        line-height: 1.25;
+      }
+      .success-stories .meta{
+        color: #6b7280;
+        font-size: 14px;
+      }
+      .success-stories .body{ margin-top: 6px; }
+      .success-stories .solved{
+        margin-top: 10px;
+        background: #ecfeff;
+        border-left: 4px solid #0ea5e9;
+        padding: 10px 12px;
+        border-radius: 10px;
+        font-size: 14px;
+      }
+
+      /* Responsive */
+      @media (max-width: 860px){
+        .success-stories .story{ grid-template-columns: 1fr; }
+        .success-stories .media{ order: 0 !important; min-height: 220px; }
+        .success-stories .content{ order: 1 !important; }
+      }
+
+      /* CTA */
+      .success-stories .cta{
+        text-align: center;
+        margin-top: 40px;
+      }
+      .success-stories .btn-cta{
+        display:inline-block;
+        background: #0ea5e9;
+        color: white;
+        padding: 12px 18px;
+        border-radius: 999px;
+        font-weight: 700;
+        box-shadow: 0 10px 24px rgba(14,165,233,.35);
+        transition: transform .06s ease, box-shadow .2s ease;
+        text-decoration: none;
+      }
+      .success-stories .btn-cta:hover{ transform: translateY(-1px); }
+      .success-stories .btn-cta:active{ transform: translateY(0); box-shadow: 0 6px 18px rgba(14,165,233,.28); }
+    </style>
+</head>
+<body>
+    <!-- ===================== HEADER WITH NAVIGATION ===================== -->
+    <!-- Header with Navigation -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <!-- Logo + brand text -->
+                <div class="nav-logo">
+                    <img src="images/icons/logo.png" alt="PawHaven Logo">
+                    <span class="logo-text">PawHaven</span>
+                </div>
+                
+                <!-- Desktop Navigation Menu -->
+                <ul class="nav-menu">
+                    <!-- Current page is highlighted with .active -->
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="pets.html" class="nav-link">Find a Pet</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="success.html" class="nav-link active">Success Stories</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <!-- CTA for adoption flow -->
+                    <li><a href="adoption.html" class="nav-link btn-adopt">Adopt Now</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===================== MAIN CONTENT ===================== -->
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- ======= SUCCESS STORIES SECTION (images alternate left/right) ======= -->
+      <section class="success-stories" aria-labelledby="success-title">
+        <header>
+          <span class="eyebrow" aria-hidden="true">Happy Tails</span>
+          <h1 id="success-title">Adoption Success Stories</h1>
+          <p class="lead">Real families. Real quirks. Really happy endings. Meet a few of our alumni who found their forever homes—and solved a small, funny problem along the way.</p>
+        </header>
+
+        <div class="stories">
+
+          <!-- Story 1 -->
+          <article class="story">
+            <figure class="media">
+              <img src="images/success-stories/beagle.jpg" alt="Bella the Beagle lounging after a run" loading="lazy">
+              <figcaption class="badge">Adopted</figcaption>
+            </figure>
+            <div class="content">
+              <span class="tag">Bella • Beagle</span>
+              <h2 class="title">The Couch Potato Turned Jogging Buddy</h2>
+              <p class="meta">Adopted by Ana &amp; Leo • 6 months ago</p>
+              <p class="body">
+                Bella arrived with champion-level napping skills and a strong preference for sofas over sidewalks. One day she spotted a squirrel, sprinted a full block, and discovered she actually loves running. Now she leads every morning jog (and still guards the couch on rest days).
+              </p>
+              <p class="solved"><strong>Small problem solved:</strong> “She won’t walk!” turned into “She outruns us!”—thanks to a structured routine and a squirrel-shaped motivation.</p>
+            </div>
+          </article>
+
+          <!-- Story 2 -->
+          <article class="story">
+            <figure class="media">
+              <img src="images/success-stories/cat.jpg" alt="Whiskers the cat perched proudly on a cat tree" loading="lazy">
+              <figcaption class="badge">Adopted</figcaption>
+            </figure>
+            <div class="content">
+              <span class="tag">Vogue • Cat</span>
+              <h2 class="title">The Curtain Climber</h2>
+              <p class="meta">Adopted by the Rivera family • 3 months ago</p>
+              <p class="body">
+                Whiskers is a world-class acrobat… which the living room curtains discovered first. After a few daring ascents, her family set up a floor-to-ceiling cat tree by the window. She still surveys her kingdom from the top—curtains unfrayed, dignity intact.
+              </p>
+              <p class="solved"><strong>Small problem solved:</strong> Redirected climbing energy with a tall cat tree, window perch, and daily play sessions.</p>
+            </div>
+          </article>
+
+          <!-- Story 3 -->
+          <article class="story">
+            <figure class="media">
+              <img src="images/success-stories/bunny.jpg" alt="Thumper the bunny nibbling a safe chew toy" loading="lazy">
+              <figcaption class="badge">Adopted</figcaption>
+            </figure>
+            <div class="content">
+              <span class="tag">Thumper • Bunny</span>
+              <h2 class="title">The Great Chewer</h2>
+              <p class="meta">Adopted by Sam, Maya &amp; kids • 8 months ago</p>
+              <p class="body">
+                Thumper adored his new home—and the tasty, spaghetti-like “snacks” running along the baseboards. The family bunny-proofed with cord covers and offered willow sticks and hay cubes. Thumper now channels his talents into designated chew time.
+              </p>
+              <p class="solved"><strong>Small problem solved:</strong> Cable covers + chew toy rotation = zero surprise phone-charger casualties.</p>
+            </div>
+          </article>
+
+          <!-- Story 4 -->
+          <article class="story">
+            <figure class="media">
+              <img src="images/success-stories/german.jpg" alt="Max the German Shepherd by a fence with a toddler offering a biscuit" loading="lazy">
+              <figcaption class="badge">Adopted</figcaption>
+            </figure>
+            <div class="content">
+              <span class="tag">Max • German Shepherd</span>
+              <h2 class="title">The Guard Dog with a Soft Spot</h2>
+              <p class="meta">Adopted by Daniel • 1 year ago</p>
+              <p class="body">
+                Max took home security very seriously—maybe too seriously for delivery drivers. Then he met the neighbor’s toddler, who shared tiny biscuits through the fence. Now Max differentiates between “protect the house” and “cookie o’clock” like a pro.
+              </p>
+              <p class="solved"><strong>Small problem solved:</strong> Calm-greeting training at the door and planned cookie meet-and-greets with friendly faces.</p>
+            </div>
+          </article>
+
+          <!-- Story 5 -->
+          <article class="story">
+            <figure class="media">
+              <img src="images/success-stories/parrot.jpg" alt="Matilda the parrot on a perch, looking cheeky" loading="lazy">
+              <figcaption class="badge">Adopted</figcaption>
+            </figure>
+            <div class="content">
+              <span class="tag">Matilda • Parrot</span>
+              <h2 class="title">The Microwave Impersonator</h2>
+              <p class="meta">Adopted by the Nguyen family • 4 months ago</p>
+              <p class="body">
+                Matilda learned to perfectly mimic the microwave’s final beep. Chaos ensued; snacks were checked, dinners re-checked, and laughter levels soared. The family moved the perch away from the kitchen and taught a new “all done!” cue instead.
+              </p>
+              <p class="solved"><strong>Small problem solved:</strong> New cue training + strategic perch placement = fewer false alarms, more party tricks.</p>
+            </div>
+          </article>
+
+          <!-- Story 6 -->
+          <article class="story">
+            <figure class="media">
+              <img src="images/success-stories/mixed.jpg" alt="Luna the mixed-breed dog relaxing while the family plays guitar" loading="lazy">
+              <figcaption class="badge">Adopted</figcaption>
+            </figure>
+            <div class="content">
+              <span class="tag">Luna • Mixed Breed</span>
+              <h2 class="title">The Music Critic</h2>
+              <p class="meta">Adopted by Priya &amp; Arun • 2 months ago</p>
+              <p class="body">
+                Luna loved her new home—except band practice night. The family introduced a cozy den in a quiet room and paired it with treat-filled lick mats during rehearsals. Now she “reviews” the performances from her nook with a satisfied tail thump.
+              </p>
+              <p class="solved"><strong>Small problem solved:</strong> Noise sensitivity eased with a safe space, enrichment, and gradual sound desensitization.</p>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="cta">
+          <a class="btn-cta" href="pets.html">Meet Pets Waiting for Home</a>
+        </div>
+      </section>
+      <!-- ======= /SUCCESS STORIES SECTION ======= -->
+
+        <!-- Pagination -->
+        <!-- Simple prev/next pagination controlled by JS -->
+        <div class="pagination-container" id="pagination-container" style="display: none;">
+            <div class="pagination">
+                <button class="pagination-btn" id="prev-btn" onclick="changePage(-1)" disabled>← Previous</button>
+                <span class="page-info">Page <span id="current-page">1</span> of <span id="total-pages">1</span></span>
+                <button class="pagination-btn" id="next-btn" onclick="changePage(1)">Next →</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+          <!-- ===================== FOOTER ===================== -->
+          <!--Footer-->
+         <footer class="main-footer">
+            <div class="container">
+                <div class="footer-content">
+                <!-- Footer column: info + quick links -->
+                <div class="footer-section">
+                    <h4>PawHaven Shelter</h4>
+                    <p>Dedicated to finding loving homes for pets in need since 2016.</p>
+                    <ul>
+                        <li><a href="pets.html">Available Pets</a></li>
+                        <li><a href="adoption.html">Adoption Process</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Footer column: contact info -->
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <!-- NOTE: class name 'conctat-info' appears to be a typo; kept exactly as provided -->
+                    <div class="conctat-info">
+                        <p>📍 123 Pet Street, Animal City, AC 12345</p>
+                        <p>📞 (555) 123-PETS</p>
+                        <p>✉️ info@pawhaven.com</p>
+                    </div>
+                </div>
+
+                <!-- Footer column: opening hours -->
+                <div class="footer-section">
+                    <h4>Shelter Hours</h4>
+                    <div class="hours">
+                        <p>Monday - Friday: 10am - 6pm</p>
+                        <p>Saturday: 9am - 5pm</p>
+                        <p>Sunday:12pm - 4pm</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
+            </div>
+            </div>
+         </footer>
+
+  <!-- ===================== SCRIPTS ===================== -->
+  <!-- JavaScript -->
+    <!-- Site-wide utilities and interactions -->
+    <script src="js/main.js"></script>
+    <!-- Page-specific search/filter/sort/pagination logic -->
+    <script src="js/search.js"></script>
+    <!-- Auth/session helpers if needed globally -->
+    <script src="js/auth.js"></script>
+</body>
+</html>
+
