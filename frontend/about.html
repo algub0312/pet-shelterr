@@ -1,1 +1,143 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding for Unicode support -->
+    <meta charset="UTF-8">
+    <!-- Responsive viewport for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title - will be updated dynamically with pet name -->
+    <title>Pet Details - PawHaven Pet Shelter</title>
+    <!-- Global stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Reusable UI components stylesheet -->
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Auth/forms related stylesheet -->
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+ <header class="main-header">
+           <nav class="navbar"> <!--navigation bar/menu-->
+               <div class="nav-container"> <!--container care centreaza continutul meniului-->
+                   <div class="nav-logo">
+                       <!-- Brand mark + wordmark; alt text for accessibility -->
+                       <img src="images/icons/logo.png" alt="PawHaven Logo">
+                       <span class="logo-text">PawHaven</span>
+                   </div>
+                    <!-- Desktop Navigation Menu -->
+                     <ul class="nav-menu"> <!--lista de linkuri pt meniu-->
+                       <!-- Current page highlighted via .active -->
+                       <li><a href="index.html" class="nav-link">Home</a></li> <!--activ pt ca asta e selectat-->
+                       <li><a href="pets.html" class="nav-link">Find a Pet</a></li>
+                       <li><a href="about.html" class="nav-link active">About us</a></li>
+                       <li><a href="success.html" class="nav-link">Success Stories</a></li>
+                       <li><a href="contact.html" class="nav-link">Contact</a></li>
+                       <!-- CTA button-styled link for faster conversion -->
+                       <li><a href="adoption.html" class="nav-link btn-adopt">Adopt Now</a></li>
+                     </ul>
+               </div>
+           </nav>
+        </header>
+        <section class="pets-hero">
+               <div class="hero-container">
+                   <div class="hero-content">
+                   <!-- Primary headline -->
+                   <h1 class="hero-title">About Us</h1>
+                   <p class="hero-subtitle">
+                       See how our shelter became what it is today and learn about our journey since the very beginning
+                   </p>
+               </div>
+               <!-- Decorative/illustrative image for the hero -->
+               <div class="hero-small-image">
+                   <img src="images/about/about-img1.jpeg" alt="Happy pets at the shelter"> <!--alt este folosit ca un text alternativ care sa inlocuiasca imaginea-->
+               </div>
+               </div>
+        </section>
+        <section class="cts-section">
+            <div class="container">
+                <br>
+               <div class="one-third-container">
+               <div class="hero-image">
+                  <img src="images/about/about-img2.jpg" alt="Happy pets at the shelter">
+               </div>
+               <div>
+                   <p class="about">
+                    Back in 2015, driven by the high number of animals on the street, a group of people decided to come together and supply bowls of water and food for the pawed creatures. Starting from a few neighbors and extending all the way to the other side of town, everyone would take turns, buying the food, refilling the dishes periodically and stopping to provide a scratch or good petting from time to time. Soon enough these nice small habits would bring together a whole community of animal enthusiasts. Later that year, when their furry friends were struggling in the winter temperatures, the people would rise to the occasion and take them in their homes, and care for them to the best of their abilities, making it through the cold period.
+                   </p>
+                   <br>
+                   <p>
+                       
+                   </p>
+               </div>
+               </div>
+               <br>
+               <div class="two-thirds-container">
+               <div>
+                   <p class="about">
+                    Soon after, a few dedicated members of this community took it upon themselves to open the Pet Haven Shelter. They knew it would mean a lot of effort, but they wanted to make a change. The space was small initially, only fitting for a handful of rescues. Thankfully, there was a positive reception after the official opening. Many people were eager to offer their homes to the helpless animals. After the initial success of the first year, upgrades were made: bigger space, more toys and comfy beds for the pets, as well as equipment for the staff to handle the adoption process and other technicalities.
+                   </p>
+                   <br>
+               </div>
+               <div class="hero-image">
+                  <img src="images/about/about-img3.jpeg" alt="Happy pets at the shelter">
+               </div>
+
+               </div>
+                <br>
+               
+                <div class="one-third-container">
+                    <div>
+                        <img src="images/about/about-img4.png">
+                    </div>
+                    <div>
+                    <p>  Over the years that followed, the shelter continued to evolve and change for the better, from offering volunteering opportunities to organising social events and collaborating with NGOs. Nowadays, although we came a long way, we still have the same goal: finding a home for all the animals in need of one.</p>
+                </div>
+                </div>
+              </div>
+        </section>
+
+         <footer class="main-footer">
+           <div class="container">
+               <div class="footer-content">
+               <!-- Footer column: brand/info + deep links -->
+               <div class="footer-section">
+                   <h4>PawHaven Shelter</h4>
+                   <p>Dedicated to finding loving homes for pets in need since 2016.</p>
+                   <ul>
+                       <li><a href="pets.html">Available Pets</a></li>
+                       <li><a href="adoption.html">Adoption Process</a></li>
+                       <li><a href="about.html">About Us</a></li>
+                       <li><a href="contact.html">Contact</a></li>
+                   </ul>
+               </div>
+
+               <!-- Footer column: contact details -->
+               <div class="footer-section">
+                   <h4>Contact Info</h4>
+                   <!-- NOTE: minor typo in class name 'conctat-info' kept as-is -->
+                   <div class="conctat-info">
+                       <p>📍 123 Pet Street, Animal City, AC 12345</p>
+                       <p>📞 (555) 123-PETS</p>
+                       <p>✉️ info@pawhaven.com</p>
+                   </div>
+               </div>
+
+               <!-- Footer column: opening hours -->
+               <div class="footer-section">
+                   <h4>Shelter Hours</h4>
+                   <div class="hours">
+                       <p>Monday - Friday: 10am - 6pm</p>
+                       <p>Saturday: 9am - 5pm</p>
+                       <p>Sunday:12pm - 4pm</p>
+                   </div>
+               </div>
+           </div>
+
+           <!-- Legal line -->
+           <div class="footer-bottom">
+               <p>&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
+           </div>
+           </div>
+        </footer>
+
+</body>
+</html> 
