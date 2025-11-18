@@ -39,7 +39,9 @@ pawhaven_project/
 ## 🗄️ Database Models
 
 ### Pet Model
+
 Stores all pet information with fields for:
+
 - Basic info: name, breed, age, gender, size, color
 - Description and personality traits (JSON field)
 - Medical information: vaccinated, spayed/neutered, microchipped, special needs
@@ -49,7 +51,9 @@ Stores all pet information with fields for:
 - Featured flag for homepage display
 
 ### AdoptionApplication Model
+
 Handles adoption applications with:
+
 - Applicant contact information
 - Pet selection
 - Housing and household information
@@ -57,10 +61,13 @@ Handles adoption applications with:
 - Application status tracking
 
 ### ContactMessage Model
+
 Stores contact form submissions
 
 ### SuccessStory Model
+
 Stores adoption success stories with:
+
 - Adopter information
 - Story text and image
 - Link to adopted pet
@@ -76,15 +83,22 @@ python manage.py runserver
 
 Then visit: `http://localhost:8000`
 
+**Credentials:**
+
+- Username: `user`
+- Password: `Password1.`
+
 ### 2. Access the Admin Panel
 
 URL: `http://localhost:8000/admin`
 
 **Credentials:**
+
 - Username: `admin`
 - Password: `admin123`
 
 In the admin panel, you can:
+
 - Add/edit/delete pets
 - View adoption applications
 - Read contact messages
@@ -94,6 +108,7 @@ In the admin panel, you can:
 ## Key Features Implemented
 
 ### Frontend (Templates)
+
 ✅ Homepage with featured pets and statistics
 ✅ Pet listing page with filters (type, size, special needs)
 ✅ Individual pet detail pages
@@ -105,6 +120,7 @@ In the admin panel, you can:
 ✅ Django messages for user feedback
 
 ### Backend (Views & Models)
+
 ✅ Database models for pets, applications, contacts, stories
 ✅ Class-based views for pet listing and detail
 ✅ Function-based views for forms
@@ -114,6 +130,7 @@ In the admin panel, you can:
 ✅ Stats counter on homepage
 
 ### Admin Interface
+
 ✅ Full CRUD operations for all models
 ✅ Custom admin panels with filters and search
 ✅ Organized fieldsets for better UX
@@ -136,10 +153,10 @@ In the admin panel, you can:
 ## Key Django Concepts Used
 
 1. **Models:** Object-Relational Mapping (ORM) for database
-2. **Views:** 
+2. **Views:**
    - Class-based views (ListView, DetailView)
    - Function-based views for forms
-3. **Templates:** 
+3. **Templates:**
    - Template inheritance (extends)
    - Template tags ({% url %}, {% static %})
    - Template filters (|date, |truncatewords)
@@ -152,6 +169,7 @@ In the admin panel, you can:
 ## What Was Converted
 
 ### From Static HTML to Django Templates:
+
 - ✅ index.html → Dynamic homepage with database content
 - ✅ pets.html → Filterable, paginated pet listing
 - ✅ pet-detail.html → Dynamic pet detail pages
@@ -161,10 +179,12 @@ In the admin panel, you can:
 - ✅ success.html → Dynamic success stories
 
 ### From JSON to Database:
+
 - ✅ pets.json → Pet model with 7 sample records
 - ✅ Static data → Dynamic, editable database content
 
 ### New Features Added:
+
 - ✅ Admin interface for content management
 - ✅ Contact form submissions storage
 - ✅ Adoption application system
@@ -172,4 +192,3 @@ In the admin panel, you can:
 - ✅ Server-side filtering and search
 - ✅ Pagination
 - ✅ Django messages for user feedback
-
