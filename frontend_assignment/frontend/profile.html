@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Character encoding -->
     <meta charset="UTF-8">
     <!-- Responsive viewport for mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Browser tab title -->
-    <title>My Profile - PawHaven Pet Shelter</title>
+    <title data-i18n="profile.page_title">My Profile - PawHaven Pet Shelter</title>
     <!-- Global/base styles -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Reusable UI components -->
     <link rel="stylesheet" href="css/components.css">
     <!-- Auth/forms related styles -->
     <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/i18n.css">
 </head>
+
 <body>
     <!-- ================= HEADER WITH NAVIGATION ================= -->
     <!-- Header with Navigation -->
@@ -25,14 +28,20 @@
                     <img src="images/icons/logo.png" alt="PawHaven Logo">
                     <span class="logo-text">PawHaven</span>
                 </div>
-                
+
                 <!-- Primary navigation menu -->
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="pets.html" class="nav-link">Find a Pet</a></li>
-                    <li><a href="about.html" class="nav-link">About Us</a></li>
-                    <li><a href="success.html" class="nav-link">Success Stories</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
+                    <li><a href="pets.html" class="nav-link" data-i18n="nav.find_pet">Find a Pet</a></li>
+                    <li><a href="about.html" class="nav-link" data-i18n="nav.about">About Us</a></li>
+                    <li><a href="success.html" class="nav-link" data-i18n="nav.success">Success Stories</a></li>
+                    <li><a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+                    <!-- Language Switcher -->
+                    <li class="lang-switcher">
+                        <button class="lang-btn active" data-lang="en" onclick="switchLanguage('en')"
+                            title="English">EN</button>
+                        <button class="lang-btn" data-lang="da" onclick="switchLanguage('da')" title="Dansk">DA</button>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -50,13 +59,14 @@
                         <div class="profile-info">
                             <h1>John Doe</h1>
                             <p>john.doe@example.com</p>
-                            <p>Member since September 2024</p>
+                            <p data-i18n="profile.join_date">Member since September 2024</p>
                             <span class="profile-badge">Pet Lover</span>
                         </div>
                         <!-- Quick navigation CTAs -->
                         <div class="profile-actions">
-                            <a href="pets.html" class="btn btn-primary">Browse Pets</a>
-                            <a href="adoption.html" class="btn btn-secondary">New Application</a>
+                            <a href="pets.html" class="btn btn-primary" data-i18n="profile.browse_pets">Browse Pets</a>
+                            <a href="adoption.html" class="btn btn-secondary" data-i18n="profile.new_application">New
+                                Application</a>
                         </div>
                     </div>
 
@@ -64,47 +74,59 @@
                     <div class="profile-tabs">
                         <div class="tab-nav">
                             <!-- Active tab button uses data-tab to target panel -->
-                            <button class="tab-button active" data-tab="profile-info">Profile Info</button>
-                            <button class="tab-button" data-tab="applications">My Applications</button>
-                            <button class="tab-button" data-tab="favorites">Favorite Pets</button>
-                            <button class="tab-button" data-tab="settings">Settings</button>
+                            <button class="tab-button active" data-tab="profile-info"
+                                data-i18n="profile.profile_info">Profile Info</button>
+                            <button class="tab-button" data-tab="applications" data-i18n="profile.my_applications">My
+                                Applications</button>
+                            <button class="tab-button" data-tab="favorites" data-i18n="profile.my_favorites">Favorite
+                                Pets</button>
+                            <button class="tab-button" data-tab="settings"
+                                data-i18n="profile.account_settings">Settings</button>
                         </div>
 
                         <!-- ===== Profile Information Tab ===== -->
                         <div id="profile-info" class="tab-panel active">
                             <div class="tab-content">
-                                <h3>Profile Information</h3>
-                                <p>Update your personal information and preferences.</p>
+                                <h3 data-i18n="profile.profile_info">Profile Information</h3>
+                                <p data-i18n="profile.update_info">Update your personal information and preferences.</p>
 
                                 <!-- Update profile form -->
                                 <form id="profile-form">
                                     <div class="form-row">
                                         <div class="form-group">
-                                            <label for="firstName" class="form-label required">First Name</label>
-                                            <input type="text" id="firstName" name="firstName" class="form-input" required>
+                                            <label for="firstName" class="form-label required"
+                                                data-i18n="profile.first_name">First Name</label>
+                                            <input type="text" id="firstName" name="firstName" class="form-input"
+                                                required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="lastName" class="form-label required">Last Name</label>
-                                            <input type="text" id="lastName" name="lastName" class="form-input" required>
+                                            <label for="lastName" class="form-label required"
+                                                data-i18n="profile.last_name">Last Name</label>
+                                            <input type="text" id="lastName" name="lastName" class="form-input"
+                                                required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="email" class="form-label required">Email Address</label>
+                                        <label for="email" class="form-label required" data-i18n="profile.email">Email
+                                            Address</label>
                                         <input type="email" id="email" name="email" class="form-input" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="phone" class="form-label">Phone Number</label>
+                                        <label for="phone" class="form-label" data-i18n="profile.phone">Phone
+                                            Number</label>
                                         <input type="tel" id="phone" name="phone" class="form-input">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="address" class="form-label">Address</label>
+                                        <label for="address" class="form-label"
+                                            data-i18n="profile.address">Address</label>
                                         <textarea id="address" name="address" class="form-textarea" rows="3"></textarea>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                                    <button type="submit" class="btn btn-primary"
+                                        data-i18n="profile.update_profile">Update Profile</button>
                                 </form>
                             </div>
                         </div>
@@ -112,14 +134,14 @@
                         <!-- ===== Applications Tab ===== -->
                         <div id="applications" class="tab-panel">
                             <div class="tab-content">
-                                <h3>My Adoption Applications</h3>
-                                <p>Track the status of your adoption applications.</p>
+                                <h3 data-i18n="profile.my_adoption_applications">My Adoption Applications</h3>
+                                <p data-i18n="profile.track_status">Track the status of your adoption applications.</p>
 
                                 <!-- List of user's applications; populated via JS -->
                                 <div id="user-applications">
                                     <div class="loading-spinner">
                                         <div class="spinner"></div>
-                                        <p>Loading applications...</p>
+                                        <p data-i18n="profile.loading_applications">Loading applications...</p>
                                     </div>
                                 </div>
                             </div>
@@ -128,12 +150,15 @@
                         <!-- ===== Favorites Tab ===== -->
                         <div id="favorites" class="tab-panel">
                             <div class="tab-content">
-                                <h3>Favorite Pets</h3>
-                                <p>Keep track of pets you're interested in adopting.</p>
+                                <h3 data-i18n="profile.favorite_pets">Favorite Pets</h3>
+                                <p data-i18n="profile.track_favorites">Keep track of pets you're interested in adopting.
+                                </p>
 
                                 <!-- Favorites placeholder (empty state) -->
                                 <div id="favorite-pets">
-                                    <p class="no-data">You haven't saved any favorite pets yet. <a href="pets.html">Browse our available pets</a> to start building your favorites list!</p>
+                                    <p class="no-data" data-i18n="profile.no_favorites">You haven't saved any favorite
+                                        pets yet. <a href="pets.html">Browse our available pets</a> to start building
+                                        your favorites list!</p>
                                 </div>
                             </div>
                         </div>
@@ -141,57 +166,67 @@
                         <!-- ===== Settings Tab ===== -->
                         <div id="settings" class="tab-panel">
                             <div class="tab-content">
-                                <h3>Account Settings</h3>
-                                <p>Manage your account preferences and notifications.</p>
+                                <h3 data-i18n="profile.account_settings">Account Settings</h3>
+                                <p data-i18n="profile.account_settings_description">Manage your account preferences and
+                                    notifications.</p>
 
                                 <!-- Account settings form (notifications, preferences, privacy) -->
                                 <form id="settings-form">
                                     <div class="form-group">
-                                        <h4>Email Notifications</h4>
+                                        <h4 data-i18n="profile.email_notifications">Email Notifications</h4>
                                         <label class="form-checkbox">
-                                            <input type="checkbox" name="newsletter" id="newsletter-setting" checked>
+                                            <input type="checkbox" name="newsletter" id="newsletter-setting" checked
+                                                data-i18n="profile.newsletter">
                                             Newsletter and pet updates
                                         </label>
                                         <label class="form-checkbox">
-                                            <input type="checkbox" name="applicationUpdates" id="application-updates" checked>
+                                            <input type="checkbox" name="applicationUpdates" id="application-updates"
+                                                checked data-i18n="profile.application_updates">
                                             Application status updates
                                         </label>
                                         <label class="form-checkbox">
-                                            <input type="checkbox" name="newPets" id="new-pets" checked>
+                                            <input type="checkbox" name="newPets" id="new-pets" checked
+                                                data-i18n="profile.new_pets">
                                             New pet arrivals
                                         </label>
                                     </div>
 
                                     <div class="form-group">
-                                        <h4>Pet Preferences</h4>
+                                        <h4 data-i18n="profile.pet_preferences">Pet Preferences</h4>
                                         <!-- Radio group; 'any' selected by default -->
                                         <label class="form-checkbox">
-                                            <input type="radio" name="petPreference" value="dog">
+                                            <input type="radio" name="petPreference" value="dog"
+                                                data-i18n="profile.pref_dogs">
                                             🐕 Dogs
                                         </label>
                                         <label class="form-checkbox">
-                                            <input type="radio" name="petPreference" value="cat">
+                                            <input type="radio" name="petPreference" value="cat"
+                                                data-i18n="profile.pref_cats">
                                             🐱 Cats
                                         </label>
                                         <label class="form-checkbox">
-                                            <input type="radio" name="petPreference" value="any" checked>
+                                            <input type="radio" name="petPreference" value="any" checked
+                                                data-i18n="profile.pref_any">
                                             ❤️ Any pet
                                         </label>
                                     </div>
 
                                     <div class="form-group">
-                                        <h4>Privacy Settings</h4>
+                                        <h4 data-i18n="profile.privacy_settings">Privacy Settings</h4>
                                         <label class="form-checkbox">
-                                            <input type="checkbox" name="publicProfile" id="public-profile">
+                                            <input type="checkbox" name="publicProfile" id="public-profile"
+                                                data-i18n="profile.public_profile">
                                             Make my profile visible to other adopters
                                         </label>
                                         <label class="form-checkbox">
-                                            <input type="checkbox" name="shareStory" id="share-story">
+                                            <input type="checkbox" name="shareStory" id="share-story"
+                                                data-i18n="profile.share_story">
                                             Allow sharing my adoption story (if I adopt)
                                         </label>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Save Settings</button>
+                                    <button type="submit" class="btn btn-primary" data-i18n="profile.save_settings">Save
+                                        Settings</button>
                                 </form>
 
                                 <!-- Divider before dangerous actions -->
@@ -199,12 +234,16 @@
 
                                 <!-- Irreversible actions -->
                                 <div class="danger-zone">
-                                    <h4>Danger Zone</h4>
-                                    <p>These actions cannot be undone.</p>
+                                    <h4 data-i18n="profile.danger_zone">Danger Zone</h4>
+                                    <p data-i18n="profile.danger_zone_description">These actions cannot be undone.</p>
                                     <!-- Trigger change password flow -->
-                                    <button type="button" class="btn btn-outline" onclick="changePassword()">Change Password</button>
+                                    <button type="button" class="btn btn-outline" onclick="changePassword()"
+                                        data-i18n="profile.change_password">Change Password</button>
                                     <!-- Trigger account deletion flow -->
-                                    <button type="button" class="btn" style="background: var(--danger); color: white; margin-left: 1rem;" onclick="deleteAccount()">Delete Account</button>
+                                    <button type="button" class="btn"
+                                        style="background: var(--danger); color: white; margin-left: 1rem;"
+                                        onclick="deleteAccount()" data-i18n="profile.delete_account">Delete
+                                        Account</button>
                                 </div>
                             </div>
                         </div>
@@ -220,22 +259,23 @@
             <div class="footer-content">
                 <!-- About block -->
                 <div class="footer-section">
-                    <h4>PawHaven Shelter</h4>
-                    <p>Dedicated to finding loving homes for pets in need since 2016.</p>
+                    <h4 data-i18n="footer.about">PawHaven Shelter</h4>
+                    <p data-i18n="footer.about_description">Dedicated to finding loving homes for pets in need since
+                        2016.</p>
                 </div>
                 <!-- Contact information -->
                 <div class="footer-section">
-                    <h4>Contact Info</h4>
+                    <h4 data-i18n="footer.contact">Contact Info</h4>
                     <div class="contact-info">
-                        <p>📍 123 Pet Street, Animal City, AC 12345</p>
-                        <p>📞 (555) 123-PETS</p>
-                        <p>✉️ info@pawhaven.com</p>
+                        <p data-i18n="footer.contact_address">📍 123 Pet Street, Animal City, AC 12345</p>
+                        <p data-i18n="footer.contact_phone">📞 (555) 123-PETS</p>
+                        <p data-i18n="footer.contact_email">✉️ info@pawhaven.com</p>
                     </div>
                 </div>
             </div>
             <!-- Copyright -->
             <div class="footer-bottom">
-                <p>&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
+                <p data-i18n="footer.copyright">&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -243,7 +283,9 @@
     <!-- ================= SCRIPTS ================= -->
     <!-- Site-wide utilities and interactions -->
     <script src="js/main.js"></script>
+    <script src="js/i18n.js"></script>
     <!-- Auth/session helpers (e.g., tab auth checks, saving profile) -->
     <script src="js/auth.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,47 @@
+/* Language Switcher Styles */
+.lang-switcher {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    margin-left: var(--spacing-md);
+}
+
+.lang-btn {
+    padding: 0.4rem 0.8rem;
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    min-width: 45px;
+}
+
+.lang-btn:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.lang-btn.active {
+    background: var(--primary-color);
+    color: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Responsive language switcher */
+@media (max-width: 767px) {
+    .lang-switcher {
+        width: 100%;
+        justify-content: center;
+        margin-top: var(--spacing-sm);
+        margin-left: 0;
+    }
+    
+    .lang-btn {
+        flex: 1;
+        max-width: 80px;
+    }
+}

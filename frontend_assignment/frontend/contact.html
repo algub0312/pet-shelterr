@@ -1,135 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
+
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact us</title>
+    <title data-i18n-page-title="contact.page_title">Contact us</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/auth.css">
-    </head>
-    <body>
-        <!-- ================= HEADER WITH NAVIGATION ================= -->
-        <header class="main-header">
-            <nav class="navbar">
-                <div class="nav-container">
+    <link rel="stylesheet" href="css/i18n.css">
+</head>
+
+<body>
+    <!-- ================= HEADER WITH NAVIGATION ================= -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-container">
                 <!-- Brand / Logo -->
                 <div class="nav-logo">
                     <img src="images/icons/logo.png" alt="PawHaven Logo">
                     <span class="logo-text">PawHaven</span>
                 </div>
-                
+
                 <!-- Primary navigation links -->
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="pets.html" class="nav-link">Find a Pet</a></li>
-                    <li><a href="about.html" class="nav-link">About Us</a></li>
-                    <li><a href="success.html" class="nav-link">Success Stories</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
+                    <li><a href="pets.html" class="nav-link" data-i18n="nav.find_pet">Find a Pet</a></li>
+                    <li><a href="about.html" class="nav-link" data-i18n="nav.about">About Us</a></li>
+                    <li><a href="success.html" class="nav-link" data-i18n="nav.success">Success Stories</a></li>
+                    <li><a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+                    <!-- Call-to-action for adoption -->
+                    <li><a href="adoption.html" class="nav-link btn-adopt" data-i18n="nav.adopt_now">Adopt Now</a></li>
+                    <!-- Language Switcher -->
+                    <li class="lang-switcher">
+                        <button class="lang-btn active" data-lang="en" onclick="switchLanguage('en')"
+                            title="English">EN</button>
+                        <button class="lang-btn" data-lang="da" onclick="switchLanguage('da')" title="Dansk">DA</button>
+                    </li>
                 </ul>
             </div>
-            </nav>
-        </header>
-        <!--MAIN CONTENT-->
-        <main class="main-content">
-            <section class="pets-hero">
-                <div class="container">
-                    <div class="hero-content">
-                        <h1>Contact Us</h1>
-                    </div>
+        </nav>
+    </header>
+    <!--MAIN CONTENT-->
+    <main class="main-content">
+        <section class="pets-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 data-i18n="contact.title">Contact Us</h1>
                 </div>
-            </section>
-            <section class="auth-section" style="background: var(--background)">
-                <div class="container">
-                    <div class="profile-container">
-                        <div class="auth-card" style="max-width: 800px; margin: 2rem auto;">
-                            <div class="auth-header">
-                                <h2>Send us a message</h2>
-                                <p>Please fiil out the form below and we will get back to you as soon as possible</p>
+            </div>
+        </section>
+        <section class="auth-section" style="background: var(--background)">
+            <div class="container">
+                <div class="profile-container">
+                    <div class="auth-card" style="max-width: 800px; margin: 2rem auto;">
+                        <div class="auth-header">
+                            <h2 data-i18n="contact.form_title">Send us a message</h2>
+                            <p data-i18n="contact.form_subtitle">Please fiil out the form below and we will get back to
+                                you as soon as possible</p>
+                        </div>
+                        <!--Contact Form-->
+                        <form id="contact-form" class="auth-form">
+                            <!--Name field-->
+                            <div class="form-row">
+                                <label for="contactFullName" class="form-label required">Full Name</label>
+                                <input type="text" id="contactFullName" name="fullName" class="form-input" required>
                             </div>
-                            <!--Contact Form-->
-                            <form id="contact-form" class="auth-form">
-                                <!--Name field-->
+                            <!--Contact info-->
+                            <div class="form-row">
                                 <div class="form-row">
-                                        <label for="contactFullName" class="form-label required">Full Name</label>
-                                        <input type="text" id="contactFullName" name="fullName" class="form-input" required>
-                                </div>
-                                <!--Contact info-->
-                                <div class="form-row">
-                                    <label for="contactEmail" class="form-label required">Email</label>
+                                    <label for="contactFullName" class="form-label required"
+                                        data-i18n="contact.full_name">Full Name</label>
                                     <input type="email" id="contactEmail" name="email" class="form-input" required>
                                 </div>
                                 <div class="form-row">
-                                    <label for="contactPhone" class="form-label required">Phone number</label>
+                                    <label for="contactPhone" class="form-label required"
+                                        data-i18n="contact.phone">Phone number</label>
                                     <input type="tel" id="contactPhone" name="phone" class="form-input" required>
                                 </div>
-                                
+
                                 <!--Subject-->
                                 <div class="form-group">
-                                    <label for="contactEmail" class="form-label required">Subject</label>
+                                    <label for="contactEmail" class="form-label required"
+                                        data-i18n="contact.subject">Subject</label>
                                     <input type="text" id="contactSubject" name="subject" class="form-input" required>
                                 </div>
 
                                 <!--Message field-->
                                 <div class="form-row">
-                                    <textarea id="contactMessage" name="message" class="form-textarea" rows="6" required placeholder="Type your message..."></textarea>
+                                    <textarea id="contactMessage" name="message" class="form-textarea" rows="6" required
+                                        data-i18n-placeholder="contact.message_placeholder"
+                                        placeholder="Type your message..."></textarea>
                                 </div>
 
                                 <!--Preferred contact method-->
                                 <div class="form-group">
-                                    <label class="form-label">Preferred Contact Method</label>
+                                    <label class="form-label" data-i18n="contact.preferred_method">Preferred Contact
+                                        Method</label>
                                     <div style="display: flex; gap: var(--spacing-lg); margin-top: var(--spacing-sm);">
                                         <label class="form-checkbox">
-                                            <input type="radio" value="email" name="preferredContact" checked>Email
+                                            <input type="radio" value="email" name="preferredContact" checked><span
+                                                data-i18n="contact.method_email">Email</span>
                                         </label>
                                         <label class="form-label">
-                                            <input type="radio" name="preferredContact" value="phone">Phone
+                                            <input type="radio" name="preferredContact" value="phone"><span
+                                                data-i18n="contact.method_phone">Phone</span>
                                         </label>
                                     </div>
 
                                     <!--Submit button-->
-                                        <div class="form-navigation" style="justify-content: center;">
-                                            <button type="submit" class="btn btn-primary btn-large">Send message</button>
-                                        </div>
+                                    <div class="form-navigation" style="justify-content: center;">
+                                        <button type="submit" class="btn btn-primary btn-large"
+                                            data-i18n="contact.send_button">Send message</button>
+                                    </div>
                                 </div>
-                            </form>
-                        </div>
+                        </form>
                     </div>
                 </div>
-            </section>
-        </main>
-        <!-- ================= FOOTER ================= -->
+            </div>
+        </section>
+    </main>
+    <!-- ================= FOOTER ================= -->
     <footer class="main-footer">
         <div class="container">
             <div class="footer-content">
                 <!-- About the shelter -->
                 <div class="footer-section">
-                    <h4>PawHaven Shelter</h4>
-                    <p>Dedicated to finding loving homes for pets in need since 2016.</p>
+                    <h4 data-i18n="footer.shelter_name">PawHaven Shelter</h4>
+                    <p data-i18n="footer.description">Dedicated to finding loving homes for pets in need since 2016.</p>
                 </div>
                 <!-- Contact info -->
                 <div class="footer-section">
-                    <h4>Contact Info</h4>
+                    <h4 data-i18n="footer.contact_info">Contact Info</h4>
                     <div class="contact-info">
-                        <p>📍 123 Pet Street, Animal City, AC 12345</p>
-                        <p>📞 (555) 123-PETS</p>
-                        <p>✉️ info@pawhaven.com</p>
+                        <p data-i18n="footer.address">📍 123 Pet Street, Animal City, AC 12345</p>
+                        <p data-i18n="footer.phone">📞 (555) 123-PETS</p>
+                        <p data-i18n="footer.email">✉️ info@pawhaven.com</p>
                     </div>
                 </div>
 
                 <!-- Footer column: opening hours -->
-               <div class="footer-section">
-                   <h4>Shelter Hours</h4>
-                   <div class="hours">
-                       <p>Monday - Friday: 10am - 6pm</p>
-                       <p>Saturday: 9am - 5pm</p>
-                       <p>Sunday:12pm - 4pm</p>
-                   </div>
-               </div>
+                <div class="footer-section">
+                    <h4 data-i18n="footer.hours_title">Shelter Hours</h4>
+                    <div class="hours">
+                        <p data-i18n="footer.hours_weekday">Monday - Friday: 10am - 6pm</p>
+                        <p data-i18n="footer.hours_saturday">Saturday: 9am - 5pm</p>
+                        <p data-i18n="footer.hours_sunday">Sunday: 12pm - 4pm</p>
+                    </div>
+                </div>
             </div>
             <!-- Copyright -->
             <div class="footer-bottom">
-                <p>&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
+                <p data-i18n="footer.copyright">&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -139,7 +161,9 @@
     <script src="js/main.js"></script>
     <!-- Auth/session helpers if needed -->
     <script src="js/auth.js"></script>
+    <script src="js/i18n.js"></script>
     <!-- Page-specific logic for the adoption application (step handling, validation, review summary, submission) -->
-    <script src="js/adoption.js"></script>
-    </body>
-</html> 
+    <script src="js/contact.js"></script>
+</body>
+
+</html>

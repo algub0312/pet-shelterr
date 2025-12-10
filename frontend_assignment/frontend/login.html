@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Character encoding -->
     <meta charset="UTF-8">
     <!-- Responsive viewport for mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Browser tab title -->
-    <title>Login - PawHaven Pet Shelter</title>
+    <title data-i18n-page-title="login.page_title">Login - PawHaven Pet Shelter</title>
     <!-- Base/global styles -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Shared UI component styles (buttons, cards, grids, etc.) -->
     <link rel="stylesheet" href="css/components.css">
     <!-- Auth-specific styles (forms, auth cards) -->
     <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/i18n.css">
 </head>
+
 <body>
     <!-- ================= HEADER WITH NAVIGATION ================= -->
     <header class="main-header">
@@ -24,16 +27,22 @@
                     <img src="images/icons/logo.png" alt="PawHaven Logo">
                     <span class="logo-text">PawHaven</span>
                 </div>
-                
+
                 <!-- Primary navigation menu -->
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="pets.html" class="nav-link">Find a Pet</a></li>
-                    <li><a href="about.html" class="nav-link">About Us</a></li>
-                    <li><a href="success.html" class="nav-link">Success Stories</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
+                    <li><a href="pets.html" class="nav-link" data-i18n="nav.find_pet">Find a Pet</a></li>
+                    <li><a href="about.html" class="nav-link" data-i18n="nav.about">About Us</a></li>
+                    <li><a href="success.html" class="nav-link" data-i18n="nav.success">Success Stories</a></li>
+                    <li><a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a></li>
                     <!-- Link to registration page -->
-                    <li><a href="register.html" class="nav-link">Register</a></li>
+                    <li><a href="register.html" class="nav-link" data-i18n="auth.register">Register</a></li>
+                    <!-- Language Switcher -->
+                    <li class="lang-switcher">
+                        <button class="lang-btn active" data-lang="en" onclick="switchLanguage('en')"
+                            title="English">EN</button>
+                        <button class="lang-btn" data-lang="da" onclick="switchLanguage('da')" title="Dansk">DA</button>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -47,15 +56,16 @@
                     <!-- Card wrapper for the login form -->
                     <div class="auth-card">
                         <div class="auth-header">
-                            <h1>Welcome Back</h1>
-                            <p>Sign in to your PawHaven account</p>
+                            <h1 data-i18n="login.welcome_title">Welcome Back</h1>
+                            <p data-i18n="login.welcome_subtitle">Sign in to your PawHaven account</p>
                         </div>
 
                         <!-- Login form -->
                         <form id="login-form" class="auth-form">
                             <!-- Email field -->
                             <div class="form-group">
-                                <label for="email" class="form-label required">Email Address</label>
+                                <label for="email" class="form-label required" data-i18n="login.email_label">Email
+                                    Address</label>
                                 <input type="email" id="email" name="email" class="form-input" required>
                                 <!-- Placeholder for validation errors -->
                                 <div class="form-error"></div>
@@ -63,7 +73,8 @@
 
                             <!-- Password field with show/hide toggle -->
                             <div class="form-group">
-                                <label for="password" class="form-label required">Password</label>
+                                <label for="password" class="form-label required"
+                                    data-i18n="login.password_label">Password</label>
                                 <div class="password-input-container">
                                     <input type="password" id="password" name="password" class="form-input" required>
                                     <!-- Eye button toggles input type via JS -->
@@ -79,33 +90,39 @@
                             <div class="form-group">
                                 <label class="form-checkbox">
                                     <input type="checkbox" name="remember" id="remember">
-                                    Remember me for 30 days
+                                    <span data-i18n="login.remember_label">Remember me for 30 days</span>
                                 </label>
                             </div>
 
                             <!-- Submit button -->
-                            <button type="submit" class="btn btn-primary btn-large auth-submit">
+                            <button type="submit" class="btn btn-primary btn-large auth-submit"
+                                data-i18n="login.submit_button">
                                 Sign In
                             </button>
 
                             <!-- Auxiliary auth links -->
                             <div class="auth-links">
-                                <a href="forgot-password.html" class="auth-link">Forgot your password?</a>
-                                <p>Don't have an account? <a href="register.html" class="auth-link">Sign up here</a></p>
+                                <a href="forgot-password.html" class="auth-link" data-i18n="login.forgot_link">Forgot
+                                    your password?</a>
+                                <p><span data-i18n="login.no_account_text">Don't have an account?</span> <a
+                                        href="register.html" class="auth-link" data-i18n="login.signup_link">Sign up
+                                        here</a></p>
                             </div>
                         </form>
 
                         <!-- Demo login shortcuts for quick testing -->
                         <div class="demo-login">
                             <hr>
-                            <h3>Demo Accounts</h3>
+                            <h3 data-i18n="login.demo_title">Demo Accounts</h3>
                             <div class="demo-buttons">
                                 <!-- Logs in with a preset regular-user account (handled in JS) -->
-                                <button type="button" class="btn btn-secondary" onclick="loginDemo('user')">
+                                <button type="button" class="btn btn-secondary" onclick="loginDemo('user')"
+                                    data-i18n="login.demo_user_button">
                                     Login as Regular User
                                 </button>
                                 <!-- Logs in with a preset admin account (handled in JS) -->
-                                <button type="button" class="btn btn-outline" onclick="loginDemo('admin')">
+                                <button type="button" class="btn btn-outline" onclick="loginDemo('admin')"
+                                    data-i18n="login.demo_admin_button">
                                     Login as Admin
                                 </button>
                             </div>
@@ -122,22 +139,22 @@
             <div class="footer-content">
                 <!-- About -->
                 <div class="footer-section">
-                    <h4>PawHaven Shelter</h4>
-                    <p>Dedicated to finding loving homes for pets in need since 2016.</p>
+                    <h4 data-i18n="footer.shelter_name">PawHaven Shelter</h4>
+                    <p data-i18n="footer.description">Dedicated to finding loving homes for pets in need since 2016.</p>
                 </div>
                 <!-- Contact info -->
                 <div class="footer-section">
-                    <h4>Contact Info</h4>
+                    <h4 data-i18n="footer.contact_info">Contact Info</h4>
                     <div class="contact-info">
-                        <p>📍 123 Pet Street, Animal City, AC 12345</p>
-                        <p>📞 (555) 123-PETS</p>
-                        <p>✉️ info@pawhaven.com</p>
+                        <p data-i18n="footer.address">📍 123 Pet Street, Animal City, AC 12345</p>
+                        <p data-i18n="footer.phone">📞 (555) 123-PETS</p>
+                        <p data-i18n="footer.email">✉️ info@pawhaven.com</p>
                     </div>
                 </div>
             </div>
             <!-- Copyright -->
             <div class="footer-bottom">
-                <p>&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
+                <p data-i18n="footer.copyright">&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -145,7 +162,9 @@
     <!-- ================= SCRIPTS ================= -->
     <!-- Site-wide JS (e.g., nav behavior, utilities) -->
     <script src="js/main.js"></script>
+    <script src="js/i18n.js"></script>
     <!-- Auth-related JS (form validation, submit handlers, toggles, demo login) -->
     <script src="js/auth.js"></script>
 </body>
+
 </html>

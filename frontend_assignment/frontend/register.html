@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Character encoding for Unicode -->
     <meta charset="UTF-8">
     <!-- Responsive viewport for proper scaling on mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Browser tab title -->
-    <title>Create Account - PawHaven Pet Shelter</title>
+    <title data-i18n-page-title="register.page_title">Create Account - PawHaven Pet Shelter</title>
     <!-- Base/global styles -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Reusable UI components (buttons, cards, grid, etc.) -->
     <link rel="stylesheet" href="css/components.css">
     <!-- Auth/form-specific styles -->
     <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/i18n.css">
 </head>
+
 <body>
     <!-- ================= HEADER WITH NAVIGATION ================= -->
     <!-- Header with Navigation -->
@@ -25,16 +28,22 @@
                     <img src="images/icons/logo.png" alt="PawHaven Logo">
                     <span class="logo-text">PawHaven</span>
                 </div>
-                
+
                 <!-- Primary navigation links -->
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="pets.html" class="nav-link">Find a Pet</a></li>
-                    <li><a href="about.html" class="nav-link">About Us</a></li>
-                    <li><a href="success.html" class="nav-link">Success Stories</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
+                    <li><a href="pets.html" class="nav-link" data-i18n="nav.find_pet">Find a Pet</a></li>
+                    <li><a href="about.html" class="nav-link" data-i18n="nav.about">About Us</a></li>
+                    <li><a href="success.html" class="nav-link" data-i18n="nav.success">Success Stories</a></li>
+                    <li><a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a></li>
                     <!-- Link to login page for existing users -->
-                    <li><a href="login.html" class="nav-link">Login</a></li>
+                    <li><a href="login.html" class="nav-link" data-i18n="auth.login">Login</a></li>
+                    <!-- Language Switcher -->
+                    <li class="lang-switcher">
+                        <button class="lang-btn active" data-lang="en" onclick="switchLanguage('en')"
+                            title="English">EN</button>
+                        <button class="lang-btn" data-lang="da" onclick="switchLanguage('da')" title="Dansk">DA</button>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -48,8 +57,8 @@
                     <!-- Card wrapper for the registration form -->
                     <div class="auth-card">
                         <div class="auth-header">
-                            <h1>Join PawHaven</h1>
-                            <p>Create your account to start your adoption journey</p>
+                            <h1 data-i18n="register.title">Join PawHaven</h1>
+                            <p data-i18n="register.subtitle">Create your account to start your adoption journey</p>
                         </div>
 
                         <!-- Registration form -->
@@ -57,14 +66,16 @@
                             <!-- Name fields side-by-side -->
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="firstName" class="form-label required">First Name</label>
+                                    <label for="firstName" class="form-label required"
+                                        data-i18n="register.first_name">First Name</label>
                                     <input type="text" id="firstName" name="firstName" class="form-input" required>
                                     <!-- Area to display validation errors -->
                                     <div class="form-error"></div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="lastName" class="form-label required">Last Name</label>
+                                    <label for="lastName" class="form-label required"
+                                        data-i18n="register.last_name">Last Name</label>
                                     <input type="text" id="lastName" name="lastName" class="form-input" required>
                                     <div class="form-error"></div>
                                 </div>
@@ -72,46 +83,59 @@
 
                             <!-- Email field -->
                             <div class="form-group">
-                                <label for="email" class="form-label required">Email Address</label>
+                                <label for="email" class="form-label required" data-i18n="register.email">Email
+                                    Address</label>
                                 <input type="email" id="email" name="email" class="form-input" required>
                                 <div class="form-error"></div>
                             </div>
 
                             <!-- Phone field -->
                             <div class="form-group">
-                                <label for="phone" class="form-label required">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="(555) 123-4567" required>
+                                <label for="phone" class="form-label required" data-i18n="register.phone">Phone
+                                    Number</label>
+                                <input type="tel" id="phone" name="phone" class="form-input"
+                                    data-i18n-placeholder="register.phone_placeholder" placeholder="(555) 123-4567"
+                                    required>
                                 <div class="form-error"></div>
                             </div>
 
                             <!-- Address (optional) -->
                             <div class="form-group">
-                                <label for="address" class="form-label">Address</label>
-                                <input type="text" id="address" name="address" class="form-input" placeholder="Street, City, State, ZIP">
+                                <label for="address" class="form-label" data-i18n="register.address">Address</label>
+                                <input type="text" id="address" name="address" class="form-input"
+                                    data-i18n-placeholder="register.address_placeholder"
+                                    placeholder="Street, City, State, ZIP">
                                 <div class="form-error"></div>
                             </div>
 
                             <!-- Password + confirmation side-by-side -->
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="password" class="form-label required">Password</label>
+                                    <label for="password" class="form-label required"
+                                        data-i18n="register.password">Password</label>
                                     <div class="password-input-container">
-                                        <input type="password" id="password" name="password" class="form-input" required>
+                                        <input type="password" id="password" name="password" class="form-input"
+                                            required>
                                         <!-- Eye icon toggles visibility via JS -->
-                                        <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                                        <button type="button" class="password-toggle"
+                                            onclick="togglePassword('password')">
                                             👁️
                                         </button>
                                     </div>
                                     <div class="form-error"></div>
-                                    <small>Password must be at least 6 characters</small>
+                                    <small data-i18n="register.password_hint">Password must be at least 6
+                                        characters</small>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="confirmPassword" class="form-label required">Confirm Password</label>
+                                    <label for="confirmPassword" class="form-label required"
+                                        data-i18n="register.confirm_password">Confirm Password</label>
                                     <div class="password-input-container">
-                                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" required>
+                                        <input type="password" id="confirmPassword" name="confirmPassword"
+                                            class="form-input" required>
                                         <!-- Eye icon toggles visibility via JS -->
-                                        <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                                        <button type="button" class="password-toggle"
+                                            onclick="togglePassword('confirmPassword')">
                                             👁️
                                         </button>
                                     </div>
@@ -121,19 +145,19 @@
 
                             <!-- Optional pet preference radios -->
                             <div class="form-group">
-                                <h4>Pet Preferences (Optional)</h4>
+                                <h4 data-i18n="register.pet_prefs_title">Pet Preferences (Optional)</h4>
                                 <div class="preference-options">
                                     <label class="form-checkbox">
                                         <input type="radio" name="petPreference" value="dog">
-                                        🐕 Dogs
+                                        <span data-i18n="register.pref_dogs">🐕 Dogs</span>
                                     </label>
                                     <label class="form-checkbox">
                                         <input type="radio" name="petPreference" value="cat">
-                                        🐱 Cats
+                                        <span data-i18n="register.pref_cats">🐱 Cats</span>
                                     </label>
                                     <label class="form-checkbox">
                                         <input type="radio" name="petPreference" value="any">
-                                        ❤️ Any pet
+                                        <span data-i18n="register.pref_any">❤️ Any pet</span>
                                     </label>
                                 </div>
                             </div>
@@ -142,7 +166,8 @@
                             <div class="form-group">
                                 <label class="form-checkbox">
                                     <input type="checkbox" name="newsletter" id="newsletter" checked>
-                                    Subscribe to our newsletter for pet updates and adoption stories
+                                    <span data-i18n="register.newsletter_label">Subscribe to our newsletter for pet
+                                        updates and adoption stories</span>
                                 </label>
                             </div>
 
@@ -150,19 +175,25 @@
                             <div class="form-group">
                                 <label class="form-checkbox">
                                     <input type="checkbox" name="terms" id="terms" required>
-                                    I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a>
+                                    <span data-i18n="register.terms_agree">I agree to the</span> <a href="terms.html"
+                                        target="_blank" data-i18n="register.terms_link">Terms of Service</a> <span
+                                        data-i18n="register.and">and</span> <a href="privacy.html" target="_blank"
+                                        data-i18n="register.privacy_link">Privacy Policy</a>
                                 </label>
                                 <div class="form-error"></div>
                             </div>
 
                             <!-- Submit button -->
-                            <button type="submit" class="btn btn-primary btn-large auth-submit">
+                            <button type="submit" class="btn btn-primary btn-large auth-submit"
+                                data-i18n="register.submit_button">
                                 Create Account
                             </button>
 
                             <!-- Link to login for existing users -->
                             <div class="auth-links">
-                                <p>Already have an account? <a href="login.html" class="auth-link">Sign in here</a></p>
+                                <p><span data-i18n="register.have_account_text">Already have an account?</span> <a
+                                        href="login.html" class="auth-link" data-i18n="register.signin_link">Sign in
+                                        here</a></p>
                             </div>
                         </form>
                     </div> <!-- /auth-card -->
@@ -177,22 +208,22 @@
             <div class="footer-content">
                 <!-- Footer column: about -->
                 <div class="footer-section">
-                    <h4>PawHaven Shelter</h4>
-                    <p>Dedicated to finding loving homes for pets in need since 2016.</p>
+                    <h4 data-i18n="footer.shelter_name">PawHaven Shelter</h4>
+                    <p data-i18n="footer.description">Dedicated to finding loving homes for pets in need since 2016.</p>
                 </div>
                 <!-- Footer column: contact details -->
                 <div class="footer-section">
-                    <h4>Contact Info</h4>
+                    <h4 data-i18n="footer.contact_info">Contact Info</h4>
                     <div class="contact-info">
-                        <p>📍 123 Pet Street, Animal City, AC 12345</p>
-                        <p>📞 (555) 123-PETS</p>
-                        <p>✉️ info@pawhaven.com</p>
+                        <p data-i18n="footer.address">📍 123 Pet Street, Animal City, AC 12345</p>
+                        <p data-i18n="footer.phone">📞 (555) 123-PETS</p>
+                        <p data-i18n="footer.email">✉️ info@pawhaven.com</p>
                     </div>
                 </div>
             </div>
             <!-- Copyright -->
             <div class="footer-bottom">
-                <p>&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
+                <p data-i18n="footer.copyright">&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -200,7 +231,9 @@
     <!-- ================= SCRIPTS ================= -->
     <!-- Site-wide JS utilities and common behaviors -->
     <script src="js/main.js"></script>
+    <script src="js/i18n.js"></script>
     <!-- Auth-related behaviors (validation, toggles, form submit handlers) -->
     <script src="js/auth.js"></script>
 </body>
+
 </html>

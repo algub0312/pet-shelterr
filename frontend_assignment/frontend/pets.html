@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Character encoding for Unicode -->
     <meta charset="UTF-8">
     <!-- Responsive viewport for mobile-friendly scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Page title shown in the browser tab -->
-    <title>Find a Pet - PawHaven Pet Shelter</title>
+    <title data-i18n-page-title="pets.page_title">Find a Pet - PawHaven Pet Shelter</title>
     <!-- Base styles -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Reusable component styles (cards, buttons, grids, etc.) -->
     <link rel="stylesheet" href="css/components.css">
     <!-- Auth/form-related styles reused across pages -->
     <link rel="stylesheet" href="css/auth.css">
-    
+    <link rel="stylesheet" href="css/i18n.css">
+
 </head>
+
 <body>
     <!-- ===================== HEADER WITH NAVIGATION ===================== -->
     <!-- Header with Navigation -->
@@ -26,17 +29,23 @@
                     <img src="images/icons/logo.png" alt="PawHaven Logo">
                     <span class="logo-text">PawHaven</span>
                 </div>
-                
+
                 <!-- Desktop Navigation Menu -->
                 <ul class="nav-menu">
                     <!-- Current page is highlighted with .active -->
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="pets.html" class="nav-link active">Find a Pet</a></li>
-                    <li><a href="about.html" class="nav-link">About Us</a></li>
-                    <li><a href="success.html" class="nav-link">Success Stories</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
+                    <li><a href="pets.html" class="nav-link active" data-i18n="nav.find_pet">Find a Pet</a></li>
+                    <li><a href="about.html" class="nav-link" data-i18n="nav.about">About Us</a></li>
+                    <li><a href="success.html" class="nav-link" data-i18n="nav.success">Success Stories</a></li>
+                    <li><a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a></li>
                     <!-- CTA for adoption flow -->
-                    <li><a href="adoption.html" class="nav-link btn-adopt">Adopt Now</a></li>
+                    <li><a href="adoption.html" class="nav-link btn-adopt" data-i18n="nav.adopt_now">Adopt Now</a></li>
+                    <!-- Language Switcher -->
+                    <li class="lang-switcher">
+                        <button class="lang-btn active" data-lang="en" onclick="switchLanguage('en')"
+                            title="English">EN</button>
+                        <button class="lang-btn" data-lang="da" onclick="switchLanguage('da')" title="Dansk">DA</button>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -44,22 +53,25 @@
 
     <!-- ===================== MAIN CONTENT ===================== -->
     <!-- Main Content -->
-<main class = "main-content">
+    <main class="main-content">
 
-    <!-- ===================== HERO SECTION ===================== -->
-    <!-- hero section -->
-          <section class="pets-hero">
+        <!-- ===================== HERO SECTION ===================== -->
+        <!-- hero section -->
+        <section class="pets-hero">
             <div class="container">
                 <div class="hero-content">
                     <!-- Page headline and description -->
-                    <h1>Find Your Perfect Companion</h1>
-                    <p>Browse our available pets and find the one that's perfect for your family. Each pet has been lovingly cared for and is ready for their forever home.</p>
-                    
+                    <h1 data-i18n="pets.hero_title">Find Your Perfect Companion</h1>
+                    <p data-i18n="pets.hero_subtitle">Browse our available pets and find the one that's perfect for your
+                        family. Each pet has been lovingly cared for and is ready for their forever home.</p>
+
                     <!-- Quick Search Bar -->
                     <!-- Simple keyword search by name/breed; action handled in JS -->
                     <div class="quick-search">
-                        <input type="text" id="pet-search" placeholder="Search by name or breed..." class="search-input">
-                        <button type="button" class="search-btn" onclick="performSearch()">
+                        <input type="text" id="pet-search" data-i18n-placeholder="pets.search_placeholder"
+                            placeholder="Search by name or breed..." class="search-input">
+                        <button type="button" class="search-btn" onclick="performSearch()"
+                            data-i18n="pets.search_button">
                             🔍 Search
                         </button>
                     </div>
@@ -67,134 +79,137 @@
             </div>
         </section>
 
-     <!-- ===================== FILTERS + RESULTS ===================== -->
-     <!-- Filters and Results Section -->
+        <!-- ===================== FILTERS + RESULTS ===================== -->
+        <!-- Filters and Results Section -->
         <section class="pets-content">
             <div class="container">
                 <div class="pets-layout">
                     <!-- ========== Sidebar Filters ========== -->
                     <aside class="filters-sidebar">
                         <div class="filters-container">
-                            <h3>Filter Pets</h3>
-                            
+                            <h3 data-i18n="pets.filter_title">Filter Pets</h3>
+
                             <!-- Pet Type Filter (mutually exclusive via radio) -->
                             <div class="filter-group">
-                                <h4>Pet Type</h4>
+                                <h4 data-i18n="pets.pet_type">Pet Type</h4>
                                 <div class="filter-options">
                                     <label class="filter-option">
                                         <input type="radio" name="petType" value="all" checked>
                                         <span class="checkmark"></span>
-                                        All Pets
+                                        <span data-i18n="pets.all_pets">All Pets</span>
                                     </label>
                                     <label class="filter-option">
                                         <input type="radio" name="petType" value="dog">
                                         <span class="checkmark"></span>
-                                        🐕 Dogs
+                                        <span data-i18n="pets.dogs">🐕 Dogs</span>
                                     </label>
                                     <label class="filter-option">
                                         <input type="radio" name="petType" value="cat">
                                         <span class="checkmark"></span>
-                                        🐱 Cats
+                                        <span data-i18n="pets.cats">🐱 Cats</span>
                                     </label>
                                     <label class="filter-option">
                                         <input type="radio" name="petType" value="rabbit">
                                         <span class="checkmark"></span>
-                                        🐰 Rabbits
+                                        <span data-i18n="pets.rabbits">🐰 Rabbits</span>
                                     </label>
                                     <label class="filter-option">
                                         <input type="radio" name="petType" value="bird">
                                         <span class="checkmark"></span>
-                                        🐦 Birds
+                                        <span data-i18n="pets.birds">🐦 Birds</span>
                                     </label>
                                 </div>
                             </div>
 
                             <!-- Age Filter (preset buckets) -->
                             <div class="filter-group">
-                                <h4>Age</h4>
+                                <h4 data-i18n="pets.age">Age</h4>
                                 <div class="filter-options">
                                     <label class="filter-option">
                                         <input type="radio" name="petAge" value="all" checked>
                                         <span class="checkmark"></span>
-                                        All Ages
+                                        <span data-i18n="pets.all_ages">All Ages</span>
                                     </label>
                                     <label class="filter-option">
                                         <input type="radio" name="petAge" value="young">
                                         <span class="checkmark"></span>
-                                        Under 1 year
+                                        <span data-i18n="pets.under_1">Under 1 year</span>
                                     </label>
                                     <label class="filter-option">
                                         <input type="radio" name="petAge" value="adult">
                                         <span class="checkmark"></span>
-                                        1-5 years
+                                        <span data-i18n="pets.1_5_years">1-5 years</span>
                                     </label>
                                     <label class="filter-option">
                                         <input type="radio" name="petAge" value="senior">
                                         <span class="checkmark"></span>
-                                        5+ years
+                                        <span data-i18n="pets.5_plus">5+ years</span>
                                     </label>
                                 </div>
-                                
+
                                 <!-- Custom Age Range -->
                                 <!-- Optional min/max numeric inputs to refine the Age filter -->
                                 <div class="age-range-selector">
-                                    <label for="min-age">Custom Age Range:</label>
+                                    <label for="min-age" data-i18n="pets.custom_age">Custom Age Range:</label>
                                     <div class="range-inputs">
-                                        <input type="number" id="min-age" min="0" max="20" placeholder="Min">
-                                        <span>to</span>
-                                        <input type="number" id="max-age" min="0" max="20" placeholder="Max">
-                                        <span>years</span>
+                                        <input type="number" id="min-age" min="0" max="20"
+                                            data-i18n-placeholder="pets.min" placeholder="Min">
+                                        <span data-i18n="pets.to">to</span>
+                                        <input type="number" id="max-age" min="0" max="20"
+                                            data-i18n-placeholder="pets.max" placeholder="Max">
+                                        <span data-i18n="pets.years">years</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Size Filter (multi-select via checkboxes) -->
                             <div class="filter-group">
-                                <h4>Size</h4>
+                                <h4 data-i18n="pets.size">Size</h4>
                                 <div class="filter-options">
                                     <label class="filter-option">
                                         <input type="checkbox" name="petSize" value="small">
                                         <span class="checkmark"></span>
-                                        Small
+                                        <span data-i18n="pets.small">Small</span>
                                     </label>
                                     <label class="filter-option">
                                         <input type="checkbox" name="petSize" value="medium">
                                         <span class="checkmark"></span>
-                                        Medium
+                                        <span data-i18n="pets.medium">Medium</span>
                                     </label>
                                     <label class="filter-option">
                                         <input type="checkbox" name="petSize" value="large">
                                         <span class="checkmark"></span>
-                                        Large
+                                        <span data-i18n="pets.large">Large</span>
                                     </label>
                                 </div>
                             </div>
 
                             <!-- Special Needs / Compatibility Filters -->
                             <div class="filter-group">
-                                <h4>Special Considerations</h4>
+                                <h4 data-i18n="pets.special_considerations">Special Considerations</h4>
                                 <div class="filter-options">
                                     <label class="filter-option">
                                         <input type="checkbox" name="specialNeeds" value="true">
                                         <span class="checkmark"></span>
-                                        Special Needs
+                                        <span data-i18n="pets.special_needs">Special Needs</span>
                                     </label>
                                     <label class="filter-option">
                                         <input type="checkbox" name="goodWithKids" value="true">
                                         <span class="checkmark"></span>
-                                        Good with Kids
+                                        <span data-i18n="pets.good_with_kids">Good with Kids</span>
                                     </label>
                                     <label class="filter-option">
                                         <input type="checkbox" name="goodWithPets" value="true">
                                         <span class="checkmark"></span>
-                                        Good with Other Pets
+                                        <span data-i18n="pets.good_with_pets">Good with Other Pets</span>
                                     </label>
                                 </div>
                             </div>
 
                             <!-- Clear Filters Button -->
                             <!-- Resets all filters to default via JS handler -->
-                            <button type="button" class="btn btn-outline clear-filters" onclick="clearAllFilters()">
+                            <button type="button" class="btn btn-outline clear-filters" onclick="clearAllFilters()"
+                                data-i18n="pets.clear_filters">
                                 Clear All Filters
                             </button>
                         </div>
@@ -205,20 +220,21 @@
                         <!-- Results Header with count and sort controls -->
                         <div class="results-header">
                             <div class="results-info">
-                                <h2>Available Pets</h2>
+                                <h2 data-i18n="pets.available_pets">Available Pets</h2>
                                 <!-- Count is updated via JS after filtering -->
-                                <p class="results-count">Showing <span id="results-count">0</span> pets</p>
+                                <p class="results-count"><span data-i18n="pets.showing">Showing</span> <span
+                                        id="results-count">0</span> <span data-i18n="pets.pets">pets</span></p>
                             </div>
-                            
+
                             <div class="sort-options">
-                                <label for="sort-select">Sort by:</label>
+                                <label for="sort-select" data-i18n="pets.sort_by">Sort by:</label>
                                 <!-- Sorting options handled in JS (e.g., by arrival date, name, age) -->
                                 <select id="sort-select" class="form-select">
-                                    <option value="newest">Newest Arrivals</option>
-                                    <option value="oldest">Longest at Shelter</option>
-                                    <option value="name">Name (A-Z)</option>
-                                    <option value="age-young">Age (Youngest First)</option>
-                                    <option value="age-old">Age (Oldest First)</option>
+                                    <option value="newest" data-i18n="pets.newest">Newest Arrivals</option>
+                                    <option value="oldest" data-i18n="pets.oldest">Longest at Shelter</option>
+                                    <option value="name" data-i18n="pets.name_az">Name (A-Z)</option>
+                                    <option value="age-young" data-i18n="pets.age_young">Age (Youngest First)</option>
+                                    <option value="age-old" data-i18n="pets.age_old">Age (Oldest First)</option>
                                 </select>
                             </div>
                         </div>
@@ -229,7 +245,7 @@
                             <!-- Loading indicator while fetching data -->
                             <div class="loading-spinner">
                                 <div class="spinner"></div>
-                                <p>Loading pets...</p>
+                                <p data-i18n="pets.loading">Loading pets...</p>
                             </div>
                         </div>
 
@@ -237,9 +253,11 @@
                         <!-- Shown when filters/search return zero matches -->
                         <div class="no-results" id="no-results" style="display: none;">
                             <div class="no-results-content">
-                                <h3>No pets found matching your criteria</h3>
-                                <p>Try adjusting your filters or search terms to find more pets.</p>
-                                <button class="btn btn-primary" onclick="clearAllFilters()">Reset Filters</button>
+                                <h3 data-i18n="pets.no_results_title">No pets found matching your criteria</h3>
+                                <p data-i18n="pets.no_results_text">Try adjusting your filters or search terms to find
+                                    more pets.</p>
+                                <button class="btn btn-primary" onclick="clearAllFilters()"
+                                    data-i18n="pets.reset_filters">Reset Filters</button>
                             </div>
                         </div>
 
@@ -247,68 +265,18 @@
                         <!-- Simple prev/next pagination controlled by JS -->
                         <div class="pagination-container" id="pagination-container" style="display: none;">
                             <div class="pagination">
-                                <button class="pagination-btn" id="prev-btn" onclick="changePage(-1)" disabled>← Previous</button>
-                                <span class="page-info">Page <span id="current-page">1</span> of <span id="total-pages">1</span></span>
+                                <button class="pagination-btn" id="prev-btn" onclick="changePage(-1)" disabled>←
+                                    Previous</button>
+                                <span class="page-info">Page <span id="current-page">1</span> of <span
+                                        id="total-pages">1</span></span>
                                 <button class="pagination-btn" id="next-btn" onclick="changePage(1)">Next →</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
-          <!-- ===================== FOOTER ===================== -->
-          <!--Footer-->
-         <footer class="main-footer">
-            <div class="container">
-                <div class="footer-content">
-                <!-- Footer column: info + quick links -->
-                <div class="footer-section">
-                    <h4>PawHaven Shelter</h4>
-                    <p>Dedicated to finding loving homes for pets in need since 2016.</p>
-                    <ul>
-                        <li><a href="pets.html">Available Pets</a></li>
-                        <li><a href="adoption.html">Adoption Process</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
+                <script src="js/search.js"></script>
+                <!-- Auth/session helpers if needed globally -->
+                <script src="js/auth.js"></script>
+</body>
 
-                <!-- Footer column: contact info -->
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <!-- NOTE: class name 'conctat-info' appears to be a typo; kept exactly as provided -->
-                    <div class="conctat-info">
-                        <p>📍 123 Pet Street, Animal City, AC 12345</p>
-                        <p>📞 (555) 123-PETS</p>
-                        <p>✉️ info@pawhaven.com</p>
-                    </div>
-                </div>
-
-                <!-- Footer column: opening hours -->
-                <div class="footer-section">
-                    <h4>Shelter Hours</h4>
-                    <div class="hours">
-                        <p>Monday - Friday: 10am - 6pm</p>
-                        <p>Saturday: 9am - 5pm</p>
-                        <p>Sunday:12pm - 4pm</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Copyright -->
-            <div class="footer-bottom">
-                <p>&copy; 2024 PawHaven Pet Shelter. All rights reserved.</p>
-            </div>
-            </div>
-         </footer>
-  <!-- ===================== SCRIPTS ===================== -->
-  <!-- JavaScript -->
-    <!-- Site-wide utilities and interactions -->
-    <script src="js/main.js"></script>
-    <!-- Page-specific search/filter/sort/pagination logic -->
-    <script src="js/search.js"></script>
-    <!-- Auth/session helpers if needed globally -->
-    <script src="js/auth.js"></script>
-    </body>
 </html>
