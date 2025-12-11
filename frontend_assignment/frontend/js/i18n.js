@@ -147,11 +147,14 @@ class I18n {
 
 // Create global i18n instance
 const i18n = new I18n();
+// Ensure it's available on window
+window.i18n = i18n;
 
 // Language switcher click handler
 function switchLanguage(lang) {
     i18n.setLanguage(lang);
 }
+window.switchLanguage = switchLanguage;
 
 // Export for use in other scripts
 if (typeof module !== 'undefined' && module.exports) {

@@ -39,6 +39,30 @@
         "success": "Success Stories",
         "about": "About Our Shelter"
     },
+    "about": {
+        "page_title": "About Us - PawHaven Pet Shelter",
+        "hero_title": "About Us",
+        "hero_subtitle": "See how our shelter became what it is today and learn about our journey since the very beginning",
+        "story_paragraph1": "Back in 2015, driven by the high number of animals on the street, a group of people decided to come together and supply bowls of water and food for the pawed creatures. Starting from a few neighbors and extending all the way to the other side of town, everyone would take turns, buying the food, refilling the dishes periodically and stopping to provide a scratch or good petting from time to time. Soon enough these nice small habits would bring together a whole community of animal enthusiasts. Later that year, when their furry friends were struggling in the winter temperatures, the people would rise to the occasion and take them in their homes, and care for them to the best of their abilities, making it through the cold period.",
+        "story_paragraph2": "Soon after, a few dedicated members of this community took it upon themselves to open the Pet Haven Shelter. They knew it would mean a lot of effort, but they wanted to make a change. The space was small initially, only fitting for a handful of rescues. Thankfully, there was a positive reception after the official opening. Many people were eager to offer their homes to the helpless animals. After the initial success of the first year, upgrades were made: bigger space, more toys and comfy beds for the pets, as well as equipment for the staff to handle the adoption process and other technicalities.",
+        "story_paragraph3": "Over the years that followed, the shelter continued to evolve and change for the better, from offering volunteering opportunities to organising social events and collaborating with NGOs. Nowadays, although we came a long way, we still have the same goal: finding a home for all the animals in need of one."
+    },
+    "contact": {
+        "page_title": "Contact Us - PawHaven Pet Shelter",
+        "title": "Contact Us",
+        "subtitle": "Have questions? We'd love to hear from you.",
+        "form_title": "Send us a message",
+        "form_subtitle": "Please fill out the form below and we will get back to you as soon as possible",
+        "full_name": "Full Name",
+        "email": "Email",
+        "phone": "Phone number",
+        "subject": "Subject",
+        "message_placeholder": "Type your message...",
+        "preferred_method": "Preferred Contact Method",
+        "method_email": "Email",
+        "method_phone": "Phone",
+        "send_button": "Send message"
+    },
     "footer": {
         "shelter_name": "PawHaven Shelter",
         "description": "Dedicated to finding loving homes for pets in need since 2016.",
@@ -136,6 +160,15 @@
         "message_placeholder": "Tell us how we can help...",
         "submit": "Send Message",
         "sending": "Sending..."
+        ,"pet_name": "Pet Name"
+        ,"adoption_info": "Adoption Information"
+        ,"whats_included": "What's Included:"
+        ,"included_exam": "✓ Full veterinary examination"
+        ,"included_vaccinations": "✓ Current vaccinations"
+        ,"included_spay": "✓ Spay/neuter surgery"
+        ,"included_microchip": "✓ Microchip with registration"
+        ,"included_insurance": "✓ 30 days of pet health insurance"
+        ,"similar_pets": "Similar Pets You Might Like"
     },
     "adoption": {
         "page_title": "Adoption Application - PawHaven Pet Shelter",
@@ -197,7 +230,20 @@
         "prev_btn": "Previous",
         "next_btn": "Next",
         "submit_btn": "Submit Application",
-        "submitting": "Submitting..."
+        "submitting": "Submitting...",
+        "review": {
+            "selected_pet": "Selected Pet",
+            "applicant_info": "Applicant Information",
+            "name": "Name",
+            "email": "Email",
+            "phone": "Phone",
+            "age": "Age",
+            "housing_info": "Housing Information",
+            "housing_type": "Housing Type",
+            "own_rent": "Own/Rent",
+            "household_members": "Household Members",
+            "adoption_reason": "Adoption Reason"
+        }
     },
     "success": {
         "page_title": "Success Stories - PawHaven Pet Shelter",
@@ -263,7 +309,13 @@
         "no_account": "Don't have an account?",
         "have_account": "Already have an account?",
         "sign_up": "Sign up",
-        "sign_in": "Sign in"
+        "sign_in": "Sign in",
+        "login_success": "Successfully logged in!",
+        "login_error": "Invalid email or password",
+        "register_success": "Account created successfully!",
+        "register_error": "Registration failed. Please try again.",
+        "demo_login": "Logged in as demo {{role}}",
+        "logout_success": "Successfully logged out"
     },
     "login": {
         "page_title": "Login - PawHaven Pet Shelter",
@@ -326,6 +378,7 @@
         "update_profile_btn": "Update Profile",
         "applications_title": "My Adoption Applications",
         "applications_subtitle": "Track the status of your adoption applications.",
+        "no_applications": "You haven't submitted any adoption applications yet. <a href=\"pets.html\">Browse our available pets</a> to get started!",
         "loading": "Loading applications...",
         "favorites_title": "Favorite Pets",
         "favorites_subtitle": "Keep track of pets you're interested in adopting.",
@@ -359,7 +412,129 @@
         "edit": "Edit",
         "delete": "Delete",
         "approve": "Approve",
-        "reject": "Reject"
+        "reject": "Reject",
+        "dashboard_title": "Admin Dashboard",
+        "dashboard_subtitle": "Manage pets, applications, and shelter operations",
+        "add_new_pet": "Add New Pet",
+        "generate_report": "Generate Report",
+        "stat_total_pets": "Total Pets",
+        "stat_available": "Available for Adoption",
+        "stat_pending_apps": "Pending Applications",
+        "stat_users": "Registered Users",
+        "tab_dashboard": "Dashboard",
+        "tab_pets": "Pets Management",
+        "tab_applications": "Applications",
+        "tab_users": "Users",
+        "tab_reports": "Reports",
+        "recent_activity": "Recent Activity",
+        "new_pet_added": "New Pet Added",
+        "new_pet_added_desc": "Bella (Golden Retriever) was added to available pets",
+        "application_submitted": "Application Submitted",
+        "application_submitted_desc": "John Doe applied to adopt Max",
+        "adoption_approved": "Adoption Approved",
+        "adoption_approved_desc": "Sarah Johnson's application for Luna was approved",
+        "hours_ago": "2 hours ago",
+        "hours_ago_4": "4 hours ago",
+        "day_ago": "1 day ago",
+        "quick_actions": "Quick Actions",
+        "review_applications": "Review Applications",
+        "pets_management": "Pets Management",
+        "loading_pets": "Loading pets...",
+        "adoption_applications": "Adoption Applications",
+        "review_manage_apps": "Review and manage adoption applications from potential adopters.",
+        "loading_applications": "Loading applications...",
+        "user_management": "User Management",
+        "view_manage_users": "View and manage registered users.",
+        "loading_users": "Loading users...",
+        "reports_analytics": "Reports & Analytics",
+        "view_stats_reports": "View shelter statistics and generate reports.",
+        "adoption_report": "Adoption Report",
+        "adoption_report_desc": "Monthly adoption statistics and trends",
+        "application_analytics": "Application Analytics",
+        "app_analytics_desc": "Application approval rate and processing times",
+        "view_analytics": "View Analytics",
+        "pet_inventory": "Pet Inventory",
+        "pet_inventory_desc": "Current pet status and availability report",
+        "export_data": "Export Data",
+        "user_activity": "User Activity",
+        "user_activity_desc": "User registration and engagement metrics",
+        "view_metrics": "View Metrics",
+        "no_pets_found": "No pets found in the system.",
+        "mixed_breed": "Mixed Breed",
+        "unknown_age": "Unknown Age",
+        "no_applications_yet": "No adoption applications submitted yet.",
+        "applied": "Applied:",
+        "joined": "Joined:",
+        "no_users_found": "No registered users found.",
+        "error_loading_pets": "Error loading pets data.",
+        "error_loading_applications": "Error loading applications data.",
+        "error_loading_users": "Error loading users data.",
+        "status": "Status",
+        "view_details": "View Details",
+        "view": "View",
+        "make_admin": "Make Admin",
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "add_new_pet_dev": "The 'Add New Pet' feature is under development!",
+        "edit_pet_dev": "The 'Edit Pet {id}' feature is under development!",
+        "enter_pet_status": "Enter new status (available, pending, adopted, medical_hold):",
+        "pet_status_changed": "Pet {id} status changed to {status}!",
+        "status_updated": "Application status updated to {status}!",
+        "error_updating_status": "Error updating application status",
+        "pet_colon": "Pet:",
+        "applicant_colon": "Applicant:",
+        "email_colon": "Email:",
+        "status_colon": "Status:",
+        "housing_colon": "Housing:",
+        "experience_colon": "Experience:",
+        "not_specified": "Not specified",
+        "phone_colon": "Phone:",
+        "role_colon": "Role:",
+        "address_colon": "Address:",
+        "not_provided": "Not provided",
+        "confirm_make_admin": "Make {name} an admin?",
+        "now_admin": "{name} is now an admin!",
+        "generating_report": "Generating {type} report...",
+        "statistics_summary": "STATISTICS SUMMARY:",
+        "total_pets": "- Total pets:",
+        "available_pets": "- Available pets:",
+        "pending_applications": "- Pending applications:",
+        "registered_users": "- Registered users:",
+        "report_generated": "Report generated:",
+        "report_downloaded": "Report downloaded successfully!",
+        "welcome_admin": "Welcome to the admin dashboard!"
+    },
+    "pet_card": {
+        "special_needs": "Special Needs",
+        "new_arrival": "New Arrival",
+        "meet_button": "Meet {{name}}"
+    },
+    "search": {
+        "no_results": "No pets found matching your criteria",
+        "loading": "Loading pets...",
+        "error_message": "Failed to load pets data. Please refresh the page.",
+        "showing_results": "Showing {{count}} pets"
+    },
+    "forms": {
+        "validation": {
+            "required": "This field is required",
+            "email_invalid": "Please enter a valid email address",
+            "phone_invalid": "Please enter a valid phone number",
+            "password_mismatch": "Passwords do not match",
+            "password_too_short": "Password must be at least 6 characters",
+            "terms_required": "You must agree to the terms and conditions"
+        },
+        "success": {
+            "contact_submitted": "Thank you! Your message has been sent successfully.",
+            "adoption_submitted": "Your adoption application has been submitted successfully!",
+            "profile_updated": "Your profile has been updated successfully.",
+            "settings_saved": "Settings saved successfully."
+        },
+        "error": {
+            "submit_failed": "Failed to submit form. Please try again.",
+            "network_error": "Network error. Please check your connection."
+        }
     },
     "common": {
         "loading": "Loading...",

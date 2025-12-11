@@ -40,15 +40,15 @@ const DEMO_USERS = {
 };
 
 // ------------------ Bootstrapping on DOM ready ------------------
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log('Auth system loading...');
     initializeAuth();      // seed demo users if needed, check session
     updateNavigation();    // show login/register or user controls in nav
-    
+
     // Page-aware initialization (profile/admin redirects & setup)
     const currentPage = getCurrentPageType();
     const currentUser = getCurrentUser();
-    
+
     if (currentPage === 'profile' && currentUser) {
         if (currentUser.role === 'admin') {
             // Admins don't have a regular profile page; send to admin dashboard
@@ -82,25 +82,25 @@ function getCurrentPageType() {
 // ------------------ Minimal admin dashboard init (auth-side) ------------------
 function initializeAdminDashboard() {
     console.log('Initializing admin dashboard...');
-    
+
     // If a tab UI exists, set it up
     initializeTabs();
-    
+
     // Compute and show admin stats (placeholder numbers)
     loadAdminStats();
-    
+
     // Greet the admin
-    showAlert('Welcome to Admin Dashboard!', 'success');
+    showAlert(window.i18n.t('auth.login_success'), 'success');
 }
 
 // ------------------ Compute & display admin stats (auth-side) ------------------
 function loadAdminStats() {
     console.log('Loading admin statistics...');
-    
+
     // Read persisted data
     const applications = JSON.parse(localStorage.getItem(APPLICATIONS_KEY) || '[]');
     const users = JSON.parse(localStorage.getItem(USERS_KEY) || '{}');
-    
+
     // Basic counters; demo accounts (2) are excluded from totalUsers
     const stats = {
         totalApplications: applications.length,
@@ -108,9 +108,9 @@ function loadAdminStats() {
         approvedApplications: applications.filter(app => app.status === 'approved').length,
         totalUsers: Math.max(0, Object.keys(users).length - 2) // Exclude demo accounts
     };
-    
+
     console.log('Admin stats:', stats);
-    
+
     // Push numbers into any matching DOM counters if present
     updateStatDisplay('total-applications', stats.totalApplications);
     updateStatDisplay('pending-applications', stats.pendingApplications);
@@ -130,21 +130,21 @@ function updateStatDisplay(elementId, value) {
 function initializeTabs() {
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabPanels = document.querySelectorAll('.tab-panel');
-    
+
     console.log('Initializing tabs:', tabButtons.length, 'buttons found');
-    
+
     tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const targetTab = this.dataset.tab;
             console.log('Switching to tab:', targetTab);
-            
+
             // Deactivate all buttons & panels
             tabButtons.forEach(btn => btn.classList.remove('active'));
             tabPanels.forEach(panel => panel.classList.remove('active'));
-            
+
             // Activate clicked button
             this.classList.add('active');
-            
+
             // Show the corresponding panel by id
             const targetPanel = document.getElementById(targetTab);
             if (targetPanel) {
@@ -165,9 +165,9 @@ function initializeProfilePage() {
         window.location.href = 'login.html';
         return;
     }
-    
+
     console.log('Loading profile for:', currentUser.email);
-    
+
     // Fill header and form with user data
     loadUserProfile(currentUser);
     // Load & render user's adoption applications
@@ -177,12 +177,12 @@ function initializeProfilePage() {
 // ------------------ Fill profile header & form fields ------------------
 function loadUserProfile(user) {
     console.log('Loading profile data for:', user.firstName);
-    
+
     // Profile header (avatar initials, name, email)
     const profileAvatar = document.querySelector('.profile-avatar');
     const profileName = document.querySelector('.profile-info h1');
     const profileEmail = document.querySelector('.profile-info p');
-    
+
     if (profileAvatar) {
         profileAvatar.textContent = user.firstName[0].toUpperCase() + user.lastName[0].toUpperCase();
     }
@@ -192,7 +192,7 @@ function loadUserProfile(user) {
     if (profileEmail) {
         profileEmail.textContent = user.email;
     }
-    
+
     // Editable profile form fields
     const form = document.getElementById('profile-form');
     if (form) {
@@ -201,13 +201,13 @@ function loadUserProfile(user) {
         const emailInput = form.querySelector('#email');
         const phoneInput = form.querySelector('#phone');
         const addressInput = form.querySelector('#address');
-        
+
         if (firstNameInput) firstNameInput.value = user.firstName || '';
         if (lastNameInput) lastNameInput.value = user.lastName || '';
         if (emailInput) emailInput.value = user.email || '';
         if (phoneInput) phoneInput.value = user.phone || '';
         if (addressInput) addressInput.value = user.address || '';
-        
+
         console.log('Profile form filled with user data');
     }
 }
@@ -216,17 +216,20 @@ function loadUserProfile(user) {
 function loadUserApplications(user) {
     const applications = JSON.parse(localStorage.getItem(APPLICATIONS_KEY) || '[]');
     const userApplications = applications.filter(app => app.userId === user.id);
-    
+
     const container = document.getElementById('user-applications');
     if (!container) return;
-    
+
     console.log('Loading applications:', userApplications.length, 'found');
-    
+
     if (userApplications.length === 0) {
-        container.innerHTML = '<p class="no-data">You haven\'t submitted any adoption applications yet. <a href="pets.html">Browse our available pets</a> to get started!</p>';
+        const message = (window.i18n && window.i18n.t)
+            ? window.i18n.t('profile.no_applications')
+            : 'You haven\'t submitted any adoption applications yet. <a href="pets.html">Browse our available pets</a> to get started!';
+        container.innerHTML = `<p class="no-data">${message}</p>`;
         return;
     }
-    
+
     // Create compact cards for each application
     container.innerHTML = userApplications.map(app => `
         <div class="application-card">
@@ -277,7 +280,7 @@ function initializeAuth() {
         localStorage.setItem(USERS_KEY, JSON.stringify(DEMO_USERS));
         console.log('Demo users initialized');
     }
-    
+
     // Log current session state (if any)
     const currentUser = getCurrentUser();
     if (currentUser) {
@@ -291,17 +294,17 @@ function initializeAuth() {
 function getCurrentUser() {
     const sessionData = localStorage.getItem(CURRENT_USER_KEY);
     if (!sessionData) return null;
-    
+
     try {
         const user = JSON.parse(sessionData);
-        
+
         // Session expiry: 24h if "remember me", else 2h
         const maxAge = user.remember ? 24 * 60 * 60 * 1000 : 2 * 60 * 60 * 1000;
         if (Date.now() - user.sessionStart > maxAge) {
             logout();
             return null;
         }
-        
+
         return user;
     } catch (error) {
         console.error('Error parsing user session:', error);
@@ -318,14 +321,14 @@ function updateNavigation() {
         console.error('Nav menu not found');
         return;
     }
-    
+
     // Remove any previously added auth-related links to avoid duplicates
     const existingAuthLinks = navMenu.querySelectorAll('.auth-nav-link');
     existingAuthLinks.forEach(link => link.remove());
-    
+
     if (currentUser) {
         console.log('Adding user navigation for:', currentUser.firstName);
-        
+
         if (currentUser.role === 'admin') {
             // Admin sees a gear icon + link to admin dashboard
             const adminLink = document.createElement('li');
@@ -337,19 +340,19 @@ function updateNavigation() {
             profileLink.innerHTML = `<a href="profile.html" class="nav-link auth-nav-link">👤 ${currentUser.firstName}</a>`;
             navMenu.appendChild(profileLink);
         }
-        
+
         // Logout link (always available when logged in)
         const logoutLink = document.createElement('li');
         logoutLink.innerHTML = `<a href="#" class="nav-link auth-nav-link" onclick="logout()">Logout</a>`;
         navMenu.appendChild(logoutLink);
     } else {
         console.log('Adding guest navigation');
-        
+
         // Show Login/Sign Up when no session is present
         const loginLink = document.createElement('li');
         loginLink.innerHTML = `<a href="login.html" class="nav-link auth-nav-link">Login</a>`;
         navMenu.appendChild(loginLink);
-        
+
         const registerLink = document.createElement('li');
         registerLink.innerHTML = `<a href="register.html" class="nav-link auth-nav-link btn-adopt">Sign Up</a>`;
         navMenu.appendChild(registerLink);
@@ -361,14 +364,17 @@ function loginDemo(userType) {
     // Pick a demo user by their role
     const demoUser = Object.values(DEMO_USERS).find(user => user.role === userType);
     if (!demoUser) return;
-    
+
     // Create session (not "remember me" for demo)
     storeUserSession(demoUser, false);
-    
-    // Feedback + nav refresh
-    showAlert('Welcome, ' + demoUser.firstName + '!', 'success');
+
+    // Feedback + nav refresh (use i18n if available, otherwise fallback)
+    const message = (window.i18n && window.i18n.t)
+        ? window.i18n.t('auth.demo_login', { role: demoUser.role })
+        : `Logged in as demo ${demoUser.role}`;
+    showAlert(message, 'success');
     updateNavigation();
-    
+
     // Route to the right dashboard/profile
     setTimeout(() => {
         if (demoUser.role === 'admin') {
@@ -385,7 +391,7 @@ function quickAdminAccess() {
     if (currentUser && currentUser.role === 'admin') {
         window.location.href = 'admin.html';
     } else {
-        showAlert('Access denied. Admin privileges required.', 'error');
+        showAlert(window.i18n.t('auth.login_error'), 'error');
     }
 }
 
@@ -397,7 +403,7 @@ function storeUserSession(user, remember) {
         remember: remember
     };
     delete sessionData.password; // Never keep the password in the session object
-    
+
     localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(sessionData));
 }
 
@@ -405,8 +411,8 @@ function storeUserSession(user, remember) {
 function logout() {
     localStorage.removeItem(CURRENT_USER_KEY);
     updateNavigation();
-    showAlert('You have been logged out', 'info');
-    
+    showAlert(window.i18n.t('auth.logout_success'), 'info');
+
     // Redirect to homepage unless we're already there
     if (!window.location.pathname.endsWith('index.html') && !window.location.pathname.endsWith('/')) {
         setTimeout(() => {
@@ -418,10 +424,10 @@ function logout() {
 // ------------------ Lightweight alert/toast system ------------------
 function showAlert(message, type = 'info') {
     console.log('Alert:', type, message);
-    
+
     // Remove any existing alerts to prevent stacking
     document.querySelectorAll('.alert').forEach(alert => alert.remove());
-    
+
     const alertDiv = document.createElement('div');
     alertDiv.className = `alert alert-${type}`;
     alertDiv.style.cssText = `
@@ -436,9 +442,9 @@ function showAlert(message, type = 'info') {
         max-width: 300px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     `;
-    
+
     // Color coding per type
-    switch(type) {
+    switch (type) {
         case 'success':
             alertDiv.style.backgroundColor = '#28a745';
             break;
@@ -452,10 +458,10 @@ function showAlert(message, type = 'info') {
         default:
             alertDiv.style.backgroundColor = '#17a2b8';
     }
-    
+
     alertDiv.textContent = message;
     document.body.appendChild(alertDiv);
-    
+
     // Fade out and remove after 3 seconds
     setTimeout(() => {
         if (alertDiv.parentNode) {

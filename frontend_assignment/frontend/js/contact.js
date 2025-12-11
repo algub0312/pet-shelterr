@@ -1,10 +1,10 @@
 //Contact form handling
 
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
     const contactForm = document.getElementById('contact-form');
 
-    if(contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
             //Get form data
@@ -17,19 +17,19 @@ document.addEventListener('DOMContentLoaded', function(){
             const preferredContact = formData.get('preferredContact')
 
             //Simple validation
-            if(!fullName || !email || !subject || !message || !phone) {
-                alert('Please fill in all the required fields.');
+            if (!fullName || !email || !subject || !message || !phone) {
+                alert(window.i18n.t('forms.validation.required'));
                 return;
             }
             //Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if(!emailRegex.test(email)) {
-                alert('Please enter a valid email adress.');
+            if (!emailRegex.test(email)) {
+                alert(window.i18n.t('forms.validation.email_invalid'));
                 return;
             }
             //later send data to server
             //for now show succes message
-            alert('Thank you for your message we will get to you soon.')
+            alert(window.i18n.t('forms.success.contact_submitted'))
 
             //Reset form
             contactForm.reset();

@@ -63,14 +63,15 @@
                         <form id="contact-form" class="auth-form">
                             <!--Name field-->
                             <div class="form-row">
-                                <label for="contactFullName" class="form-label required">Full Name</label>
+                                <label for="contactFullName" class="form-label required"
+                                    data-i18n="contact.full_name">Full Name</label>
                                 <input type="text" id="contactFullName" name="fullName" class="form-input" required>
                             </div>
                             <!--Contact info-->
                             <div class="form-row">
                                 <div class="form-row">
-                                    <label for="contactFullName" class="form-label required"
-                                        data-i18n="contact.full_name">Full Name</label>
+                                    <label for="contactEmail" class="form-label required"
+                                        data-i18n="contact.email">Email</label>
                                     <input type="email" id="contactEmail" name="email" class="form-input" required>
                                 </div>
                                 <div class="form-row">
@@ -81,7 +82,7 @@
 
                                 <!--Subject-->
                                 <div class="form-group">
-                                    <label for="contactEmail" class="form-label required"
+                                    <label for="contactSubject" class="form-label required"
                                         data-i18n="contact.subject">Subject</label>
                                     <input type="text" id="contactSubject" name="subject" class="form-input" required>
                                 </div>

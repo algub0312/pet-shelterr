@@ -59,7 +59,7 @@
                     <a href="pets.html" data-i18n="pets.available_pets">Available Pets</a>
                     <span class="breadcrumb-separator">→</span>
                     <!-- Pet name will be inserted here dynamically -->
-                    <span id="breadcrumb-pet-name">Pet Details</span>
+                    <span id="breadcrumb-pet-name" data-i18n="pet_detail.page_title">Pet Details</span>
                 </nav>
             </div>
         </section>
@@ -101,8 +101,8 @@
 
                         <!-- Basic pet information -->
                         <div class="pet-basic-info">
-                            <h1 id="pet-name" class="pet-title">Pet Name</h1>
-                            <p id="pet-breed" class="pet-breed-info">Breed</p>
+                            <h1 id="pet-name" class="pet-title" data-i18n="pet_detail.pet_name">Pet Name</h1>
+                            <p id="pet-breed" class="pet-breed-info" data-i18n="pet_detail.breed">Breed</p>
 
                             <!-- Key details grid -->
                             <div class="pet-details-grid">
@@ -152,7 +152,7 @@
                     <div class="pet-details-sections">
                         <!-- Description section -->
                         <section class="detail-section">
-                            <h2>About <span id="about-pet-name">This Pet</span></h2>
+                            <h2 data-i18n="pet_detail.about">About <span id="about-pet-name" data-i18n="pet_detail.pet_name">This Pet</span></h2>
                             <div id="pet-description" class="pet-description">
                                 <!-- Description content will be populated by JavaScript -->
                             </div>
@@ -197,7 +197,7 @@
 
                         <!-- Adoption information section -->
                         <section class="detail-section">
-                            <h2>Adoption Information</h2>
+                            <h2 data-i18n="pet_detail.adoption_info">Adoption Information</h2>
                             <div class="adoption-info">
                                 <div class="adoption-details">
                                     <div class="adoption-item">
@@ -212,13 +212,13 @@
 
                                 <!-- What's included in adoption fee -->
                                 <div class="adoption-includes">
-                                    <h4>What's Included:</h4>
+                                    <h4 data-i18n="pet_detail.whats_included">What's Included:</h4>
                                     <ul>
-                                        <li>✓ Full veterinary examination</li>
-                                        <li>✓ Current vaccinations</li>
-                                        <li>✓ Spay/neuter surgery</li>
-                                        <li>✓ Microchip with registration</li>
-                                        <li>✓ 30 days of pet health insurance</li>
+                                        <li data-i18n="pet_detail.included_exam">✓ Full veterinary examination</li>
+                                        <li data-i18n="pet_detail.included_vaccinations">✓ Current vaccinations</li>
+                                        <li data-i18n="pet_detail.included_spay">✓ Spay/neuter surgery</li>
+                                        <li data-i18n="pet_detail.included_microchip">✓ Microchip with registration</li>
+                                        <li data-i18n="pet_detail.included_insurance">✓ 30 days of pet health insurance</li>
                                     </ul>
                                 </div>
                             </div>
@@ -234,7 +234,7 @@
                                     <div class="contact-method">
                                         <span class="contact-icon">📞</span>
                                         <div>
-                                            <h4>Call Us</h4>
+                                            <h4 data-i18n="contact.call_us">Call Us</h4>
                                             <p>(555) 123-PETS</p>
                                         </div>
                                     </div>
@@ -248,8 +248,8 @@
                                     <div class="contact-method">
                                         <span class="contact-icon">🕒</span>
                                         <div>
-                                            <h4>Visit Us</h4>
-                                            <p>Mon-Fri: 10am-6pm<br>Sat: 9am-5pm<br>Sun: 12pm-4pm</p>
+                                            <h4 data-i18n="contact.visit_us">Visit Us</h4>
+                                            <p data-i18n="contact.hours">Mon-Fri: 10am-6pm<br>Sat: 9am-5pm<br>Sun: 12pm-4pm</p>
                                         </div>
                                     </div>
                                 </div>
@@ -263,7 +263,7 @@
         <!-- Related/similar pets section -->
         <section class="similar-pets-section" style="display: none;" id="similar-pets-section">
             <div class="container">
-                <h2>Similar Pets You Might Like</h2>
+                <h2 data-i18n="pet_detail.similar_pets">Similar Pets You Might Like</h2>
                 <div id="similar-pets-grid" class="pets-grid">
                     <!-- Similar pets will be populated by JavaScript -->
                 </div>
