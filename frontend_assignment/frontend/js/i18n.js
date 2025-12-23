@@ -54,6 +54,7 @@ class I18n {
 
         // Dispatch custom event for other scripts to react to language change
         document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
+        return true;
     }
 
     getCurrentLanguage() {
@@ -135,8 +136,8 @@ const i18n = new I18n();
 window.i18n = i18n;
 
 // Language switcher click handler
-function switchLanguage(lang) {
-    i18n.setLanguage(lang);
+async function switchLanguage(lang) {
+    await i18n.setLanguage(lang);
 }
 window.switchLanguage = switchLanguage;
 
