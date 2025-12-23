@@ -1,76 +1,83 @@
+let isTransitioning = false;
+
 const circle = document.createElement('div');
 document.body.appendChild(circle);
 
-// Set up alternating colors
 const colors = ['#4ede6dff', '#42a1e5ff'];
 let colorIndex = 0;
 
-// Style the circle
 Object.assign(circle.style, {
-    position: 'absolute',
+    position: 'fixed',
     borderRadius: '50%',
     width: '0px',
     height: '0px',
-    top: '0px',
     left: '0px',
+    top: '0px',
     transform: 'translate(-50%, -50%)',
     transition: 'width 0.6s ease, height 0.6s ease',
-    zIndex: '9999',
+    zIndex: '99999',
     pointerEvents: 'none',
 });
 
-// Function to handle button click
-function handleTransition(e) {
+function startTransition(e, link) {
+    if (isTransitioning) return;
+
+    // allow new tab / modifiers
+    if (
+        e.ctrlKey ||
+        e.metaKey ||
+        e.shiftKey ||
+        e.altKey ||
+        e.button !== 0
+    ) return;
+
+    const target = link.getAttribute('href');
+    if (!target || target.startsWith('#')) return;
+
+    // ❌ Skip logout (security + UX)
+    if (link.classList.contains('logout-link')) return;
+
     e.preventDefault();
+    isTransitioning = true;
 
-    const target = e.currentTarget.dataset.target || e.currentTarget.href;
-
-    // Set circle color and toggle for next click
     circle.style.backgroundColor = colors[colorIndex];
     colorIndex = 1 - colorIndex;
 
-    const rect = e.currentTarget.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
+    const rect = link.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
 
-    // Position the circle
-    circle.style.left = `${centerX}px`;
-    circle.style.top = `${centerY}px`;
+    circle.style.left = `${x}px`;
+    circle.style.top = `${y}px`;
 
-    // Calculate max radius to cover viewport
-    const maxRadius = Math.sqrt(window.innerWidth ** 2 + window.innerHeight ** 2);
+    const maxRadius = Math.hypot(window.innerWidth, window.innerHeight);
 
-    // Start expansion
-    circle.style.width = `${maxRadius * 2}px`;
-    circle.style.height = `${maxRadius * 2}px`;
+    requestAnimationFrame(() => {
+        circle.style.width = `${maxRadius * 2}px`;
+        circle.style.height = `${maxRadius * 2}px`;
+    });
 
-    // Wait for the circle to fully expand before navigating
-    circle.addEventListener('transitionend', () => {
+    setTimeout(() => {
         window.location.href = target;
-    }, { once: true });
+    }, 620); // MUST exceed CSS transition time
 }
 
-// Attach to all page-transition-btn links
-document.querySelectorAll('.page-transition-btn').forEach(btn => {
-    btn.addEventListener('click', handleTransition);
+/* ✅ Attach ONLY to navbar links */
+document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', (e) => startTransition(e, link));
 });
 
-// Reset circle on page load or when navigating back (bfcache)
+/* Reset on load / back */
 function resetCircle() {
-    circle.style.transition = 'none'; // temporarily remove transition
+    isTransitioning = false;
+    circle.style.transition = 'none';
     circle.style.width = '0px';
     circle.style.height = '0px';
-    // Force reflow to apply immediately
-    circle.offsetHeight; 
+    circle.offsetHeight;
     circle.style.transition = 'width 0.6s ease, height 0.6s ease';
 }
 
-// Reset on normal page load
 window.addEventListener('load', resetCircle);
-
-// Reset on back/forward cache restore
-window.addEventListener('pageshow', (event) => {
-    if (event.persisted) {
-        resetCircle();
-    }
+window.addEventListener('pageshow', e => {
+    if (e.persisted) resetCircle();
 });

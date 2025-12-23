@@ -72,10 +72,10 @@
                                         {% endif %}
                                         <li><a href="{% url 'logout' %}" class="nav-link logout-link">Logout ({{ user.username }})</a></li>
                                     {% else %}
-                                        <li><a href="{% url 'site_login' %}" class="nav-link {% if request.resolver_match.url_name == 'site_login' %}active{% endif %}">Login</a></li>
-                                        <li><a href="{% url 'register' %}" class="nav-link {% if request.resolver_match.url_name == 'register' %}active{% endif %}">Register</a></li>
+                                        <li><a href="{% url 'site_login' %}" class="nav-link {% if request.resolver_match.url_name == 'site_login' %}active{% endif %} page-transition-btn">Login</a></li>
+                                        <li><a href="{% url 'register' %}" class="nav-link {% if request.resolver_match.url_name == 'register' %}active{% endif %} page-transition-btn ">Register</a></li>
                                     {% endif %}
-                                    <li><a href="{% url 'adoption_gate' %}" class="nav-link btn-adopt">Adopt Now</a></li>               
+                                    <li><a href="{% url 'adoption_gate' %}" class="nav-link btn-adopt page-transition-btn">Adopt Now</a></li>               
                 </ul>
             </div>
         </nav>
@@ -142,7 +142,6 @@
     <script src="{% static 'shelter/js/main.js' %}"></script>
     <script src="{% static 'shelter/js/nav-animation.js' %}"></script>
     <script src="{% static 'shelter/js/hero-section.js' %}"></script>
-    <script src="{% static 'shelter/js/hero-animation.js' %}"></script>
     <script src="{% static 'shelter/js/hero-typewriter.js' %}"></script>
     <script src="{% static 'shelter/js/about-cards.js' %}"></script>
     <script src="{% static 'shelter/js/adoption-cards.js' %}"></script>

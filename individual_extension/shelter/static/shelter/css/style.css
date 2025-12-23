@@ -217,13 +217,13 @@ white-space: nowrap;
 .hero-section {
     color: var(--white);
     padding: var(--spacing-3xl) 0;
-    background-size: 200% 100%; /* for sliding effect */
+    background-size: cover;
     background-repeat: no-repeat;
 }
 .hero {
     color: var(--white);
     padding: var(--spacing-3xl) 0;
-    background-size: 200% 100%; /* for sliding effect */
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
