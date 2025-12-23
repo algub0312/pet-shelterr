@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Set character encoding -->
     <meta charset="UTF-8">
@@ -14,6 +15,7 @@
     <!-- Auth/forms related stylesheet -->
     <link rel="stylesheet" href="css/auth.css">
 </head>
+
 <body>
     <!-- ================= HEADER WITH NAVIGATION ================= -->
     <header class="main-header">
@@ -24,7 +26,7 @@
                     <img src="images/icons/logo.png" alt="PawHaven Logo">
                     <span class="logo-text">PawHaven</span>
                 </div>
-                
+
                 <!-- Primary navigation links -->
                 <ul class="nav-menu">
                     <li><a href="index.html" class="nav-link">Home</a></li>
@@ -44,7 +46,8 @@
             <div class="container">
                 <div class="hero-content">
                     <h1>Adoption Application</h1>
-                    <p>Take the first step towards giving a loving home to one of our wonderful pets. Complete this application to begin the adoption process.</p>
+                    <p>Take the first step towards giving a loving home to one of our wonderful pets. Complete this
+                        application to begin the adoption process.</p>
                 </div>
             </div>
         </section>
@@ -85,7 +88,7 @@
                             <!-- ============ STEP 1: PET SELECTION ============ -->
                             <div class="form-step active" id="step-1">
                                 <h3>Step 1: Pet Selection</h3>
-                                
+
                                 <!-- Shown after a pet is selected -->
                                 <div class="selected-pet" id="selected-pet-display" style="display: none;">
                                     <div class="pet-card">
@@ -96,7 +99,8 @@
                                             <h4 id="selected-pet-name"></h4>
                                             <p id="selected-pet-details"></p>
                                             <!-- Lets user change their choice -->
-                                            <button type="button" class="btn btn-outline btn-small" onclick="changePetSelection()">Change Selection</button>
+                                            <button type="button" class="btn btn-outline btn-small"
+                                                onclick="changePetSelection()">Change Selection</button>
                                         </div>
                                     </div>
                                 </div>
@@ -107,29 +111,37 @@
                                     <select id="petSelect" name="petId" class="form-select" required>
                                         <option value="">Choose a pet to adopt</option>
                                     </select>
-                                    <p class="form-help">Don't see the pet you want? <a href="pets.html">Browse all available pets</a></p>
+                                    <p class="form-help">Don't see the pet you want? <a href="pets.html">Browse all
+                                            available pets</a></p>
                                 </div>
 
                                 <!-- Motivation textarea -->
                                 <div class="form-group">
-                                    <label for="adoptionReason" class="form-label required">Why do you want to adopt this pet?</label>
-                                    <textarea id="adoptionReason" name="adoptionReason" class="form-textarea" rows="4" required placeholder="Tell us what drew you to this particular pet..."></textarea>
+                                    <label for="adoptionReason" class="form-label required">Why do you want to adopt
+                                        this pet?</label>
+                                    <textarea id="adoptionReason" name="adoptionReason" class="form-textarea" rows="4"
+                                        required
+                                        placeholder="Tell us what drew you to this particular pet..."></textarea>
                                 </div>
                             </div>
 
                             <!-- ============ STEP 2: PERSONAL INFORMATION ============ -->
                             <div class="form-step" id="step-2">
                                 <h3>Step 2: Personal Information</h3>
-                                
+
                                 <!-- Name fields -->
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="applicantFirstName" class="form-label required">First Name</label>
-                                        <input type="text" id="applicantFirstName" name="firstName" class="form-input" required>
+                                        <input type="text" id="applicantFirstName" name="firstName"
+                                            class="form-input validate-name" pattern="[a-zA-Z\s\-']+" minlength="2"
+                                            maxlength="50" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="applicantLastName" class="form-label required">Last Name</label>
-                                        <input type="text" id="applicantLastName" name="lastName" class="form-input" required>
+                                        <input type="text" id="applicantLastName" name="lastName"
+                                            class="form-input validate-name" pattern="[a-zA-Z\s\-']+" minlength="2"
+                                            maxlength="50" required>
                                     </div>
                                 </div>
 
@@ -137,24 +149,29 @@
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="applicantEmail" class="form-label required">Email Address</label>
-                                        <input type="email" id="applicantEmail" name="email" class="form-input" required>
+                                        <input type="email" id="applicantEmail" name="email" class="form-input"
+                                            pattern="[^\s@]+@[^\s@]+\.[^\s@]+" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="applicantPhone" class="form-label required">Phone Number</label>
-                                        <input type="tel" id="applicantPhone" name="phone" class="form-input" required>
+                                        <input type="tel" id="applicantPhone" name="phone" class="form-input"
+                                            pattern="[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{1,9}"
+                                            minlength="7" required>
                                     </div>
                                 </div>
 
                                 <!-- Address -->
                                 <div class="form-group">
                                     <label for="applicantAddress" class="form-label required">Home Address</label>
-                                    <textarea id="applicantAddress" name="address" class="form-textarea" rows="3" required></textarea>
+                                    <textarea id="applicantAddress" name="address" class="form-textarea" rows="3"
+                                        minlength="10" maxlength="500" required></textarea>
                                 </div>
 
                                 <!-- Age range -->
                                 <div class="form-group">
                                     <label for="applicantAge" class="form-label required">Age</label>
-                                    <select id="applicantAge" name="age" class="form-select" required>
+                                    <select id="applicantAge" name="age" class="form-select" required
+                                        aria-describedby="applicantAge-help">
                                         <option value="">Select your age range</option>
                                         <option value="18-25">18-25</option>
                                         <option value="26-35">26-35</option>
@@ -163,13 +180,15 @@
                                         <option value="56-65">56-65</option>
                                         <option value="65+">65+</option>
                                     </select>
+                                    <small id="applicantAge-help" class="form-help">You must be 18 or older to
+                                        adopt</small>
                                 </div>
                             </div>
 
                             <!-- ============ STEP 3: HOUSING & EXPERIENCE ============ -->
                             <div class="form-step" id="step-3">
                                 <h3>Step 3: Housing & Pet Experience</h3>
-                                
+
                                 <!-- Housing type -->
                                 <div class="form-group">
                                     <label for="housingType" class="form-label required">Housing Type</label>
@@ -185,7 +204,8 @@
 
                                 <!-- Own vs rent -->
                                 <div class="form-group">
-                                    <label for="ownRent" class="form-label required">Do you own or rent your home?</label>
+                                    <label for="ownRent" class="form-label required">Do you own or rent your
+                                        home?</label>
                                     <select id="ownRent" name="ownRent" class="form-select" required>
                                         <option value="">Select option</option>
                                         <option value="own">Own</option>
@@ -195,33 +215,39 @@
 
                                 <!-- Household size -->
                                 <div class="form-group">
-                                    <label for="householdMembers" class="form-label required">How many people live in your household?</label>
-                                    <input type="number" id="householdMembers" name="householdMembers" class="form-input" min="1" required>
+                                    <label for="householdMembers" class="form-label required">How many people live in
+                                        your household?</label>
+                                    <input type="number" id="householdMembers" name="householdMembers"
+                                        class="form-input" min="1" required>
                                 </div>
 
                                 <!-- Past pet experience -->
                                 <div class="form-group">
-                                    <label for="petExperience" class="form-label required">Previous Pet Experience</label>
-                                    <textarea id="petExperience" name="petExperience" class="form-textarea" rows="4" required placeholder="Tell us about your experience with pets..."></textarea>
+                                    <label for="petExperience" class="form-label required">Previous Pet
+                                        Experience</label>
+                                    <textarea id="petExperience" name="petExperience" class="form-textarea" rows="4"
+                                        required placeholder="Tell us about your experience with pets..."></textarea>
                                 </div>
 
                                 <!-- Current pets -->
                                 <div class="form-group">
                                     <label for="currentPets" class="form-label">Current Pets</label>
-                                    <textarea id="currentPets" name="currentPets" class="form-textarea" rows="3" placeholder="Describe any pets you currently have (type, age, spayed/neutered status)"></textarea>
+                                    <textarea id="currentPets" name="currentPets" class="form-textarea" rows="3"
+                                        placeholder="Describe any pets you currently have (type, age, spayed/neutered status)"></textarea>
                                 </div>
 
                                 <!-- Vet info -->
                                 <div class="form-group">
                                     <label for="veterinarian" class="form-label">Veterinarian Information</label>
-                                    <input type="text" id="veterinarian" name="veterinarian" class="form-input" placeholder="Vet name and phone number (if applicable)">
+                                    <input type="text" id="veterinarian" name="veterinarian" class="form-input"
+                                        placeholder="Vet name and phone number (if applicable)">
                                 </div>
                             </div>
 
                             <!-- ============ STEP 4: REVIEW & SUBMIT ============ -->
                             <div class="form-step" id="step-4">
                                 <h3>Step 4: Review & Submit</h3>
-                                
+
                                 <!-- Summary preview (filled by JS before submit) -->
                                 <div class="application-summary">
                                     <h4>Application Summary</h4>
@@ -250,18 +276,23 @@
                                 <!-- Optional comments -->
                                 <div class="form-group">
                                     <label for="additionalComments" class="form-label">Additional Comments</label>
-                                    <textarea id="additionalComments" name="additionalComments" class="form-textarea" rows="3" placeholder="Any additional information you'd like us to know..."></textarea>
+                                    <textarea id="additionalComments" name="additionalComments" class="form-textarea"
+                                        rows="3"
+                                        placeholder="Any additional information you'd like us to know..."></textarea>
                                 </div>
                             </div>
 
                             <!-- ===== Form navigation buttons (controlled by JS) ===== -->
                             <div class="form-navigation">
                                 <!-- Previous hidden on first step -->
-                                <button type="button" id="prev-btn" class="btn btn-outline" onclick="previousStep()" style="display: none;">Previous</button>
+                                <button type="button" id="prev-btn" class="btn btn-outline" onclick="previousStep()"
+                                    style="display: none;">Previous</button>
                                 <!-- Next visible until last step -->
-                                <button type="button" id="next-btn" class="btn btn-primary" onclick="nextStep()">Next</button>
+                                <button type="button" id="next-btn" class="btn btn-primary"
+                                    onclick="nextStep()">Next</button>
                                 <!-- Submit shown only on final step -->
-                                <button type="submit" id="submit-btn" class="btn btn-primary btn-large" style="display: none;">Submit Application</button>
+                                <button type="submit" id="submit-btn" class="btn btn-primary btn-large"
+                                    style="display: none;">Submit Application</button>
                             </div>
                         </form>
                     </div>
@@ -297,6 +328,8 @@
     </footer>
 
     <!-- ================= SCRIPTS ================= -->
+    <!-- Validation utilities -->
+    <script src="js/validation.js"></script>
     <!-- Site-wide interactions -->
     <script src="js/main.js"></script>
     <!-- Auth/session helpers if needed -->
@@ -304,4 +337,5 @@
     <!-- Page-specific logic for the adoption application (step handling, validation, review summary, submission) -->
     <script src="js/adoption.js"></script>
 </body>
+
 </html>

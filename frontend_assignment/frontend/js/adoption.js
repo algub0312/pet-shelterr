@@ -9,10 +9,10 @@ const totalSteps = 4;
 let selectedPet = null;
 
 // Initialize adoption form when the page is ready
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Only run this script on pages that actually have the adoption form
     if (!document.getElementById('adoption-form')) return;
-    
+
     initializeAdoptionForm();
 });
 
@@ -26,23 +26,26 @@ function initializeAdoptionForm() {
         }, 2000);
         return;
     }
-    
+
     // Auto-fill form fields with the user's profile data
     prefillUserInfo(currentUser);
-    
+
     // Populate the pet dropdown with available pets
     loadAvailablePets();
-    
+
     // If the page was opened with a specific petId in the URL, preselect that pet
     const urlParams = new URLSearchParams(window.location.search);
     const petId = urlParams.get('petId');
     if (petId) {
         preselectPet(parseInt(petId));
     }
-    
+
     // Wire up change/submit handlers, etc.
     setupFormEventListeners();
-    
+
+    // Setup real-time validation for form fields
+    setupAdoptionFormValidation();
+
     // Show the correct step and update stepper UI
     updateStepDisplay();
 }
@@ -54,7 +57,7 @@ function prefillUserInfo(user) {
     const emailInput = document.getElementById('applicantEmail');
     const phoneInput = document.getElementById('applicantPhone');
     const addressInput = document.getElementById('applicantAddress');
-    
+
     if (firstNameInput) firstNameInput.value = user.firstName || '';
     if (lastNameInput) lastNameInput.value = user.lastName || '';
     if (emailInput) emailInput.value = user.email || '';
@@ -67,7 +70,7 @@ async function loadAvailablePets() {
         // Prefer cached pets in localStorage; otherwise fetch from JSON and cache
         let petsData = localStorage.getItem('pets_data');
         let pets = [];
-        
+
         if (petsData) {
             const data = JSON.parse(petsData);
             pets = data.pets || [];
@@ -80,15 +83,15 @@ async function loadAvailablePets() {
                 localStorage.setItem('pets_data', JSON.stringify(data));
             }
         }
-        
+
         // Only show pets that are currently available
         const availablePets = pets.filter(pet => pet.status === 'available');
-        
+
         // Populate the <select> with available pets
         const petSelect = document.getElementById('petSelect');
         if (petSelect) {
             petSelect.innerHTML = '<option value="">Choose a pet to adopt</option>';
-            
+
             availablePets.forEach(pet => {
                 const option = document.createElement('option');
                 option.value = pet.id;
@@ -98,7 +101,7 @@ async function loadAvailablePets() {
                 petSelect.appendChild(option);
             });
         }
-        
+
     } catch (error) {
         console.error('Error loading pets:', error);
         showAlert('Error loading available pets. Please refresh the page.', 'error');
@@ -120,19 +123,19 @@ function setupFormEventListeners() {
     if (petSelect) {
         petSelect.addEventListener('change', handlePetSelection);
     }
-    
+
     // Form submit handler
     const adoptionForm = document.getElementById('adoption-form');
     if (adoptionForm) {
         adoptionForm.addEventListener('submit', handleFormSubmission);
     }
-    
+
     // Optional reaction to housing type changes (placeholder)
     const housingTypeSelect = document.getElementById('housingType');
     if (housingTypeSelect) {
         housingTypeSelect.addEventListener('change', handleHousingTypeChange);
     }
-    
+
     // Optional reaction to own/rent changes (placeholder)
     const ownRentSelect = document.getElementById('ownRent');
     if (ownRentSelect) {
@@ -144,7 +147,7 @@ function handlePetSelection() {
     // Read the selected option and parse the embedded pet data
     const petSelect = document.getElementById('petSelect');
     const selectedOption = petSelect.options[petSelect.selectedIndex];
-    
+
     if (selectedOption.value && selectedOption.dataset.petData) {
         selectedPet = JSON.parse(selectedOption.dataset.petData);
         displaySelectedPet(selectedPet);
@@ -161,13 +164,13 @@ function displaySelectedPet(pet) {
     const petImage = document.getElementById('selected-pet-image');
     const petName = document.getElementById('selected-pet-name');
     const petDetails = document.getElementById('selected-pet-details');
-    
+
     if (selectedPetDisplay && petSelectionGroup) {
         petImage.src = pet.images[0] || 'images/pets/placeholder.jpg';
         petImage.alt = `${pet.name} - ${pet.breed}`;
         petName.textContent = pet.name;
         petDetails.textContent = `${pet.breed} • ${pet.age} • ${pet.size}`;
-        
+
         selectedPetDisplay.style.display = 'block';
         petSelectionGroup.style.display = 'none';
     }
@@ -177,7 +180,7 @@ function hideSelectedPet() {
     // Revert to showing the dropdown if the user clears the selection
     const selectedPetDisplay = document.getElementById('selected-pet-display');
     const petSelectionGroup = document.getElementById('pet-selection-group');
-    
+
     if (selectedPetDisplay && petSelectionGroup) {
         selectedPetDisplay.style.display = 'none';
         petSelectionGroup.style.display = 'block';
@@ -211,7 +214,7 @@ function nextStep() {
         if (currentStep < totalSteps) {
             currentStep++;
             updateStepDisplay();
-            
+
             // If we just entered the final step, build the review summary
             if (currentStep === totalSteps) {
                 generateApplicationReview();
@@ -238,7 +241,7 @@ function updateStepDisplay() {
             step.classList.remove('active');
         }
     });
-    
+
     // 2) Show only the current step's form section
     const formSteps = document.querySelectorAll('.form-step');
     formSteps.forEach((step, index) => {
@@ -250,29 +253,66 @@ function updateStepDisplay() {
             step.style.display = 'none';
         }
     });
-    
+
     // 3) Toggle navigation buttons appropriately
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const submitBtn = document.getElementById('submit-btn');
-    
+
     if (prevBtn) {
         prevBtn.style.display = currentStep > 1 ? 'inline-block' : 'none';
     }
-    
+
     if (nextBtn) {
         nextBtn.style.display = currentStep < totalSteps ? 'inline-block' : 'none';
     }
-    
+
     if (submitBtn) {
         submitBtn.style.display = currentStep === totalSteps ? 'inline-block' : 'none';
     }
-    
+
     // 4) Scroll the card into view so users see the new step
-    document.querySelector('.auth-card').scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start' 
+    document.querySelector('.auth-card').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
     });
+}
+
+/**
+ * Setup real-time validation for adoption form fields
+ */
+function setupAdoptionFormValidation() {
+    // Step 2: Personal Information
+    const firstNameField = document.getElementById('applicantFirstName');
+    if (firstNameField) setupNameValidation(firstNameField);
+
+    const lastNameField = document.getElementById('applicantLastName');
+    if (lastNameField) setupNameValidation(lastNameField);
+
+    const emailField = document.getElementById('applicantEmail');
+    if (emailField) setupEmailValidation(emailField);
+
+    const phoneField = document.getElementById('applicantPhone');
+    if (phoneField) setupPhoneValidation(phoneField);
+
+    const addressField = document.getElementById('applicantAddress');
+    if (addressField) {
+        attachRealtimeValidation(addressField, (value) => {
+            return validateRequired(value) && validateMinLength(value, 10);
+        }, 'Address must be at least 10 characters');
+    }
+
+    // Age validation (must be 18+)
+    const ageField = document.getElementById('applicantAge');
+    if (ageField) {
+        ageField.addEventListener('change', function () {
+            if (ageField.value && !validateAge(ageField.value)) {
+                showFieldError(ageField, 'You must be 18 or older to adopt');
+            } else if (ageField.value) {
+                showFieldSuccess(ageField);
+            }
+        });
+    }
 }
 
 function validateCurrentStep() {
@@ -280,30 +320,24 @@ function validateCurrentStep() {
     const currentStepElement = document.getElementById(`step-${currentStep}`);
     const requiredFields = currentStepElement.querySelectorAll('[required]');
     let isValid = true;
-    
+
     // Clear previous errors on this step
     currentStepElement.querySelectorAll('.form-error.active').forEach(error => {
         error.classList.remove('active');
     });
-    currentStepElement.querySelectorAll('.form-input.error').forEach(input => {
+    currentStepElement.querySelectorAll('.form-input.error, .form-textarea.error, .form-select.error').forEach(input => {
         input.classList.remove('error');
     });
-    
-    // Generic validation for required/email/phone fields
+
+    // Generic validation for required fields
     requiredFields.forEach(field => {
         if (!field.value.trim()) {
             showFieldError(field, 'This field is required');
             isValid = false;
-        } else if (field.type === 'email' && !validateEmail(field.value)) {
-            showFieldError(field, 'Please enter a valid email address');
-            isValid = false;
-        } else if (field.type === 'tel' && !validatePhone(field.value)) {
-            showFieldError(field, 'Please enter a valid phone number');
-            isValid = false;
         }
     });
-    
-    // Step-specific rules
+
+    // Step-specific validation rules
     switch (currentStep) {
         case 1:
             // Step 1 must have a selected pet
@@ -312,9 +346,74 @@ function validateCurrentStep() {
                 isValid = false;
             }
             break;
-        case 3:
-            // Placeholder: extra housing validations could go here
+
+        case 2:
+            // Step 2: Personal Information - validate names, email, phone, age
+            const firstName = document.getElementById('applicantFirstName');
+            if (firstName && firstName.value) {
+                if (!validateName(firstName.value)) {
+                    showFieldError(firstName, 'Name must contain only letters, spaces, hyphens, and apostrophes');
+                    isValid = false;
+                } else {
+                    showFieldSuccess(firstName);
+                }
+            }
+
+            const lastName = document.getElementById('applicantLastName');
+            if (lastName && lastName.value) {
+                if (!validateName(lastName.value)) {
+                    showFieldError(lastName, 'Name must contain only letters, spaces, hyphens, and apostrophes');
+                    isValid = false;
+                } else {
+                    showFieldSuccess(lastName);
+                }
+            }
+
+            const email = document.getElementById('applicantEmail');
+            if (email && email.value) {
+                if (!validateEmail(email.value)) {
+                    showFieldError(email, 'Please enter a valid email address');
+                    isValid = false;
+                } else {
+                    showFieldSuccess(email);
+                }
+            }
+
+            const phone = document.getElementById('applicantPhone');
+            if (phone && phone.value) {
+                if (!validatePhone(phone.value)) {
+                    showFieldError(phone, 'Please enter a valid phone number');
+                    isValid = false;
+                } else {
+                    showFieldSuccess(phone);
+                }
+            }
+
+            const address = document.getElementById('applicantAddress');
+            if (address && address.value) {
+                if (!validateMinLength(address.value, 10)) {
+                    showFieldError(address, 'Address must be at least 10 characters');
+                    isValid = false;
+                } else {
+                    showFieldSuccess(address);
+                }
+            }
+
+            const age = document.getElementById('applicantAge');
+            if (age && age.value) {
+                if (!validateAge(age.value)) {
+                    showFieldError(age, 'You must be 18 or older to adopt');
+                    isValid = false;
+                } else {
+                    showFieldSuccess(age);
+                }
+            }
             break;
+
+        case 3:
+            // Step 3: Housing & Experience - basic required field validation
+            break;
+
         case 4:
             // Final step requires agreeing to all required checkboxes
             const checkboxes = currentStepElement.querySelectorAll('input[type="checkbox"][required]');
@@ -326,7 +425,7 @@ function validateCurrentStep() {
             });
             break;
     }
-    
+
     return isValid;
 }
 
@@ -334,9 +433,9 @@ function generateApplicationReview() {
     // Build a read-only summary of all collected answers for confirmation
     const reviewContainer = document.getElementById('application-review');
     if (!reviewContainer) return;
-    
+
     const formData = new FormData(document.getElementById('adoption-form'));
-    
+
     const reviewHTML = `
         <div class="review-section">
             <h5>Selected Pet</h5>
@@ -369,36 +468,36 @@ function generateApplicationReview() {
             <p>${formData.get('adoptionReason')}</p>
         </div>
     `;
-    
+
     reviewContainer.innerHTML = reviewHTML;
 }
 
 async function handleFormSubmission(e) {
     // Intercept default submission to perform validation and local persistence
     e.preventDefault();
-    
+
     if (!validateCurrentStep()) {
         return;
     }
-    
+
     const currentUser = getCurrentUser();
     if (!currentUser) {
         showAlert('Please log in to submit your application', 'error');
         return;
     }
-    
+
     // Show a small loading state on the submit button
     const submitButton = document.getElementById('submit-btn');
     const originalText = submitButton.textContent;
     submitButton.textContent = 'Submitting...';
     submitButton.disabled = true;
-    
+
     try {
         // Simulate a network request latency
         await new Promise(resolve => setTimeout(resolve, 2000));
-        
+
         const formData = new FormData(e.target);
-        
+
         // Construct an application record from form fields + selected pet + user
         const application = {
             id: Date.now(),
@@ -427,22 +526,22 @@ async function handleFormSubmission(e) {
             submittedAt: new Date().toISOString(),
             updatedAt: new Date().toISOString()
         };
-        
+
         // Persist the application to localStorage (mock backend)
         const applications = JSON.parse(localStorage.getItem('pawhaven_applications') || '[]');
         applications.push(application);
         localStorage.setItem('pawhaven_applications', JSON.stringify(applications));
-        
+
         // If the pet was available, mark it as pending (to prevent conflicting apps)
         updatePetStatusToPending(selectedPet.id);
-        
+
         showAlert('Application submitted successfully! You can track its status in your profile.', 'success');
-        
+
         // Send the user to their profile to see application status
         setTimeout(() => {
             window.location.href = 'profile.html';
         }, 3000);
-        
+
     } catch (error) {
         console.error('Error submitting application:', error);
         showAlert('Failed to submit application. Please try again.', 'error');
@@ -488,14 +587,14 @@ function showFieldError(field, message) {
     // Mark an input as invalid and show an inline error message
     field.classList.add('error');
     field.classList.remove('valid');
-    
+
     let errorElement = field.parentNode.querySelector('.form-error');
     if (!errorElement) {
         errorElement = document.createElement('div');
         errorElement.className = 'form-error';
         field.parentNode.appendChild(errorElement);
     }
-    
+
     errorElement.textContent = message;
     errorElement.classList.add('active');
 }

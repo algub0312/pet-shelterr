@@ -1542,3 +1542,110 @@
         justify-content: center;
     }
 }
+
+/* ==================== INPUT VALIDATION STYLES ==================== */
+
+/* Error state for form inputs */
+.form-input.error,
+.form-textarea.error,
+.form-select.error {
+    border-color: var(--danger) !important;
+    background-color: rgba(220, 53, 69, 0.05);
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+/* Maintain error state on focus */
+.form-input.error:focus,
+.form-textarea.error:focus,
+.form-select.error:focus {
+    border-color: var(--danger) !important;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2);
+    outline: none;
+}
+
+/* Success/valid state for form inputs */
+.form-input.valid,
+.form-textarea.valid,
+.form-select.valid {
+    border-color: var(--success) !important;
+    background-color: rgba(40, 167, 69, 0.05);
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+}
+
+/* Maintain success state on focus */
+.form-input.valid:focus,
+.form-textarea.valid:focus,
+.form-select.valid:focus {
+    border-color: var(--success) !important;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+    outline: none;
+}
+
+/* Error message styling */
+.form-error {
+    color: var(--danger);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-xs);
+    display: none;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* Show error when active */
+.form-error.active {
+    display: block;
+    animation: fadeInError 0.3s ease-in-out;
+}
+
+/* Error icon */
+.form-error::before {
+    content: '⚠ ';
+    font-size: var(--font-size-base);
+    margin-right: var(--spacing-xs);
+}
+
+/* Visual indicator for valid inputs (checkmark) */
+.form-input.valid,
+.form-textarea.valid {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%2328A745' d='M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px 16px;
+    padding-right: 40px;
+}
+
+/* Visual indicator for error inputs (X) */
+.form-input.error,
+.form-textarea.error {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23DC3545' d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px 16px;
+    padding-right: 40px;
+}
+
+/* Don't show icons in textareas */
+.form-textarea.valid,
+.form-textarea.error {
+    background-image: none;
+    padding-right: var(--spacing-lg);
+}
+
+/* Animations */
+@keyframes fadeInError {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Accessibility: Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .form-error.active {
+        animation: none;
+    }
+}

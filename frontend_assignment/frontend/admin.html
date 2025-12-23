@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Set character encoding -->
     <meta charset="UTF-8">
@@ -14,6 +15,7 @@
     <!-- Authentication-related styles (login/register) -->
     <link rel="stylesheet" href="css/auth.css">
 </head>
+
 <body>
     <!-- ======================= HEADER + NAV ======================= -->
     <header class="main-header">
@@ -24,7 +26,7 @@
                     <img src="images/icons/logo.png" alt="PawHaven Logo">
                     <span class="logo-text">PawHaven</span>
                 </div>
-                
+
                 <!-- Main navigation links -->
                 <ul class="nav-menu">
                     <li><a href="index.html" class="nav-link">Home</a></li>
@@ -133,8 +135,10 @@
                                     <h4>Quick Actions</h4>
                                     <div class="action-buttons">
                                         <button class="btn btn-primary" onclick="addNewPet()">Add New Pet</button>
-                                        <button class="btn btn-secondary" onclick="reviewApplications()">Review Applications</button>
-                                        <button class="btn btn-outline" onclick="generateReport()">Generate Report</button>
+                                        <button class="btn btn-secondary" onclick="reviewApplications()">Review
+                                            Applications</button>
+                                        <button class="btn btn-outline" onclick="generateReport()">Generate
+                                            Report</button>
                                     </div>
                                 </div>
                             </div>
@@ -197,25 +201,29 @@
                                         <h4>Adoption Report</h4>
                                         <p>Monthly adoption statistics and trends</p>
                                         <!-- Calls generateReport('adoption') -->
-                                        <button class="btn btn-outline" onclick="generateReport('adoption')">Generate Report</button>
+                                        <button class="btn btn-outline" onclick="generateReport('adoption')">Generate
+                                            Report</button>
                                     </div>
                                     <div class="report-card">
                                         <h4>Application Analytics</h4>
                                         <p>Application approval rates and processing times</p>
                                         <!-- Calls generateReport('applications') -->
-                                        <button class="btn btn-outline" onclick="generateReport('applications')">View Analytics</button>
+                                        <button class="btn btn-outline" onclick="generateReport('applications')">View
+                                            Analytics</button>
                                     </div>
                                     <div class="report-card">
                                         <h4>Pet Inventory</h4>
                                         <p>Current pet status and availability report</p>
                                         <!-- Calls generateReport('inventory') -->
-                                        <button class="btn btn-outline" onclick="generateReport('inventory')">Export Data</button>
+                                        <button class="btn btn-outline" onclick="generateReport('inventory')">Export
+                                            Data</button>
                                     </div>
                                     <div class="report-card">
                                         <h4>User Activity</h4>
                                         <p>User registration and engagement metrics</p>
                                         <!-- Calls generateReport('users') -->
-                                        <button class="btn btn-outline" onclick="generateReport('users')">View Metrics</button>
+                                        <button class="btn btn-outline" onclick="generateReport('users')">View
+                                            Metrics</button>
                                     </div>
                                 </div>
                             </div>
@@ -253,6 +261,8 @@
     </footer>
 
     <!-- ======================= SCRIPTS ======================= -->
+    <!-- Validation utilities -->
+    <script src="js/validation.js"></script>
     <!-- Main site JS (general interactions) -->
     <script src="js/main.js"></script>
     <!-- Auth-related JS (login/logout/session) -->
@@ -260,4 +270,5 @@
     <!-- Admin dashboard JS (tab switching, data loading, actions) -->
     <script src="js/admin.js"></script>
 </body>
+
 </html>
