@@ -25,7 +25,7 @@
             <div class="nav-container">
                 <!-- Brand / Logo -->
                 <div class="nav-logo">
-                    <img src="images/icons/logo.png" alt="PawHaven Logo">
+                    <img src="images/icons/logo2.png" alt="PawHaven Logo">
                     <span class="logo-text">PawHaven</span>
                 </div>
 
@@ -38,9 +38,10 @@
                     <li><a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a></li>
                     <!-- Language Switcher -->
                     <li class="lang-switcher">
-                        <button class="lang-btn active" data-lang="en" onclick="switchLanguage('en')"
-                            title="English">EN</button>
-                        <button class="lang-btn" data-lang="da" onclick="switchLanguage('da')" title="Dansk">DA</button>
+                        <button class="lang-btn active notranslate" translate="no" data-lang="en"
+                            onclick="switchLanguage('en')" title="English">EN</button>
+                        <button class="lang-btn notranslate" translate="no" data-lang="da"
+                            onclick="switchLanguage('da')" title="Dansk">DA</button>
                     </li>
                 </ul>
             </div>
@@ -123,7 +124,8 @@
                                         <div class="activity-icon">🐕</div>
                                         <div class="activity-content">
                                             <h4 data-i18n="admin.new_pet_added">New Pet Added</h4>
-                                            <p data-i18n="admin.new_pet_added_desc">Bella (Golden Retriever) was added to available pets</p>
+                                            <p data-i18n="admin.new_pet_added_desc">Bella (Golden Retriever) was added
+                                                to available pets</p>
                                             <small data-i18n="admin.hours_ago">2 hours ago</small>
                                         </div>
                                     </div>
@@ -131,7 +133,8 @@
                                         <div class="activity-icon">📋</div>
                                         <div class="activity-content">
                                             <h4 data-i18n="admin.application_submitted">Application Submitted</h4>
-                                            <p data-i18n="admin.application_submitted_desc">John Doe applied to adopt Max</p>
+                                            <p data-i18n="admin.application_submitted_desc">John Doe applied to adopt
+                                                Max</p>
                                             <small data-i18n="admin.hours_ago_4">4 hours ago</small>
                                         </div>
                                     </div>
@@ -139,7 +142,8 @@
                                         <div class="activity-icon">✅</div>
                                         <div class="activity-content">
                                             <h4 data-i18n="admin.adoption_approved">Adoption Approved</h4>
-                                            <p data-i18n="admin.adoption_approved_desc">Sarah Johnson's application for Luna was approved</p>
+                                            <p data-i18n="admin.adoption_approved_desc">Sarah Johnson's application for
+                                                Luna was approved</p>
                                             <small data-i18n="admin.day_ago">1 day ago</small>
                                         </div>
                                     </div>
@@ -149,10 +153,13 @@
                                 <div class="quick-actions">
                                     <h4 data-i18n="admin.quick_actions">Quick Actions</h4>
                                     <div class="action-buttons">
-                                        <button class="btn btn-primary" onclick="addNewPet()" data-i18n="admin.add_new_pet">Add New Pet</button>
-                                        <button class="btn btn-secondary" onclick="reviewApplications()" data-i18n="admin.review_applications">Review
+                                        <button class="btn btn-primary" onclick="addNewPet()"
+                                            data-i18n="admin.add_new_pet">Add New Pet</button>
+                                        <button class="btn btn-secondary" onclick="reviewApplications()"
+                                            data-i18n="admin.review_applications">Review
                                             Applications</button>
-                                        <button class="btn btn-outline" onclick="generateReport()" data-i18n="admin.generate_report">Generate
+                                        <button class="btn btn-outline" onclick="generateReport()"
+                                            data-i18n="admin.generate_report">Generate
                                             Report</button>
                                     </div>
                                 </div>
@@ -165,7 +172,8 @@
                                 <div class="management-header">
                                     <h3 data-i18n="admin.pets_management">Pets Management</h3>
                                     <!-- Shortcut to add a new pet -->
-                                    <button class="btn btn-primary" onclick="addNewPet()" data-i18n="admin.add_new_pet">Add New Pet</button>
+                                    <button class="btn btn-primary" onclick="addNewPet()"
+                                        data-i18n="admin.add_new_pet">Add New Pet</button>
                                 </div>
 
                                 <!-- Dynamic pets list container (populated via JS) -->
@@ -180,12 +188,14 @@
                         <div id="applications-management" class="tab-panel">
                             <div class="tab-content">
                                 <h3 data-i18n="admin.adoption_applications">Adoption Applications</h3>
-                                <p data-i18n="admin.review_manage_apps">Review and manage adoption applications from potential adopters.</p>
+                                <p data-i18n="admin.review_manage_apps">Review and manage adoption applications from
+                                    potential adopters.</p>
 
                                 <!-- Dynamic applications list container (populated via JS) -->
                                 <div id="admin-applications-list">
                                     <!-- Placeholder while loading applications -->
-                                    <div class="loading-message" data-i18n="admin.loading_applications">Loading applications...</div>
+                                    <div class="loading-message" data-i18n="admin.loading_applications">Loading
+                                        applications...</div>
                                 </div>
                             </div>
                         </div>
@@ -208,36 +218,45 @@
                         <div id="reports" class="tab-panel">
                             <div class="tab-content">
                                 <h3 data-i18n="admin.reports_analytics">Reports & Analytics</h3>
-                                <p data-i18n="admin.view_stats_reports">View shelter statistics and generate reports.</p>
+                                <p data-i18n="admin.view_stats_reports">View shelter statistics and generate reports.
+                                </p>
 
                                 <!-- Grid of report types with action buttons -->
                                 <div class="reports-grid">
                                     <div class="report-card">
                                         <h4 data-i18n="admin.adoption_report">Adoption Report</h4>
-                                        <p data-i18n="admin.adoption_report_desc">Monthly adoption statistics and trends</p>
+                                        <p data-i18n="admin.adoption_report_desc">Monthly adoption statistics and trends
+                                        </p>
                                         <!-- Calls generateReport('adoption') -->
-                                        <button class="btn btn-outline" onclick="generateReport('adoption')" data-i18n="admin.generate_report">Generate
+                                        <button class="btn btn-outline" onclick="generateReport('adoption')"
+                                            data-i18n="admin.generate_report">Generate
                                             Report</button>
                                     </div>
                                     <div class="report-card">
                                         <h4 data-i18n="admin.application_analytics">Application Analytics</h4>
-                                        <p data-i18n="admin.app_analytics_desc">Application approval rates and processing times</p>
+                                        <p data-i18n="admin.app_analytics_desc">Application approval rates and
+                                            processing times</p>
                                         <!-- Calls generateReport('applications') -->
-                                        <button class="btn btn-outline" onclick="generateReport('applications')" data-i18n="admin.view_analytics">View
+                                        <button class="btn btn-outline" onclick="generateReport('applications')"
+                                            data-i18n="admin.view_analytics">View
                                             Analytics</button>
                                     </div>
                                     <div class="report-card">
                                         <h4 data-i18n="admin.pet_inventory">Pet Inventory</h4>
-                                        <p data-i18n="admin.pet_inventory_desc">Current pet status and availability report</p>
+                                        <p data-i18n="admin.pet_inventory_desc">Current pet status and availability
+                                            report</p>
                                         <!-- Calls generateReport('inventory') -->
-                                        <button class="btn btn-outline" onclick="generateReport('inventory')" data-i18n="admin.export_data">Export
+                                        <button class="btn btn-outline" onclick="generateReport('inventory')"
+                                            data-i18n="admin.export_data">Export
                                             Data</button>
                                     </div>
                                     <div class="report-card">
                                         <h4 data-i18n="admin.user_activity">User Activity</h4>
-                                        <p data-i18n="admin.user_activity_desc">User registration and engagement metrics</p>
+                                        <p data-i18n="admin.user_activity_desc">User registration and engagement metrics
+                                        </p>
                                         <!-- Calls generateReport('users') -->
-                                        <button class="btn btn-outline" onclick="generateReport('users')" data-i18n="admin.view_metrics">View
+                                        <button class="btn btn-outline" onclick="generateReport('users')"
+                                            data-i18n="admin.view_metrics">View
                                             Metrics</button>
                                     </div>
                                 </div>
