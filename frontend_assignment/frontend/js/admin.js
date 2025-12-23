@@ -2,12 +2,12 @@
 // js/admin.js
 
 // Initialize admin dashboard once the DOM is fully parsed
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     // Run this script only on the admin page to avoid errors on other pages
     if (!window.location.pathname.includes('admin.html')) return;
-
+    
     console.log('Initializing admin dashboard...');
-
+    
     // Wait for i18n to be ready before initializing admin dashboard
     if (window.i18n && window.i18n.translations && window.i18n.translations[window.i18n.currentLanguage]) {
         // i18n is already loaded
@@ -20,14 +20,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 initializeAdminDashboardContent();
             }
         }, 100);
-
+        
         // Timeout after 5 seconds
         setTimeout(() => {
             clearInterval(checkI18n);
             initializeAdminDashboardContent();
         }, 5000);
     }
-
+    
     // Get the currently logged-in user (function expected from auth.js or similar)
     const currentUser = getCurrentUser();
     // Guard: redirect non-admins away from the page
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Listen for language changes and reload content
-    document.addEventListener('languageChanged', function () {
+    document.addEventListener('languageChanged', function() {
         console.log('Language changed, reloading admin content...');
         loadPetsList();
         loadApplicationsList();
@@ -50,16 +50,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function initializeAdminDashboardContent() {
     console.log('Loading admin dashboard...');
-
+    
     // Set up tab switching (shared helper, likely defined in auth.js)
     initializeTabs();
-
+    
     // Populate all admin areas
     loadAdminStats();
     loadPetsList();
     loadApplicationsList();
     loadUsersList();
-
+    
     // Friendly toast after a short delay
     setTimeout(() => {
         const msg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.welcome_admin') : 'Welcome to Admin Dashboard!';
@@ -71,12 +71,12 @@ function initializeAdminDashboardContent() {
 
 function loadAdminStats() {
     console.log('Loading admin statistics...');
-
+    
     try {
         // Pull applications and users from localStorage
         const applications = JSON.parse(localStorage.getItem('pawhaven_applications') || '[]');
         const users = JSON.parse(localStorage.getItem('pawhaven_users') || '{}');
-
+        
         // Try to load pets from localStorage; fall back to defaults if not present
         let pets = [];
         try {
@@ -89,17 +89,17 @@ function loadAdminStats() {
             console.log('Using default pet data');
             // Fallback sample statuses to keep the dashboard functional
             pets = [
-                { id: 1, status: 'available' },
-                { id: 2, status: 'available' },
-                { id: 3, status: 'available' },
-                { id: 4, status: 'pending' },
-                { id: 5, status: 'adopted' },
-                { id: 6, status: 'available' },
-                { id: 7, status: 'available' },
-                { id: 8, status: 'medical_hold' }
+                {id: 1, status: 'available'},
+                {id: 2, status: 'available'},
+                {id: 3, status: 'available'},
+                {id: 4, status: 'pending'},
+                {id: 5, status: 'adopted'},
+                {id: 6, status: 'available'},
+                {id: 7, status: 'available'},
+                {id: 8, status: 'medical_hold'}
             ];
         }
-
+        
         // Compute metrics for the stat cards
         const stats = {
             totalPets: pets.length,
@@ -108,15 +108,15 @@ function loadAdminStats() {
             // Subtract demo accounts (assumes 2 demo entries with ids <= 2)
             totalUsers: Math.max(0, Object.keys(users).length - 2)
         };
-
+        
         console.log('Admin stats calculated:', stats);
-
+        
         // Animate counters to their target values
         updateStatCounter('total-pets', stats.totalPets);
         updateStatCounter('available-pets', stats.availablePets);
         updateStatCounter('pending-applications', stats.pendingApplications);
         updateStatCounter('total-users', stats.totalUsers);
-
+        
     } catch (error) {
         console.error('Error loading admin stats:', error);
     }
@@ -126,18 +126,18 @@ function loadAdminStats() {
 function updateStatCounter(elementId, targetValue) {
     const element = document.getElementById(elementId);
     if (!element) return;
-
+    
     const currentValue = parseInt(element.textContent) || 0;
     const increment = targetValue > currentValue ? 1 : -1;
     const duration = 1000; // animation total duration in ms
     const stepTime = duration / Math.abs(targetValue - currentValue);
-
+    
     let current = currentValue;
-
+    
     const timer = setInterval(() => {
         current += increment;
         element.textContent = current;
-
+        
         // Stop when we reach or pass the target depending on direction
         if ((increment > 0 && current >= targetValue) || (increment < 0 && current <= targetValue)) {
             element.textContent = targetValue;
@@ -150,46 +150,35 @@ function updateStatCounter(elementId, targetValue) {
 
 function loadPetsList() {
     console.log('Loading pets list...');
-
+    
     const container = document.getElementById('admin-pets-list');
     if (!container) return;
-
+    
     try {
         // Attempt to pull persisted pets; otherwise, use sample data
         let pets = [];
         const petsData = localStorage.getItem('pets_data');
-
+        
         if (petsData) {
             const data = JSON.parse(petsData);
             pets = data.pets || [];
         } else {
             pets = getSamplePetsData();
         }
-
+        
         // Empty state
         if (pets.length === 0) {
             const msg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.no_pets_found') : 'No pets found in the system.';
             container.innerHTML = `<p class="no-data">${msg}</p>`;
             return;
         }
-
+        
         // Render each pet as a compact admin list item with actions
         const petsHTML = pets.map(pet => {
-            const t = (key) => (window.i18n && window.i18n.t) ? window.i18n.t(key) : null;
-
-            const breed = pet.breed || (t('admin.mixed_breed') || 'Mixed Breed');
-            let age = pet.age || (t('admin.unknown_age') || 'Unknown age');
-
-            // Translate age if possible
-            if (t('pets.years') && age.match(/(\d+)\s*years?/i)) {
-                age = age.replace(/(\d+)\s*years?/i, (match, num) => {
-                    return `${num} ${t('pets.years')}`;
-                });
-            }
-
-            const editTxt = t('admin.edit') || 'Edit';
-            const statusTxt = t('admin.status') || 'Status';
-
+            const breed = pet.breed || ((window.i18n && window.i18n.t) ? window.i18n.t('admin.mixed_breed') : 'Mixed Breed');
+            const age = pet.age || ((window.i18n && window.i18n.t) ? window.i18n.t('admin.unknown_age') : 'Unknown age');
+            const editTxt = (window.i18n && window.i18n.t) ? window.i18n.t('admin.edit') : 'Edit';
+            const statusTxt = (window.i18n && window.i18n.t) ? window.i18n.t('admin.status') : 'Status';
             return `
             <div class="admin-pet-item" style="display: flex; align-items: center; padding: 1rem; margin-bottom: 1rem; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                 <img src="${pet.images ? pet.images[0] : 'images/pets/placeholder.jpg'}" alt="${pet.name}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin-right: 1rem;">
@@ -207,10 +196,10 @@ function loadPetsList() {
             </div>
         `;
         }).join('');
-
+        
         container.innerHTML = petsHTML;
         console.log('Pets list loaded successfully');
-
+        
     } catch (error) {
         console.error('Error loading pets list:', error);
         const msg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.error_loading_pets') : 'Error loading pets data.';
@@ -222,21 +211,21 @@ function loadPetsList() {
 
 function loadApplicationsList() {
     console.log('Loading applications list...');
-
+    
     const container = document.getElementById('admin-applications-list');
     if (!container) return;
-
+    
     try {
         // Retrieve all submitted applications
         const applications = JSON.parse(localStorage.getItem('pawhaven_applications') || '[]');
-
+        
         // Empty state
         if (applications.length === 0) {
             const msg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.no_applications_yet') : 'No adoption applications submitted yet.';
             container.innerHTML = `<p class="no-data">${msg}</p>`;
             return;
         }
-
+        
         // Render each application with status and action controls
         const applicationsHTML = applications.map(app => {
             const appliedTxt = (window.i18n && window.i18n.t) ? window.i18n.t('admin.applied') : 'Applied:';
@@ -270,10 +259,10 @@ function loadApplicationsList() {
             </div>
         `;
         }).join('');
-
+        
         container.innerHTML = applicationsHTML;
         console.log('Applications list loaded successfully');
-
+        
     } catch (error) {
         console.error('Error loading applications list:', error);
         const msg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.error_loading_applications') : 'Error loading applications data.';
@@ -285,23 +274,23 @@ function loadApplicationsList() {
 
 function loadUsersList() {
     console.log('Loading users list...');
-
+    
     const container = document.getElementById('admin-users-list');
     if (!container) return;
-
+    
     try {
         // Get user dictionary keyed by id
         const users = JSON.parse(localStorage.getItem('pawhaven_users') || '{}');
         // Filter out demo accounts (ids <= 2)
         const usersList = Object.values(users).filter(user => user.id > 2);
-
+        
         // Empty state
         if (usersList.length === 0) {
             const msg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.no_users_found') : 'No registered users found.';
             container.innerHTML = `<p class="no-data">${msg}</p>`;
             return;
         }
-
+        
         // Render each user with role badge and admin action
         const usersHTML = usersList.map(user => {
             const joinedTxt = (window.i18n && window.i18n.t) ? window.i18n.t('admin.joined') : 'Joined:';
@@ -329,10 +318,10 @@ function loadUsersList() {
             </div>
         `;
         }).join('');
-
+        
         container.innerHTML = usersHTML;
         console.log('Users list loaded successfully');
-
+        
     } catch (error) {
         console.error('Error loading users list:', error);
         const msg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.error_loading_users') : 'Error loading users data.';
@@ -350,7 +339,7 @@ function addNewPet() {
 
 function editPet(petId) {
     // Placeholder for future edit-pet modal/form
-    const msg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.edit_pet_dev', { id: petId }) : `Edit Pet ${petId} feature is under development!`;
+    const msg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.edit_pet_dev', {id: petId}) : `Edit Pet ${petId} feature is under development!`;
     showAlert(msg, 'info');
 }
 
@@ -359,7 +348,7 @@ function changePetStatus(petId) {
     const promptMsg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.enter_pet_status') : 'Enter new status (available, pending, adopted, medical_hold):';
     const newStatus = prompt(promptMsg);
     if (newStatus && ['available', 'pending', 'adopted', 'medical_hold'].includes(newStatus)) {
-        const msg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.pet_status_changed', { id: petId, status: newStatus }) : `Pet ${petId} status changed to ${newStatus}!`;
+        const msg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.pet_status_changed', {id: petId, status: newStatus}) : `Pet ${petId} status changed to ${newStatus}!`;
         showAlert(msg, 'success');
         // Refresh lists and stats so UI reflects the change
         setTimeout(() => {
@@ -374,15 +363,15 @@ function updateApplicationStatus(appId, newStatus) {
         // Locate the application by id and mutate its status
         const applications = JSON.parse(localStorage.getItem('pawhaven_applications') || '[]');
         const appIndex = applications.findIndex(app => app.id === appId);
-
+        
         if (appIndex !== -1) {
             applications[appIndex].status = newStatus;
             applications[appIndex].updatedAt = new Date().toISOString();
             localStorage.setItem('pawhaven_applications', JSON.stringify(applications));
-
-            const msg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.status_updated', { status: newStatus }) : `Application status updated to ${newStatus}!`;
+            
+            const msg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.status_updated', {status: newStatus}) : `Application status updated to ${newStatus}!`;
             showAlert(msg, 'success');
-
+            
             // Refresh dependent UI and stats
             setTimeout(() => {
                 loadApplicationsList();
@@ -400,7 +389,7 @@ function viewApplicationDetails(appId) {
     // Basic detail viewer via alert (can be replaced with a modal)
     const applications = JSON.parse(localStorage.getItem('pawhaven_applications') || '[]');
     const app = applications.find(app => app.id === appId);
-
+    
     if (app) {
         const petColon = (window.i18n && window.i18n.t) ? window.i18n.t('admin.pet_colon') : 'Pet:';
         const applicantColon = (window.i18n && window.i18n.t) ? window.i18n.t('admin.applicant_colon') : 'Applicant:';
@@ -410,7 +399,7 @@ function viewApplicationDetails(appId) {
         const housingColon = (window.i18n && window.i18n.t) ? window.i18n.t('admin.housing_colon') : 'Housing:';
         const experienceColon = (window.i18n && window.i18n.t) ? window.i18n.t('admin.experience_colon') : 'Experience:';
         const notSpecified = (window.i18n && window.i18n.t) ? window.i18n.t('admin.not_specified') : 'Not specified';
-
+        
         const details = `
 ${petColon} ${app.petName}
 ${applicantColon} ${app.applicantName}
@@ -428,7 +417,7 @@ function viewUserDetails(userId) {
     // Displays basic user info via alert (can be replaced with a modal)
     const users = JSON.parse(localStorage.getItem('pawhaven_users') || '{}');
     const user = users[userId];
-
+    
     if (user) {
         const nameColon = (window.i18n && window.i18n.t) ? window.i18n.t('admin.pet_colon') : 'Name:';
         const emailColon = (window.i18n && window.i18n.t) ? window.i18n.t('admin.email_colon') : 'Email:';
@@ -437,7 +426,7 @@ function viewUserDetails(userId) {
         const joinedTxt = (window.i18n && window.i18n.t) ? window.i18n.t('admin.joined') : 'Joined:';
         const addressColon = (window.i18n && window.i18n.t) ? window.i18n.t('admin.address_colon') : 'Address:';
         const notProvided = (window.i18n && window.i18n.t) ? window.i18n.t('admin.not_provided') : 'Not provided';
-
+        
         const details = `
 ${nameColon} ${user.firstName} ${user.lastName}
 ${emailColon} ${user.email}
@@ -454,16 +443,16 @@ function makeAdmin(userId) {
     // Promote a user to admin role after confirmation
     const users = JSON.parse(localStorage.getItem('pawhaven_users') || '{}');
     const user = users[userId];
-
+    
     if (user) {
-        const confirmMsg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.confirm_make_admin', { name: `${user.firstName} ${user.lastName}` }) : `Make ${user.firstName} ${user.lastName} an admin?`;
+        const confirmMsg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.confirm_make_admin', {name: `${user.firstName} ${user.lastName}`}) : `Make ${user.firstName} ${user.lastName} an admin?`;
         if (confirm(confirmMsg)) {
             user.role = 'admin';
             localStorage.setItem('pawhaven_users', JSON.stringify(users));
-
-            const msg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.now_admin', { name: `${user.firstName}` }) : `${user.firstName} is now an admin!`;
+            
+            const msg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.now_admin', {name: `${user.firstName}`}) : `${user.firstName} is now an admin!`;
             showAlert(msg, 'success');
-
+            
             // Refresh users list to reflect role change
             setTimeout(() => {
                 loadUsersList();
@@ -482,9 +471,9 @@ function reviewApplications() {
 
 function generateReport(reportType = 'general') {
     // Simple text report generator; triggers a file download (.txt)
-    const generatingMsg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.generating_report', { type: reportType }) : `Generating ${reportType} report...`;
+    const generatingMsg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.generating_report', {type: reportType}) : `Generating ${reportType} report...`;
     showAlert(generatingMsg, 'info');
-
+    
     setTimeout(() => {
         const reportTxt = (window.i18n && window.i18n.t) ? window.i18n.t('admin.generate_report') : 'Report';
         const statsSummary = (window.i18n && window.i18n.t) ? window.i18n.t('admin.statistics_summary') : 'STATISTICS SUMMARY:';
@@ -493,7 +482,7 @@ function generateReport(reportType = 'general') {
         const pendingApps = (window.i18n && window.i18n.t) ? window.i18n.t('admin.pending_applications') : '- Pending Applications:';
         const registeredUsers = (window.i18n && window.i18n.t) ? window.i18n.t('admin.registered_users') : '- Registered Users:';
         const reportGen = (window.i18n && window.i18n.t) ? window.i18n.t('admin.report_generated') : 'Report generated on:';
-
+        
         const reportContent = `
 PawHaven Shelter ${reportTxt} - ${new Date().toLocaleDateString()}
 
@@ -505,7 +494,7 @@ ${registeredUsers} ${document.getElementById('total-users').textContent}
 
 ${reportGen} ${new Date().toLocaleString()}
         `;
-
+        
         // Create a blob, generate an object URL, and auto-click an <a> to download
         const blob = new Blob([reportContent], { type: 'text/plain' });
         const url = URL.createObjectURL(blob);
@@ -516,7 +505,7 @@ ${reportGen} ${new Date().toLocaleString()}
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
-
+        
         const downloadMsg = (window.i18n && window.i18n.t) ? window.i18n.t('admin.report_downloaded') : 'Report downloaded successfully!';
         showAlert(downloadMsg, 'success');
     }, 2000);

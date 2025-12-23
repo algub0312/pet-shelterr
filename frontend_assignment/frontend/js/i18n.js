@@ -1,5 +1,4 @@
-// Internationalization (i18n) Manager for PawHaven Pet Shelter
-// Handles language switching between English and Danish
+
 
 class I18n {
     constructor() {
@@ -9,14 +8,11 @@ class I18n {
         this.init();
     }
 
-    // Initialize i18n system
     async init() {
-        // Get saved language from localStorage or default to English
         const savedLanguage = localStorage.getItem('pawhaven_language') || 'en';
         await this.setLanguage(savedLanguage);
     }
 
-    // Load translation file for specified language
     async loadTranslations(lang) {
         try {
             const response = await fetch(`data/translations/${lang}.json`);
@@ -27,7 +23,6 @@ class I18n {
             return true;
         } catch (error) {
             console.error(`Error loading translations for ${lang}:`, error);
-            // Fallback to English if Danish fails
             if (lang !== 'en') {
                 await this.loadTranslations('en');
             }
@@ -35,7 +30,7 @@ class I18n {
         }
     }
 
-    // Set active language
+    
     async setLanguage(lang) {
         if (!this.supportedLanguages.includes(lang)) {
             console.warn(`Language ${lang} not supported, defaulting to English`);
@@ -49,8 +44,6 @@ class I18n {
 
         this.currentLanguage = lang;
         localStorage.setItem('pawhaven_language', lang);
-
-        // Update HTML lang attribute
         document.documentElement.lang = lang;
 
         // Update all translatable elements on the page
@@ -63,17 +56,13 @@ class I18n {
         document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
     }
 
-    // Get current language
     getCurrentLanguage() {
         return this.currentLanguage;
     }
 
-    // Translate a key using dot notation (e.g., 'nav.home')
     t(key, params = {}) {
         const keys = key.split('.');
         let value = this.translations[this.currentLanguage];
-
-        // Navigate through nested object
         for (const k of keys) {
             if (value && typeof value === 'object' && k in value) {
                 value = value[k];
@@ -82,8 +71,6 @@ class I18n {
                 return key; // Return key if translation not found
             }
         }
-
-        // Replace parameters in translation (e.g., {name})
         if (typeof value === 'string' && Object.keys(params).length > 0) {
             return value.replace(/\{(\w+)\}/g, (match, param) => {
                 return params[param] !== undefined ? params[param] : match;
@@ -93,7 +80,6 @@ class I18n {
         return value;
     }
 
-    // Update all elements with data-i18n attribute
     updatePageContent() {
         // Update elements with data-i18n attribute for text content
         document.querySelectorAll('[data-i18n]').forEach(element => {
@@ -119,7 +105,6 @@ class I18n {
             element.value = this.t(key);
         });
 
-        // Update page title
         const titleElement = document.querySelector('[data-i18n-page-title]');
         if (titleElement) {
             const key = titleElement.getAttribute('data-i18n-page-title');
@@ -139,15 +124,14 @@ class I18n {
         });
     }
 
-    // Get translation for dynamic content (used in JS)
+    // Get translation for dynamic content
     translate(key, params = {}) {
         return this.t(key, params);
     }
 }
 
-// Create global i18n instance
+
 const i18n = new I18n();
-// Ensure it's available on window
 window.i18n = i18n;
 
 // Language switcher click handler
